@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     public RoomBuilder[] rooms;
-    public Size levelSize;
+    public SizeObject levelSize;
     public GameObject mainPathMarker;
     public GameObject startingRoomMarker;
     public GameObject wall;
@@ -44,7 +44,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (!astarCalculated)
+        if (AstarPath.active == null)
         {
             GenerateAstar(bounds);
             astarCalculated = true;

@@ -1,9 +1,5 @@
-﻿using UnityEngine;
-
-[CreateAssetMenu(fileName = "Size", menuName = "LevelGen/Size", order = 51)]
-public class Size : ScriptableObject
+﻿public class Size : ISize
 {
-    public int Height = 10;
-    public int Width = 10;
+    public int Height { get; set; }
+    public int Width { get; set; }
 }
-

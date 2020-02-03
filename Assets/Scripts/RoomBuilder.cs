@@ -13,7 +13,7 @@ public enum RoomType
 [RequireComponent(typeof(TilemapRenderer))]
 public class RoomBuilder : MonoBehaviour, ILevelRoom
 {
-    public Size roomSize;
+    public SizeObject roomSize;
     public RoomType roomType;
 
     public bool IsRoomPossible(int enterDirection, int exitDirection)
