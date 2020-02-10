@@ -44,13 +44,15 @@ public class LevelGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (AstarPath.active == null)
+        if (AstarPath.active == null || AstarPath.active.graphs.Length == 0)
         {
             GenerateAstar(bounds);
             astarCalculated = true;
             var enemyObject = Instantiate(enemy, _startingRoom.transform.position, Quaternion.identity);
             var enemyScript = enemyObject.GetComponent<BasicSeekerAI>();
             enemyScript.target = target.transform;
+
+            return;
         }
     }
 
@@ -177,40 +179,52 @@ public class LevelGenerator : MonoBehaviour
         var x = transform.position.x;
         var y = transform.position.y;
 
-        Vector2 spawnPosition = new Vector2();
-
         for (int i = 0; i < _levelLayout.GetLength(0); i++)
         {
             for (int j = 0; j < _levelLayout.GetLength(1); j++)
             {
+                GameObject marker = null;
                 if (_levelLayout[i, j] == null)
                 {
-                    continue;
-                }
-
-                var roomSizeX = _levelLayout[i, j].roomSize.Width;
-                var roomSizeY = _levelLayout[i, j].roomSize.Height;
-
-                spawnPosition.Set(x + (j * roomSizeX), y - (i * roomSizeY));
-
-                var room = Instantiate(_levelLayout[i, j], spawnPosition, Quaternion.identity);
-                room.transform.parent = transform;
-
-                GameObject marker;
-
-                if (_startingRoomIndex.Height == i && _startingRoomIndex.Width == j
-)
-                {
-                    marker = Instantiate(startingRoomMarker, spawnPosition, Quaternion.identity);
+                    _levelLayout[i, j] = AssignRoomFor(i, j);
+                    RenderRoom(_levelLayout[i, j], i, j);
                 }
                 else
                 {
-                    marker = Instantiate(mainPathMarker, spawnPosition, Quaternion.identity);
-                }
-                marker.transform.localScale = new Vector3(_levelLayout[i, j].roomSize.Width, _levelLayout[i, j].roomSize.Height, 1);
-                marker.transform.parent = room.transform;
+                    var room = RenderRoom(_levelLayout[i, j], i, j);
+                    if (_startingRoomIndex.Height == i && _startingRoomIndex.Width == j)
+                    {
+                        marker = Instantiate(startingRoomMarker, room.transform.position, Quaternion.identity);
+                    }
+                    else
+                    {
+                        marker = Instantiate(mainPathMarker, room.transform.position, Quaternion.identity);
+                    }
+                    marker.transform.localScale = new Vector3(_levelLayout[i, j].roomSize.Width, _levelLayout[i, j].roomSize.Height, 1);
+                    marker.transform.parent = room.transform;
+                }                
             }
         }
+    }
+
+    private RoomBuilder RenderRoom(RoomBuilder roomBuilder, int i, int j)
+    {
+        var roomSizeX = roomBuilder.roomSize.Width;
+        var roomSizeY = roomBuilder.roomSize.Height;
+
+        Vector2 spawnPosition = new Vector2(
+            transform.position.x + (j * roomSizeX),
+            transform.position.y - (i * roomSizeY));
+
+        var room = Instantiate(_levelLayout[i, j], spawnPosition, Quaternion.identity);
+        room.transform.parent = transform;
+
+        return room;
+    }
+
+    private RoomBuilder AssignRoomFor(int indexI, int indexJ)
+    {
+        return rooms[UnityEngine.Random.Range(0, rooms.Length)];
     }
 
     private Bounds GenerateWalls()

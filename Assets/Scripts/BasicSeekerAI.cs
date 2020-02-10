@@ -1,5 +1,4 @@
 ﻿using Pathfinding;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Seeker))]
