@@ -1,4 +1,5 @@
 ﻿using Pathfinding;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Seeker))]
@@ -9,16 +10,18 @@ public class BasicSeekerAI : MonoBehaviour
     public float speed = 200f;
     public float nextWayPointDistance = 0.5f;
 
+    [HideInInspector]public Guid enemyId;
+
     private Path path;
     private Seeker seeker;
     private Rigidbody2D rb;
-    private int currentWaypoint;
-    
+    private int currentWaypoint;    
 
     private void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        enemyId = Guid.NewGuid();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }

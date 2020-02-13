@@ -1,6 +1,7 @@
 ﻿using Pathfinding;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -40,20 +41,24 @@ public class LevelGenerator : MonoBehaviour
 
         RenderLevelLayout();
         bounds = GenerateWalls();
+
+        StartCoroutine("GenerateAstarGraph");
+    }
+
+    private IEnumerator GenerateAstarGraph()
+    {
+        yield return new WaitForEndOfFrame();
+
+        GenerateAstar(bounds);
+        astarCalculated = true;
+        var enemyObject = Instantiate(enemy, _startingRoom.transform.position, Quaternion.identity);
+        var enemyScript = enemyObject.GetComponent<BasicSeekerAI>();
+        enemyScript.target = target.transform;
     }
 
     private void Update()
     {
-        if (AstarPath.active == null || AstarPath.active.graphs.Length == 0)
-        {
-            GenerateAstar(bounds);
-            astarCalculated = true;
-            var enemyObject = Instantiate(enemy, _startingRoom.transform.position, Quaternion.identity);
-            var enemyScript = enemyObject.GetComponent<BasicSeekerAI>();
-            enemyScript.target = target.transform;
 
-            return;
-        }
     }
 
     private void GenerateAstar(Bounds bounds)
@@ -202,7 +207,7 @@ public class LevelGenerator : MonoBehaviour
                     }
                     marker.transform.localScale = new Vector3(_levelLayout[i, j].roomSize.Width, _levelLayout[i, j].roomSize.Height, 1);
                     marker.transform.parent = room.transform;
-                }                
+                }
             }
         }
     }
