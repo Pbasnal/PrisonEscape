@@ -1,9 +1,10 @@
 ﻿using Pathfinding;
 using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LevelAi))]
 public class LevelGenerator : MonoBehaviour
 {
     public RoomBuilder[] rooms;
@@ -121,9 +122,11 @@ public class LevelGenerator : MonoBehaviour
             int i = enterDirection;
             int j = currentLocation.Width;
             int exitDirection = 0;
+            int selectedRoom = -1;
             try
             {
-                exitDirection = directions[i, j][UnityEngine.Random.Range(0, directions[i, j].Length)];
+                selectedRoom = UnityEngine.Random.Range(0, directions[i, j].Length);
+                exitDirection = directions[i, j][selectedRoom];
                 _possibleRooms = GetPossibleRooms(enterDirection, exitDirection);
 
                 if (_possibleRooms.Count == 0)
@@ -134,11 +137,12 @@ public class LevelGenerator : MonoBehaviour
                 }
                 retries = 0;
 
-                _levelLayout[currentLocation.Height, currentLocation.Width] =
-                    _possibleRooms[UnityEngine.Random.Range(0, _possibleRooms.Count)];
+                var possibleRoom = _possibleRooms[UnityEngine.Random.Range(0, _possibleRooms.Count)];
+                _levelLayout[currentLocation.Height, currentLocation.Width] = possibleRoom;
             }
             catch (Exception ex)
             {
+                Debug.Log(string.Format("i: {0}   j: {1}  selected: {2}", i, j, selectedRoom));
                 Debug.LogException(ex);
             }
             //Debug.Log(String.Format("i: {0}  j: {1}  SelectedRoom: {2}  In: {3}  Out: {4}", i, j, selectedRoom, enterDirection, exitDirection));
@@ -149,6 +153,7 @@ public class LevelGenerator : MonoBehaviour
                 case 2: currentLocation.Width++; break;
                 case 3: currentLocation.Height--; break;
             }
+
             enterDirection = exitDirection;
         }
 

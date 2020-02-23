@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 701865656}
   - component: {fileID: 701865655}
   - component: {fileID: 701865654}
+  - component: {fileID: 701865657}
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
@@ -252,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms:
   - {fileID: 4861968676600846017, guid: 379676f91b4268f469f37ece773044f8, type: 3}
-  levelSize: {fileID: 11400000, guid: a01989116ceca1b49bd7a00fde572985, type: 2}
+  levelSize: {fileID: 11400000, guid: 61274ffe5cf0947449c090200c377ac9, type: 2}
   mainPathMarker: {fileID: 200492022364158617, guid: d2b94dbd6ea44b644a9fb57b3360f2a8,
     type: 3}
   startingRoomMarker: {fileID: 7614210469154552482, guid: de049b8fd8d80d54e8e2dd5f136bba76,
@@ -275,6 +276,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &701865657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701865653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223027c7fd372fb48ba6cd3ba7d55d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 799102781}
 --- !u!1 &799102781
 GameObject:
   m_ObjectHideFlags: 0
