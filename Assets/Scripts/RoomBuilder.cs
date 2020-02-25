@@ -1,38 +1,42 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public interface  IRoomType
+public abstract class IRoomType: ScriptableObject
 {
-    bool IsRoomPossible(int enterDirection, int exitDirection);
+    public abstract bool IsRoomPossible(int enterDirection, int exitDirection);
 }
 
+[CreateAssetMenu(fileName = "Blocked Room", menuName = "Base Room Types/Blocked Room Type", order = 51)]
 public class BlockedRoomType : IRoomType
 {
-    public bool IsRoomPossible(int enterDirection, int exitDirection)
+    public override bool IsRoomPossible(int enterDirection, int exitDirection)
     {
         return false;
     }
 }
 
+[CreateAssetMenu(fileName = "LR Room", menuName = "Base Room Types/LR Room Type", order = 51)]
 public class LeftRightRoomType : IRoomType
 {
-    public bool IsRoomPossible(int enterDirection, int exitDirection)
+    public override bool IsRoomPossible(int enterDirection, int exitDirection)
     {
         return true;
     }
 }
 
+[CreateAssetMenu(fileName = "LRT Room", menuName = "Base Room Types/LRT Room Type", order = 51)]
 public class LeftRightTopRoomType : IRoomType
 {
-    public bool IsRoomPossible(int enterDirection, int exitDirection)
+    public override bool IsRoomPossible(int enterDirection, int exitDirection)
     {
         return true;
     }
 }
 
+[CreateAssetMenu(fileName = "LRTB Room", menuName = "Base Room Types/LRTB Room Type", order = 51)]
 public class LeftRightTopBottomRoomType : IRoomType
 {
-    public bool IsRoomPossible(int enterDirection, int exitDirection)
+    public override bool IsRoomPossible(int enterDirection, int exitDirection)
     {
         return true;
     }
@@ -40,13 +44,8 @@ public class LeftRightTopBottomRoomType : IRoomType
 
 [RequireComponent(typeof(Grid))]
 [RequireComponent(typeof(TilemapRenderer))]
-public class RoomBuilder : MonoBehaviour//, ILevelRoom
+public class RoomBuilder : MonoBehaviour
 {
     public SizeObject roomSize;
     public IRoomType roomType;
-
-    //public bool IsRoomPossible(int enterDirection, int exitDirection)
-    //{
-    //    return true;
-    //}
 }

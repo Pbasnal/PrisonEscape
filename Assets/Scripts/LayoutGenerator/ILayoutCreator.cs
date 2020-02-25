@@ -2,6 +2,8 @@
 {
     public interface ILayoutCreator
     {
-        RoomBuilder[,] GenerateRoomLayout(Size startingLocation);
+        Size LevelSize { get; }
+        LevelCoordinate StartingPoint { get; }
+        LevelLayout GenerateRoomLayout();
     }
 }

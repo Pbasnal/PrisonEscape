@@ -1,58 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace Assets.Scripts.LayoutGenerator
 {
     public class FourByFourLayout : ILayoutCreator
     {
-        private Size levelSize = new Size { Height = 4, Width = 4 };
-        private RoomBuilder[] _rooms;
+        public Size LevelSize { get; private set; }
+        public LevelCoordinate StartingPoint { get; private set; }
+        private IList<IRoomType> roomTypes;
+        private int[,][] directionsMap;
 
-        public FourByFourLayout(RoomBuilder[] rooms)
+        public FourByFourLayout(IList<IRoomType> roomTypes, LevelCoordinate startingPoint)
         {
-            _rooms = rooms;
+            this.roomTypes = roomTypes;
+            LevelSize = new Size { Height = 4, Width = 4 };
+            directionsMap = GetDirectionsMap();
+            StartingPoint = startingPoint;
         }
 
-        public RoomBuilder[,] GenerateRoomLayout(Size startingLocation)
+        public LevelLayout GenerateRoomLayout()
         {
-            var levelLayout = new RoomBuilder[levelSize.Height, levelSize.Width];
+            LevelLayout levelLayout = new LevelLayout(LevelSize, StartingPoint);
 
             int enterDirection = 0;
-            var currentLocation = new Size
+            var selectedPos = new LevelCoordinate
             {
-                Height = startingLocation.Height,
-                Width = startingLocation.Width
+                Height = StartingPoint.Height,
+                Width = StartingPoint.Width
             };
 
-            var generationStartTime = DateTime.UtcNow;
-            while (currentLocation.Height >= 0)
+            while (selectedPos.Height < LevelSize.Height)
             {
-                PossibleRoomSelection possibleRoomSelection = null;
-                try
-                {
-                    possibleRoomSelection = SelectARoom(enterDirection, currentLocation.Width);
-                    
-                    levelLayout[currentLocation.Height, currentLocation.Width] = possibleRoomSelection.SelectedRoom;
-                }
-                catch (Exception ex)
-                {
-                    Debug.Log(string.Format("i: {0}   j: {1}  selected: {2}", enterDirection, currentLocation.Width, possibleRoomSelection.SelectedRoom));
-                    Debug.LogException(ex);
-                }
-                //Debug.Log(String.Format("i: {0}  j: {1}  SelectedRoom: {2}  In: {3}  Out: {4}", i, j, selectedRoom, enterDirection, exitDirection));
+                var roomTypeSelection = SelectABaseRoomType(enterDirection, selectedPos.Width);
+                levelLayout.TypeLayout[selectedPos.Height, selectedPos.Width] = roomTypeSelection.SelectedBaseType;
+                levelLayout.MainPath.Add(selectedPos.Clone());
+                enterDirection = roomTypeSelection.ExitDirection;
 
-                switch (possibleRoomSelection.ExitDirection)
+                switch (roomTypeSelection.ExitDirection)
                 {
-                    case 1: currentLocation.Width--; break;
-                    case 2: currentLocation.Width++; break;
-                    case 3: currentLocation.Height--; break;
+                    case 1: selectedPos.Width--; break;
+                    case 2: selectedPos.Width++; break;
+                    case 3: selectedPos.Height++; break;
                 }
-
-                enterDirection = possibleRoomSelection.ExitDirection;
             }
 
-            //Debug.Log("Time to generate the level: " + (DateTime.UtcNow - generationStartTime).TotalMilliseconds);s
+            for (int i = 0; i < LevelSize.Height; i++)
+            {
+                for (int j = 0; j < LevelSize.Width; j++)
+                {
+                    if (levelLayout.TypeLayout[i, j] != null)
+                    {
+                        continue;
+                    }
+
+                    levelLayout.TypeLayout[i, j] = roomTypes[UnityEngine.Random.Range(0, roomTypes.Count)];
+                    continue;
+                }
+            }
+
             return levelLayout;
         }
 
@@ -79,15 +83,14 @@ namespace Assets.Scripts.LayoutGenerator
             return directions;
         }
 
-        private PossibleRoomSelection SelectARoom(int enterDirection, int width)
+        private SelectedRoomTypeResponse SelectABaseRoomType(int enterDirection, int width)
         {
-            var directions = GetDirectionsMap();
-            var selectedRoomIndex = UnityEngine.Random.Range(0, directions[enterDirection, width].Length);
-            var exitDirection = directions[enterDirection, width][selectedRoomIndex];
-            var possibleRooms = new List<RoomBuilder>();
-            foreach (var room in _rooms)
+            var selectedRoomIndex = UnityEngine.Random.Range(0, directionsMap[enterDirection, width].Length);
+            var exitDirection = directionsMap[enterDirection, width][selectedRoomIndex];
+            var possibleRooms = new List<IRoomType>();
+            foreach (var room in roomTypes)
             {
-                var isRoomPossible = room.roomType.IsRoomPossible(enterDirection, exitDirection);
+                var isRoomPossible = room.IsRoomPossible(enterDirection, exitDirection);
                 if (!isRoomPossible)
                 {
                     continue;
@@ -96,22 +99,34 @@ namespace Assets.Scripts.LayoutGenerator
                 possibleRooms.Add(room);
             }
 
-            return new PossibleRoomSelection
+            return new SelectedRoomTypeResponse
             {
-                EnterDirection = enterDirection,
-                ExitDirection = exitDirection,
-                SelectedRoom = possibleRooms[UnityEngine.Random.Range(0, possibleRooms.Count)],
-                SelectedRoomIndex = selectedRoomIndex
+                SelectedBaseType = possibleRooms[UnityEngine.Random.Range(0, possibleRooms.Count)],
+                ExitDirection = exitDirection
             };
         }
     }
 
-    public class PossibleRoomSelection
+    public class SelectedRoomTypeResponse
     {
-        public RoomBuilder SelectedRoom;
-        public int EnterDirection;
+        public IRoomType SelectedBaseType;
         public int ExitDirection;
-        public int SelectedRoomIndex;
+    }
+
+    public class LevelLayout
+    {
+        public Size LevelSize;
+        public LevelCoordinate StartingPostion;
+        public IRoomType[,] TypeLayout;
+        public List<LevelCoordinate> MainPath;
+
+        public LevelLayout(Size levelSize, LevelCoordinate startingPostion)
+        {
+            LevelSize = levelSize;
+            TypeLayout = new IRoomType[levelSize.Height, levelSize.Width];
+            MainPath = new List<LevelCoordinate>();
+            StartingPostion = startingPostion;
+        }
     }
 }
 

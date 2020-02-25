@@ -6,11 +6,13 @@ namespace Assets.Scripts.LayoutGenerator
 {
     public class RoomCollection : MonoBehaviour
     {
-        private RoomBuilder[] rooms;
+        public RoomBuilder[] rooms;
+
+        public SizeObject RoomSize => rooms[0].roomSize;
 
         private IDictionary<IRoomType, List<RoomBuilder>> roomTypeMap;
 
-        private void Start()
+        private void Awake()
         {
             roomTypeMap = new Dictionary<IRoomType, List<RoomBuilder>>();
 
@@ -29,9 +31,15 @@ namespace Assets.Scripts.LayoutGenerator
             return roomTypeMap.Keys.ToList();
         }
 
-        public RoomBuilder[] GetRooms()
+        public RoomBuilder GetARoom(IRoomType roomType)
         {
-            return rooms;
+            if (!roomTypeMap.ContainsKey(roomType))
+            {
+                return null;
+            }
+
+            var selectedRooms = roomTypeMap[roomType];
+            return selectedRooms[UnityEngine.Random.Range(0, selectedRooms.Count)];
         }
     }
 }
