@@ -1,4 +1,5 @@
-﻿using Pathfinding;
+﻿using Assets.Scripts.LayoutGenerator;
+using Pathfinding;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ public class LevelGenerator : MonoBehaviour
     public GameObject enemy;
     public GameObject target;
 
+    public RoomCollection roomCollection;
+
     private List<RoomBuilder> _possibleRooms = new List<RoomBuilder>();
     private RoomBuilder[,] _levelLayout;
     private RoomBuilder _startingRoom;
@@ -24,6 +27,8 @@ public class LevelGenerator : MonoBehaviour
     private Bounds bounds;
     private bool astarCalculated = false;
 
+    private ILayoutCreator layoutCreator;
+
     private void Awake()
     {
         if (levelSize == null)
@@ -31,13 +36,15 @@ public class LevelGenerator : MonoBehaviour
             return;
         }
 
+        layoutCreator = new FourByFourLayout(roomCollection.GetRooms());
+
         _startingRoomIndex = new Size
         {
             Height = levelSize.Height - 1,  // this was set to zero and to fix it, it needs the understanding that the level is getting generated from height to 0
             Width = UnityEngine.Random.Range(0, levelSize.Width)
         };
 
-        _levelLayout = GenerateRoomLayout(_startingRoomIndex);
+        var roomTypeLayout = layoutCreator.GenerateRoomLayout(_startingRoomIndex);
         _startingRoom = _levelLayout[_startingRoomIndex.Height, _startingRoomIndex.Width];
 
         RenderLevelLayout();
@@ -87,22 +94,7 @@ public class LevelGenerator : MonoBehaviour
         graph.collision.use2D = true;
         AstarPath.active.Scan();
     }
-
-    private List<RoomBuilder> GetPossibleRooms(int enterDirection, int exitDirection)
-    {
-        _possibleRooms.Clear();
-        foreach (var room in rooms)
-        {
-            var isRoomPossible = room.IsRoomPossible(enterDirection, exitDirection);
-            if (isRoomPossible)
-            {
-                _possibleRooms.Add(room);
-            }
-        }
-
-        return _possibleRooms;
-    }
-
+    
     private RoomBuilder[,] GenerateRoomLayout(Size startingLocation)
     {
         _levelLayout = new RoomBuilder[levelSize.Height, levelSize.Width];
@@ -159,29 +151,6 @@ public class LevelGenerator : MonoBehaviour
 
         //Debug.Log("Time to generate the level: " + (DateTime.UtcNow - generationStartTime).TotalMilliseconds);
         return _levelLayout;
-    }
-
-    private int[,][] GetDirectionsMap()
-    {
-        /* 1 - Left
-         * 2 - Right
-         * 3 - Up
-         */
-        var directions = new int[4, 4][];
-
-        directions[0, 0] = directions[3, 0] = new int[] { 2, 2, 3 };
-        directions[0, 1] = directions[3, 1] = directions[0, 2] = directions[3, 2] = new int[] { 1, 1, 2, 2, 3 };
-        directions[0, 3] = directions[3, 3] = new int[] { 1, 1, 3 };
-
-        directions[1, 0] = new int[] { 3 };
-        directions[1, 1] = directions[1, 2] = directions[0, 3];
-        directions[1, 3] = new int[] { }; // this is not a possible situation
-
-        directions[2, 0] = directions[1, 3]; // this is not a possible situation
-        directions[2, 1] = directions[2, 2] = directions[0, 0];
-        directions[2, 3] = directions[1, 0];
-
-        return directions;
     }
 
     private void RenderLevelLayout()
