@@ -236,7 +236,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701865653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1b08c1dffb02574dbac4b41dbde4a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e65a3598b05e734a944527bbad7e954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mainPathMarker: {fileID: 200492022364158617, guid: d2b94dbd6ea44b644a9fb57b3360f2a8,
@@ -253,7 +253,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701865653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df903d12b8aacc84f9fde1d4740315f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e117e2eef9c6ef4d958049d4b097eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelSize: {fileID: 11400000, guid: 61274ffe5cf0947449c090200c377ac9, type: 2}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701865653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 223027c7fd372fb48ba6cd3ba7d55d38, type: 3}
+  m_Script: {fileID: 11500000, guid: eed2059ca78c3c842bdc6389c2c33f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 799102781}
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 701865653}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69499f80ab30474abc809fe1b772f95, type: 3}
+  m_Script: {fileID: 11500000, guid: f37bb5bbab58ddd42a800e023563d0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:

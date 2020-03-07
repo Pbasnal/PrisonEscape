@@ -32,7 +32,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 6674011943075030691}
+  - {fileID: 5175576819049000250}
   - {fileID: 954306595187955313}
   - {fileID: 4466017825629472300}
   m_Father: {fileID: 0}
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 69365119553692269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca95ad0ff9c163d42ae9c96c4a11ddf9, type: 3}
+  m_Script: {fileID: 11500000, guid: 393466065b505904e8b27e4719c0a9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: {fileID: 11400000, guid: 867ff38093c08e14fb9f9ba2c0bd4320, type: 2}
@@ -645,7 +645,7 @@ Transform:
   m_Father: {fileID: 69365119553692262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3009183233348984099
+--- !u!1001 &3643210919813125818
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -729,9 +729,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93249ea42b6dfb47971033458e9f5fb, type: 3}
---- !u!4 &6674011943075030691 stripped
+--- !u!4 &5175576819049000250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8456667964683352960, guid: e93249ea42b6dfb47971033458e9f5fb,
     type: 3}
-  m_PrefabInstance: {fileID: 3009183233348984099}
+  m_PrefabInstance: {fileID: 3643210919813125818}
   m_PrefabAsset: {fileID: 0}
