@@ -2,7 +2,8 @@
     "name": "GameCode",
     "references": [
         "GUID:efa45043feb7e4147a305b73b5cea642",
-        "GUID:bf834cf51e248f942864981372d4ced2"
+        "GUID:3a37bf02e5091ae4c9fc3587c5d57677",
+        "GUID:7e44ecc070404e343883845aa724dd6f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
