@@ -1,4 +1,5 @@
-﻿using SpelunkyLevelGen.Models.Level;
+﻿using Cinemachine;
+using SpelunkyLevelGen.Models.Level;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ namespace Assets.GameCode
         public SizeObject LevelSize;
         public LevelGenerator LevelGenerator;
         public GenPathFinder GenPathFinder;
+        public GameObject player;
+
+        public CinemachineVirtualCamera CVcam;
 
         private LevelData _levelData;
 
@@ -34,6 +38,10 @@ namespace Assets.GameCode
             _levelData = new LevelData();
             _levelData.SetLevelSize(LevelSize);
             _levelData = LevelGenerator.GenerateLevel(_levelData);
+
+            player = _levelData.StartingRoom.GetComponent<StartingRoom>().SpawnPlayer(player);
+
+            CVcam.Follow = player.transform;
 
             return _levelData;
         }
