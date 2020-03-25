@@ -220,7 +220,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ceada2c8f5ec44ca38e8546cfa75e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelGenerator: {fileID: 739951863}
 --- !u!1 &364671879
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,8 +321,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0fb02ca2c03f84497689f229ccdb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelSize: {fileID: 11400000, guid: e80befd010969394390a4a489e11fd66, type: 2}
+  LevelSize: {fileID: 11400000, guid: facd82a159ecd1949b78d7d3c3c7738f, type: 2}
   LevelGenerator: {fileID: 739951863}
+  LevelEnemiesPlacer: {fileID: 739951867}
   GenPathFinder: {fileID: 151676378}
   player: {fileID: 1010769076186994440, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c, type: 3}
   CVcam: {fileID: 364671880}
@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 739951865}
   - component: {fileID: 739951864}
   - component: {fileID: 739951863}
+  - component: {fileID: 739951867}
   m_Layer: 0
   m_Name: LevelGen
   m_TagString: Untagged
@@ -355,10 +356,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 739951862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cca2e6cbcd98224e8269e909ba2a5d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e117e2eef9c6ef4d958049d4b097eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartingRoom: {fileID: 8728587810818741201, guid: d8d667351fff7dc4f88d9065726cd337,
+  StartingRoom: {fileID: 5861760577801015987, guid: d8d667351fff7dc4f88d9065726cd337,
     type: 3}
 --- !u!114 &739951864
 MonoBehaviour:
@@ -369,14 +370,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 739951862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ab5ca128134b541a061c64086c0b65, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e65a3598b05e734a944527bbad7e954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainPathMarker: {fileID: 200492022364158617, guid: 41366d61940550a429d454d75d9b45b1,
+  mainPathMarker: {fileID: 200492022364158617, guid: ba8c1c245a3daba4ab34022f1ab903ad,
     type: 3}
-  startingRoomMarker: {fileID: 7614210469154552482, guid: 505484b66aafe6645a52643026b0d869,
+  startingRoomMarker: {fileID: 7614210469154552482, guid: c8ed3f824b0883942b2114d30f663199,
     type: 3}
-  wall: {fileID: 4574689817882809369, guid: f91851a4068c7694ab0dc40ae4b01c22, type: 3}
+  wall: {fileID: 4574689817882809369, guid: a1b409564f4048741b62e9a550e562b8, type: 3}
 --- !u!114 &739951865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,13 +387,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 739951862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9cf5911e19d214f93831989990d9f8, type: 3}
+  m_Script: {fileID: 11500000, guid: f37bb5bbab58ddd42a800e023563d0ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rooms:
-  - {fileID: 4861968676600846017, guid: 15203f2dacc0a994782e478e9cc8439f, type: 3}
-  - {fileID: 69365119553692266, guid: ff898fdb441e60244abf77ee2f0e9f51, type: 3}
-  - {fileID: 3256985172634663293, guid: a32126d65f981ce4cbea1b2daeefe2c8, type: 3}
+  - {fileID: 4861968676600846017, guid: 61be71573616bd9459619b2d172159e1, type: 3}
+  - {fileID: 69365119553692266, guid: 8fcbcbe5753c30943b9c06bae2db7b0b, type: 3}
+  - {fileID: 3256985172634663293, guid: 6ff6bfa7cfa50664b8b15b2fa3c157a7, type: 3}
 --- !u!4 &739951866
 Transform:
   m_ObjectHideFlags: 0
@@ -407,6 +408,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739951867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739951862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5565236ef7741f744be71c90dad84235, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1477513898
 GameObject:
   m_ObjectHideFlags: 0

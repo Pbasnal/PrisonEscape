@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
-using SpelunkyLevelGen.Models.Level;
+using GameCode.GameAi;
+using GameCode.Models;
 using System.Collections;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace Assets.GameCode
     {
         public SizeObject LevelSize;
         public LevelGenerator LevelGenerator;
+        public ALevelEnemiesPlacer LevelEnemiesPlacer;
         public GenPathFinder GenPathFinder;
         public GameObject player;
 
@@ -27,7 +29,7 @@ namespace Assets.GameCode
             
             yield return new WaitForEndOfFrame();
 
-            GenPathFinder.GenerateAstar(_levelData.LevelBounds, _levelData.RoomSize);
+            GenPathFinder.GenerateAstar(_levelData);
             //var enemyObject = Instantiate(enemy, _startingRoom.transform.position, Quaternion.identity);
             //var enemyScript = enemyObject.GetComponent<BasicSeekerAI>();
             //enemyScript.target = target.transform;
@@ -39,7 +41,11 @@ namespace Assets.GameCode
             _levelData.SetLevelSize(LevelSize);
             _levelData = LevelGenerator.GenerateLevel(_levelData);
 
-            player = _levelData.StartingRoom.GetComponent<StartingRoom>().SpawnPlayer(player);
+            var totalRooms = _levelData.LevelSize.Height * _levelData.LevelSize.Width;
+            LevelEnemiesPlacer.PlaceEnemiesAsPerDifficulty(_levelData, totalRooms - 1);
+
+
+            player = _levelData.StartingRoom.SpawnPlayer(player);
 
             CVcam.Follow = player.transform;
 
