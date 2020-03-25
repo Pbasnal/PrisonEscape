@@ -1,12 +1,10 @@
-﻿using Pathfinding;
-using SpelunkyLevelGen.Models.Level;
+﻿using GameCode.Models;
+using Pathfinding;
 using UnityEngine;
 
 [RequireComponent(typeof(AstarPath))]
 public class GenPathFinder : MonoBehaviour
 {
-    public LevelGenerator levelGenerator;
-
     private AstarPath _pathFinder;
 
     // Start is called before the first frame update
@@ -15,9 +13,12 @@ public class GenPathFinder : MonoBehaviour
         _pathFinder = GetComponent<AstarPath>();
     }
 
-    public void GenerateAstar(LevelBounds bounds, ISize roomSize)
+    public void GenerateAstar(LevelData levelData)
     {
         var graph = (GridGraph)AstarPath.active.data.AddGraph(typeof(GridGraph));
+
+        var bounds = levelData.LevelBounds;
+        var roomSize = levelData.RoomSize;
 
         var width = (int)(bounds.maxX - bounds.minX) + 1;
         var depth = (int)(bounds.maxY - bounds.minY) + 1;

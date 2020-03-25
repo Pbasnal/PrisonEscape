@@ -1,0 +1,19 @@
+{
+    "name": "EditorCode",
+    "references": [
+        "GUID:3145a881cfb690144a56d97a63c60b8e"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
