@@ -82,6 +82,8 @@ namespace GameAi.ZombieStates
             var pos = (Vector2)transform.position;
             var dir = (target - pos).normalized;
 
+            // todo: need to use up and down ray projectors for left and right movement
+            // and left and right ray projectors for up and down movement
             RaycastHit2D hit = Physics2D.Raycast(pos, dir, 0.5f, obstacleLayerMask);
             Debug.DrawRay(pos, dir, Color.red);
 

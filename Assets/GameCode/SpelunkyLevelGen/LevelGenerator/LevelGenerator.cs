@@ -21,7 +21,8 @@ public class LevelGenerator : MonoBehaviour
         var levelRenderer = GetComponent<LevelRenderer>();
         var roomCollection = GetComponent<RoomCollection>();
 
-        var layoutCreator = new TwoByTwoLayout(roomCollection.GetRoomTypes(), levelData.StartingRoomCoordinates);
+        var layoutCreator = new FourByFourLayout(roomCollection.GetRoomTypes(), levelData.StartingRoomCoordinates);
+        //new TwoByTwoLayout(roomCollection.GetRoomTypes(), levelData.StartingRoomCoordinates);
         //new FourByFourLayout(roomCollection.GetRoomTypes(), levelData.StartingRoomCoordinates);
 
         levelData.SetLevelLayout(layoutCreator.GenerateRoomLayout());
