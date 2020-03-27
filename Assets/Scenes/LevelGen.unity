@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0fb02ca2c03f84497689f229ccdb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelSize: {fileID: 11400000, guid: facd82a159ecd1949b78d7d3c3c7738f, type: 2}
+  LevelSize: {fileID: 11400000, guid: 61274ffe5cf0947449c090200c377ac9, type: 2}
   LevelGenerator: {fileID: 739951863}
   LevelEnemiesPlacer: {fileID: 739951867}
   GenPathFinder: {fileID: 151676378}
