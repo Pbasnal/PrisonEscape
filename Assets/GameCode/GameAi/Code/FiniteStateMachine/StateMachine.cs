@@ -4,7 +4,7 @@ namespace GameAi.FiniteStateMachine
 {
     public abstract class StateMachine : MonoBehaviour
     {
-        protected State State;
+        public State State { get; private set; }
 
         public void SetState(State state)
         {

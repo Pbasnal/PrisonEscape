@@ -22,6 +22,30 @@ public class ZombieAi : ZombieStateMachine
         StartCoroutine(State.ProcessState());
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player")
+        {
+            lastKnownPlayerPosition = new PlayerInView();
+            lastKnownPlayerPosition.AddPlayerInfo(collision.transform,
+                Vector2.Distance(collision.transform.position, transform.position));
+
+            SetState(new SearchLastKnownPosition(this));
+
+            return;
+        }
+
+        if (collision.collider.tag != transform.tag)
+        {
+            return;
+        }
+
+        if (PathIsBlocked((Vector2)transform.position + CurrentMoveDirection))
+        {
+            SetState(new WanderingState(this));
+        }
+    }
+
     public void TakeDamage(Transform attacker, int attackDamage)
     {
         CurrentHealth -= attackDamage;
