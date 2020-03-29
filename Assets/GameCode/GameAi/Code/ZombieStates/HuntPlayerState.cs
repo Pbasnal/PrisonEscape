@@ -14,8 +14,6 @@ namespace GameAi.ZombieStates
         private List<Vector2> zombiePath;
         private int currentPathIndex;
 
-        private bool searchingForPath;
-
         public HuntPlayerState(StateMachine stateMachine) : base(stateMachine)
         {
         }
@@ -31,7 +29,6 @@ namespace GameAi.ZombieStates
             zombiePath.Add(zombieStateMachine.transform.position);
             currentPathIndex = 0;
 
-            searchingForPath = true;
             zombieStateMachine.GetPathToPlayer(OnPathComplete);
 
             yield break;
@@ -42,7 +39,7 @@ namespace GameAi.ZombieStates
         {
             Debug.Log("Calling chase");
 
-            if (searchingForPath)
+            if (!zombieStateMachine.SearchingForPathIsDonw)
             {
                 yield break;
             }
@@ -65,7 +62,6 @@ namespace GameAi.ZombieStates
                 zombieStateMachine.SetState(new SearchLastKnownPosition(zombieStateMachine));
             }
 
-            searchingForPath = true;
             if (zombieStateMachine.GetPathToPlayer(OnPathComplete) == ZombieStateMachine.HaveCaughtPlayer)
             {
                 zombieStateMachine.SetState(new AttackState(zombieStateMachine));
@@ -80,8 +76,8 @@ namespace GameAi.ZombieStates
             {
                 return;
             }
+
             Debug.Log("Found new path");
-            searchingForPath = false;
             zombiePath.Clear();
             currentPathIndex = 1; // because index 0 is the position of the seeker
             zombiePath = p.vectorPath.Select(v => (Vector2)v).ToList();

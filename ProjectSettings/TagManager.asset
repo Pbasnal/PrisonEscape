@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Detectors
   - WeaponPositions
+  - Zombie
   layers:
   - Default
   - TransparentFX

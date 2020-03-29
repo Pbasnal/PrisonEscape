@@ -23,11 +23,14 @@ namespace GameAi.ZombieStates
         [HideInInspector] public const bool HaveCaughtPlayer = true;
         [HideInInspector] public Animator animator;
 
+        protected Vector2 CurrentMoveDirection { get; private set; }
         protected IList<FieldOfView> _fovs;
         protected Seeker seeker;
         protected PlayerInView playerFound;
-
+        
         protected Vector2 currentPosition => (Vector2)transform.position;
+
+        public bool SearchingForPathIsDonw => seeker.IsDone();
 
         protected PlayerInView lastKnownPlayerPosition;
 
@@ -223,6 +226,8 @@ namespace GameAi.ZombieStates
             {
                 fov.UpdateLookDirection(dir);
             }
+
+            CurrentMoveDirection = new Vector2(dir.x, dir.y);
         }
 
         private MotionState GetMotionState(int h, int v)
