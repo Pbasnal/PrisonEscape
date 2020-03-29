@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5861760577801015984}
   - component: {fileID: 5861760577801015987}
   - component: {fileID: 954310232710887048}
-  m_Layer: 0
+  - component: {fileID: 1573367670696096363}
+  m_Layer: 8
   m_Name: StartingRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,6 +612,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySpawnPosition: []
   id: 116ee1b3-618b-4849-82d2-fa8518cddb32
+--- !u!19719996 &1573367670696096363
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5861760577801015986}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &5861760578274639386
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5861760578274639387}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerSpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
