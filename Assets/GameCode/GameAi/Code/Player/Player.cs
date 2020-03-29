@@ -16,10 +16,12 @@ namespace GameAi.Code.Player
         private Vector2 currentPosition => (Vector2)transform.position;
         private Rigidbody2D rigidBody;
 
+        private WeaponHolder weaponHolder;
         private MotionState MotionState;
 
         private void Start()
         {
+            weaponHolder = GetComponent<WeaponHolder>();
             rigidBody = GetComponent<Rigidbody2D>();
         }
 
@@ -30,21 +32,21 @@ namespace GameAi.Code.Player
 
             rigidBody.velocity = new Vector3(h * MoveSpeed, v * MoveSpeed);
 
-            MotionState = GetMotionState(h, v);
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && weaponHolder.HasWeapon)
             {
-                //MotionState = GetAttackState();
+                var dir = Attack();
+                MotionState = GetMotionState((int)dir.x, (int)dir.y);
+
+                //Set animator properties
                 Animator.SetTrigger("Attack");
-                Debug.Log(MotionState.ToString());
-                Attack();
-                //StartCoroutine("SetAttackingToFalse");
             }
             else
             {
-                Animator.SetInteger("MotionState", (int)MotionState);
+                MotionState = GetMotionState(h, v);
             }
-            //Debug.Log("Current motionState: " + MotionState);
+
+            Debug.Log(MotionState.ToString());
+            Animator.SetInteger("MotionState", (int)MotionState);
         }
 
         private IEnumerator SetAttackingToFalse()
@@ -62,23 +64,66 @@ namespace GameAi.Code.Player
                 return MotionState.Idle;
             }
 
-            if(h != 0) return h < 0 ? MotionState.WalkingLeft: MotionState.WalkingRight;
+            if (h != 0)
+            {
+                return h < 0 ? MotionState.WalkingLeft : MotionState.WalkingRight;
+            }
+
             return v < 0 ? MotionState.WalkingDown : MotionState.WalkingUp;
         }
 
-        private MotionState GetAttackState()
+        private Vector2 Attack()
         {
-            if (MotionState == MotionState.Idle) return MotionState.AttackDown;
-            return MotionState + 4;
+            var enemy = GetClosestEnemy();
+
+            var direction = GetEnemyDirection(enemy);
+            weaponHolder.Attack(direction);
+
+            return direction;
         }
 
-        private void Attack()
+        private Transform GetClosestEnemy()
         {
-            var enemyColliders = Physics2D.OverlapCircleAll(currentPosition, 1.5f, EnemyLayerMask);
+            var enemyColliders = Physics2D.OverlapCircleAll(currentPosition, AttackRange, EnemyLayerMask);
+
+            if (enemyColliders == null || enemyColliders.Length == 0)
+            {
+                return null;
+            }
+
+            Transform closestEnemy = null;
+            float distanceFromClosestEnemy = float.MaxValue;
 
             foreach (var enemyCollider in enemyColliders)
             {
-                enemyCollider.GetComponent<ZombieAi>().TakeDamage(transform, AttackDamage);
+                if (Vector2.Distance(enemyCollider.transform.position, transform.position) >= distanceFromClosestEnemy)
+                {
+                    continue;
+                }
+
+                closestEnemy = enemyCollider.transform;
+                distanceFromClosestEnemy = Vector2.Distance(enemyCollider.transform.position, transform.position);
+            }
+
+            return closestEnemy;
+        }
+
+        private Vector2 GetEnemyDirection(Transform closestEnemy)
+        {
+            if (closestEnemy == null)
+            {
+                return new Vector2((int)Input.GetAxisRaw("Horizontal"), (int)Input.GetAxisRaw("Vertical"));
+            }
+
+            var dir = (Vector2)(closestEnemy.position - transform.position);
+
+            if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            {
+                return (dir.x > 0) ? Vector2.right : Vector2.left;
+            }
+            else
+            {
+                return (dir.y > 0) ? Vector2.up : Vector2.down;
             }
         }
 
