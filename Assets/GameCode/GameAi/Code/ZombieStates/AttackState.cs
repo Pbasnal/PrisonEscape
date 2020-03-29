@@ -10,6 +10,7 @@ namespace GameAi.ZombieStates
 
         public AttackState(StateMachine stateMachine) : base(stateMachine)
         {
+            zombieStateMachine.animator.SetBool("IsAttacking", true);
         }
 
         public override IEnumerator ProcessState()
@@ -18,6 +19,7 @@ namespace GameAi.ZombieStates
 
             if (zombieStateMachine.AttackPlayer() != ZombieStateMachine.HaveCaughtPlayer)
             {
+                zombieStateMachine.animator.SetBool("IsAttacking", false);
                 zombieStateMachine.SetState(new SearchLastKnownPosition(zombieStateMachine));
             }
 
