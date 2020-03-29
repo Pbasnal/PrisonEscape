@@ -34,10 +34,10 @@ public class GenPathFinder : MonoBehaviour
         graph.rotation = new Vector3(-90, 270, 90);
 
         graph.neighbours = NumNeighbours.Four;
-        graph.SetDimensions(width, depth, 1);
+        graph.SetDimensions(width * 4, depth * 4, 0.25f);
         graph.collision.mask = LayerMask.GetMask("Obstacles");
         //graph.collision.type = ColliderType.Ray;
-        graph.collision.diameter = 0.2f;
+        graph.collision.diameter = 1.5f;
         graph.collision.use2D = true;
         AstarPath.active.Scan();
     }
