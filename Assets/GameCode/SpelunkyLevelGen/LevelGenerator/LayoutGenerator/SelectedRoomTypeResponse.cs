@@ -1,8 +1,10 @@
-﻿namespace LayoutGenerator
+﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
+
+namespace LayoutGenerator
 {
     public class SelectedRoomTypeResponse
     {
-        public ARoomType SelectedBaseType;
+        public RoomAttribute<RoomConnectednessType> SelectedRoomAttributeSO;
         public int ExitDirection;
     }
 }

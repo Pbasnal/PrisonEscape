@@ -1,33 +1,25 @@
 ﻿using GameCode.Models;
-using LayoutGenerator;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.LevelRenderer
 {
-    [RequireComponent(typeof(RoomCollection))]
     public class LevelRenderer : MonoBehaviour
     {
         public GameObject mainPathMarker;
         public GameObject startingRoomMarker;
         public GameObject wall;
 
-        private RoomCollection roomCollection;
+        private RoomProvider roomProvider;
 
-        private void Awake()
+        public LevelData RenderBaseLevel(LevelData levelData)
         {
-            roomCollection = GetComponent<RoomCollection>();
-        }
-
-        public LevelData RenderBaseLevel(LevelData levelData, StartingRoom startingRoom)
-        {
-            var roomTypeLayout = levelData.LevelLayout;
-
-            var x = transform.position.x;
-            var y = transform.position.y;
-
+            var levelLayout = levelData.LevelLayout;
             var levelSize = levelData.LevelSize;
+
+            roomProvider = levelData.RoomProvider;
 
             List<RoomBuilder> createdRooms = new List<RoomBuilder>();
 
@@ -35,31 +27,20 @@ namespace Assets.Scripts.LevelRenderer
             {
                 for (int j = 0; j < levelSize.Width; j++)
                 {
-                    GameObject marker = null;
-                    RoomBuilder room;
-                    if (roomTypeLayout.StartingPostion.Height == i && roomTypeLayout.StartingPostion.Width == j)
-                    {
-                        room = RenderRoom(startingRoom, i, j);
-                        levelData.SetStartingRoom(room);
+                    var room = roomProvider.GetARoom(levelLayout.AttributeLayout[i, j]);
+                    room = RenderRoom(room, i, j);
+                    levelLayout.AddRenderedRoom(i, j, room.gameObject);
 
-                        marker = Instantiate(startingRoomMarker, room.transform.position, Quaternion.identity);
-                        marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
-                        marker.transform.parent = room.transform;
-                    }
-                    else
-                    {
-                        room = RenderRoom(roomTypeLayout.TypeLayout[i, j], i, j);
-                    }
-
-                    roomTypeLayout.TypeLayout[i, j] = room.roomType;
-                    createdRooms.Add(room);
-
-                    if (roomTypeLayout.MainPath.Any(p => p.Height == i && p.Width == j))
-                    {
-                        marker = Instantiate(mainPathMarker, room.transform.position, Quaternion.identity);
-                        marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
-                        marker.transform.parent = room.transform;
-                    }
+                    //if (levelData.StartingRoomCoordinates.Height == i && levelData.StartingRoomCoordinates.Width == j)
+                    //{
+                    //    var marker = Instantiate(startingRoomMarker, room.transform.position, Quaternion.identity) as GameObject;
+                    //    marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
+                    //}
+                    //else if (levelLayout.MainPath.Any(p => p.Height == i && p.Width == j))
+                    //{
+                    //    var marker = Instantiate(mainPathMarker, room.transform.position, Quaternion.identity) as GameObject;
+                    //    marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
+                    //}
                 }
             }
 
@@ -67,16 +48,10 @@ namespace Assets.Scripts.LevelRenderer
             return levelData;
         }
 
-        private RoomBuilder RenderRoom(ARoomType roomType, int i, int j)
-        {
-            var room = roomCollection.GetARoom(roomType);
-            return RenderRoom(room, i, j);
-        }
-
         private RoomBuilder RenderRoom(RoomBuilder room, int i, int j)
         {
-            var roomSizeX = room.roomSize.Width;
-            var roomSizeY = room.roomSize.Height;
+            var roomSizeX = room.roomSize.Width;// - 1;
+            var roomSizeY = room.roomSize.Height;// - 1;
 
             Vector2 spawnPosition = new Vector2(
                 transform.position.x + (j * roomSizeX),
@@ -84,22 +59,22 @@ namespace Assets.Scripts.LevelRenderer
 
             room = Instantiate(room, spawnPosition, Quaternion.identity);
             room.transform.parent = transform;
-            room.InitializeRoomBuilder();
 
             return room;
         }
 
         private LevelBounds GenerateWalls(LevelData levelData)
         {
-            var scale = levelData.LevelSize.Height * levelData.RoomSize.Height;
+            var scale = (levelData.LevelSize.Height * levelData.RoomSize.Height);
+            //- (levelData.LevelSize.Height - 1);
 
-            var minX = transform.position.x - (roomCollection.RoomSize.Width / 2) + 0.5f;
-            var midX = (transform.position.x + scale) / 2 - (roomCollection.RoomSize.Width / 2);
-            var maxX = transform.position.x + scale - (roomCollection.RoomSize.Width / 2) - 0.5f;
+            var minX = transform.position.x - (roomProvider.RoomSize.Width / 2) + 0.5f;
+            var midX = (transform.position.x + scale) / 2 - (roomProvider.RoomSize.Width / 2);
+            var maxX = transform.position.x + scale - (roomProvider.RoomSize.Width / 2) - 0.5f;
 
-            var minY = transform.position.y - (roomCollection.RoomSize.Height / 2) + 0.5f;
-            var midY = (transform.position.y + scale) / 2 - (roomCollection.RoomSize.Height / 2);
-            var maxY = transform.position.y + scale - (roomCollection.RoomSize.Height / 2) - 0.5f;
+            var minY = transform.position.y - (roomProvider.RoomSize.Height / 2) + 0.5f;
+            var midY = (transform.position.y + scale) / 2 - (roomProvider.RoomSize.Height / 2);
+            var maxY = transform.position.y + scale - (roomProvider.RoomSize.Height / 2) - 0.5f;
 
             var ground = Instantiate(wall, transform);
             var roof = Instantiate(wall, transform);
@@ -107,16 +82,24 @@ namespace Assets.Scripts.LevelRenderer
             var rightWall = Instantiate(wall, transform);
 
             ground.transform.position = new Vector3(midX, -minY, 0);
-            ground.transform.localScale = new Vector3(scale, 1, 1);
+            //ground.transform.localScale = new Vector3(scale, 1, 1);
+            ground.GetComponent<SpriteRenderer>().size = new Vector3(scale, 1, 1);
+            ground.GetComponent<BoxCollider2D>().size = new Vector3(scale, 1, 1);
 
             roof.transform.position = new Vector3(midX, -maxY, 0);
-            roof.transform.localScale = new Vector3(scale, 1, 1);
+            //roof.transform.localScale = new Vector3(scale, 1, 1);
+            roof.GetComponent<SpriteRenderer>().size = new Vector3(scale, 1, 1);
+            roof.GetComponent<BoxCollider2D>().size = new Vector3(scale, 1, 1);
 
             leftWall.transform.position = new Vector3(minX, -midY, 0);
-            leftWall.transform.localScale = new Vector3(1, scale, 1);
+            //leftWall.transform.localScale = new Vector3(1, scale, 1);
+            leftWall.GetComponent<SpriteRenderer>().size = new Vector3(1, scale, 1);
+            leftWall.GetComponent<BoxCollider2D>().size = new Vector3(1, scale, 1);
 
             rightWall.transform.position = new Vector3(maxX, -midY, 0);
-            rightWall.transform.localScale = new Vector3(1, scale, 1);
+            //rightWall.transform.localScale = new Vector3(1, scale, 1);
+            rightWall.GetComponent<SpriteRenderer>().size = new Vector3(1, scale, 1);
+            rightWall.GetComponent<BoxCollider2D>().size = new Vector3(1, scale, 1);
 
             return new LevelBounds
             {

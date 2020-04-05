@@ -23,7 +23,7 @@ namespace GameAi.ZombieStates
 
         public override IEnumerator ProcessState()
         {
-            Debug.Log("Calling Wandering move");
+            //Debug.Log("Calling Wandering move");
 
             if (zombieStateMachine.IsPlayerInView())
             {

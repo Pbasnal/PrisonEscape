@@ -1,11 +1,13 @@
 ﻿using GameCode.Models;
-using System;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
 using System.Collections.Generic;
 
 namespace GameCode.GameAi
 {
     public class RandomEnemyPlacer : ALevelEnemiesPlacer
     {
+        public EnemyCollection EnemyCollection;
+
         private List<LevelCoordinate> selectedRooms;
 
         private List<int> selectedIndexes;
@@ -23,7 +25,14 @@ namespace GameCode.GameAi
                     continue;
                 }
 
-                levelData.LevelLayout.TypeLayout[selectedCoordinate.Height, selectedCoordinate.Width].SpawnEnemies(2);
+                var enemySpawner = levelData.LevelLayout.Rooms[selectedCoordinate.Height, selectedCoordinate.Width].GetComponent<ObjectSpawner>();
+
+                if (enemySpawner == null)
+                {
+                    continue;
+                }
+
+                enemySpawner.SpawnObject(EnemyCollection.GetAnEnemy().gameObject, enemySpawner.TotalSpawnPoints);
             }
 
             return levelData;
@@ -31,14 +40,14 @@ namespace GameCode.GameAi
 
         private bool IsStartingRoom(LevelCoordinate selectedCoordinate, LevelData levelData)
         {
-            return levelData.StartingRoomCoordinates.Height == selectedCoordinate.Height 
-                && levelData.StartingRoomCoordinates.Width== selectedCoordinate.Width;
+            return levelData.StartingRoomCoordinates.Height == selectedCoordinate.Height
+                && levelData.StartingRoomCoordinates.Width == selectedCoordinate.Width;
         }
 
         private LevelCoordinate GetANewRandomRoom(LevelData levelData)
         {
-            var levelHeight = levelData.LevelLayout.TypeLayout.GetLength(0);
-            var levelWidth = levelData.LevelLayout.TypeLayout.GetLength(1);
+            var levelHeight = levelData.LevelLayout.AttributeLayout.GetLength(0);
+            var levelWidth = levelData.LevelLayout.AttributeLayout.GetLength(1);
 
             var selectedIndex = Utilities.RandomRangeWithoutRepeat(0, levelHeight * levelWidth, selectedIndexes);
 
@@ -58,7 +67,7 @@ namespace GameCode.GameAi
             //var selectedWidth = 0;
             //var roomGotSelected = false;
 
-            
+
 
             //for (int i = 0; i < levelHeight * levelWidth - 1; i++)
             //{

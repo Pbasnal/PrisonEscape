@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(RoomBuilder))]
@@ -25,6 +28,9 @@ public class RoomBuilderEditor : Editor
                 Handles.DrawLine(bottomRight, bottomLeft);
                 Handles.DrawLine(bottomLeft, topLeft);
             }
+
+            var specialityAttributes = roomBuilder.roomAttributes?.Where(a => (a as RoomAttribute<RoomSpecialityType>) != null).ToList();
+            specialityAttributes.ForEach(a => ((RoomAttribute<RoomSpecialityType>)a).InvokeAttribute(roomBuilder.gameObject));
         }
     }
 }

@@ -18,6 +18,12 @@ public class LevelCoordinate : ISize
         Width = w;
     }
 
+    public void CopyFrom(LevelCoordinate pos)
+    {
+        Height = pos.Height;
+        Width = pos.Width;
+    }
+
     public LevelCoordinate Clone()
     {
         return new LevelCoordinate
