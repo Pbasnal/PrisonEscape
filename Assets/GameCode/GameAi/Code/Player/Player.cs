@@ -1,4 +1,5 @@
 ﻿using GameCode.GameAi.Code;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,11 +14,15 @@ namespace GameAi.Code.Player
         public LayerMask EnemyLayerMask;
         public Animator Animator;
 
+        public int Health = 100;
         private Vector2 currentPosition => (Vector2)transform.position;
         private Rigidbody2D rigidBody;
 
         private WeaponHolder weaponHolder;
         private MotionState MotionState;
+
+        public static event Action OnPlayerDeath;
+        public static event Action<int> OnPlayerHealthUpdate;
 
         private void Start()
         {
@@ -45,7 +50,7 @@ namespace GameAi.Code.Player
                 MotionState = GetMotionState(h, v);
             }
 
-            Debug.Log(MotionState.ToString());
+            //Debug.Log(MotionState.ToString());
             Animator.SetInteger("MotionState", (int)MotionState);
         }
 
@@ -131,7 +136,24 @@ namespace GameAi.Code.Player
         // in scenarios where damaging player deals some damage to the attacker itself
         public int TakeDamage(int damage)
         {
-            Debug.Log("Took damage " + damage);
+            if (Health == 0)
+            {
+                return -1;
+            }
+
+            Debug.Log("Took damage " + damage);            
+            Health -= damage;
+            OnPlayerHealthUpdate?.Invoke(Health);
+
+            if (Health < 1)
+            {
+                Health = 0;
+                OnPlayerDeath?.Invoke();
+
+                GetComponent<CapsuleCollider2D>().enabled = false;
+                enabled = false;
+            }
+
             return 0;
         }
 

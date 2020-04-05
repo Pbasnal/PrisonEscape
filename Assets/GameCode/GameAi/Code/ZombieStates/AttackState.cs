@@ -1,11 +1,12 @@
-﻿using System.Collections;
-using GameAi.FiniteStateMachine;
+﻿using GameAi.FiniteStateMachine;
+using System.Collections;
 using UnityEngine;
 
 namespace GameAi.ZombieStates
 {
     public class AttackState : State
     {
+        private float timeBeforeNextAttack = 0;
         private ZombieStateMachine zombieStateMachine => (ZombieStateMachine)StateMachine;
 
         public AttackState(StateMachine stateMachine) : base(stateMachine)
@@ -17,13 +18,20 @@ namespace GameAi.ZombieStates
         {
             Debug.Log("Start attacking");
 
+            if (timeBeforeNextAttack > 0.1)
+            {
+                timeBeforeNextAttack -= Time.deltaTime;
+                yield break;
+            }
+
             if (zombieStateMachine.AttackPlayer() != ZombieStateMachine.HaveCaughtPlayer)
             {
                 zombieStateMachine.animator.SetBool("IsAttacking", false);
                 zombieStateMachine.SetState(new SearchLastKnownPosition(zombieStateMachine));
             }
 
-            yield return new WaitForSecondsRealtime(1);
+            timeBeforeNextAttack = 1;
+            yield break;
         }
     }
 }

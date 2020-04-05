@@ -1,5 +1,8 @@
 ﻿using LayoutGenerator;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms;
+using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
 using System;
+using UnityEngine;
 
 namespace GameCode.Models
 {
@@ -9,12 +12,34 @@ namespace GameCode.Models
         public ISize RoomSize { get; private set; }
         public ISize LevelSize { get; private set; }
 
-        public RoomCollection RoomCollection { get; private set; }
-
         public LevelCoordinate StartingRoomCoordinates { get; private set; }
         public LevelLayout LevelLayout { get; private set; }
 
-        public StartingRoom StartingRoom { get; private set; }
+
+        public GameObject StartingRoom => LevelLayout.Rooms[StartingRoomCoordinates.Height, StartingRoomCoordinates.Width];
+        public GameObject EndRoom => LevelLayout.Rooms[EndRoomCoordinate.Height, EndRoomCoordinate.Width];
+
+        public RoomProvider RoomProvider
+        {
+            get { return _roomProvider; }
+            set
+            {
+                _roomProvider = value ?? throw new Exception("Provided RoomProvider is null");
+            }
+        }
+
+        public LevelCoordinate EndRoomCoordinate
+        {
+            get { return _endRoomCoordinate; }
+            set
+            {
+                _endRoomCoordinate = value ?? throw new Exception("Provided End room coordinate is null");
+            }
+        }
+
+        private GameObject _startinRoom;
+        private RoomProvider _roomProvider;
+        private LevelCoordinate _endRoomCoordinate;
 
         public void SetLevelSize(ISize levelSize)
         {
@@ -36,23 +61,9 @@ namespace GameCode.Models
             RoomSize = roomSize ?? throw new Exception("Input room size is empty");
         }
 
-        public void SetRoomCollection(RoomCollection roomCollection)
-        {
-            RoomCollection = roomCollection ?? throw new Exception("Input room colelction is empty");
-        }
-
         public void SetLevelLayout(LevelLayout levelLayout)
         {
             LevelLayout = levelLayout ?? throw new Exception("Input level layout is empty");
-        }
-
-        public void SetStartingRoom(RoomBuilder startingRoom)
-        {
-            if (startingRoom == null || startingRoom.GetComponent<StartingRoom>() == null)
-            {
-                throw new Exception("Input starting room is empty");
-            }
-            StartingRoom = startingRoom.GetComponent<StartingRoom>();
         }
     }
 }

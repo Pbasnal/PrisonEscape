@@ -62,7 +62,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1280
   Health: 100
-  AttackDamage: 10
+  AttackDamage: 20
   MoveSpeed: 0.5
   RunSpeed: 1.5
   detectionDistance: 0.15

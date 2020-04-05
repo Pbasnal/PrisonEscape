@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -18,11 +19,11 @@ namespace LayoutGenerator
 
             foreach (var room in rooms)
             {
-                if (!roomTypeMap.ContainsKey(room.roomType))
-                {
-                    roomTypeMap.Add(room.roomType, new List<RoomBuilder>());
-                }
-                roomTypeMap[room.roomType].Add(room);
+                //if (!roomTypeMap.ContainsKey(room.roomType))
+                //{
+                //    roomTypeMap.Add(room.roomType, new List<RoomBuilder>());
+                //}
+                //roomTypeMap[room.roomType].Add(room);
             }
         }
 

@@ -19,7 +19,8 @@ public class ZombieAi : ZombieStateMachine
     void Update()
     {
         //Debug.Log("Update " + State.GetType().Name);
-        StartCoroutine(State.ProcessState());
+        //StartCoroutine(State.ProcessState());
+        State.ProcessState().MoveNext();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
