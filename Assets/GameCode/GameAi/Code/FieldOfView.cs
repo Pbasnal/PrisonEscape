@@ -12,7 +12,7 @@ namespace GameAi.Code
 
         public Color EditorColor;
 
-        //[HideInInspector]
+        [HideInInspector]
         public Vector2 LookDirection;
 
         private void Start()

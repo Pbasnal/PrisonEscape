@@ -24,12 +24,12 @@ public class GenPathFinder : MonoBehaviour
         var depth = (int)(bounds.maxY - bounds.minY) + 1;
 
         graph.center = new Vector3(
-            transform.position.x + (width - roomSize.Width) / 2,
-            transform.position.y - (depth - roomSize.Height) / 2, 0);
+            transform.position.x + (width - roomSize.y) / 2,
+            transform.position.y - (depth - roomSize.x) / 2, 0);
 
         _pathFinder.transform.position = new Vector3(
-            transform.position.x + (width - roomSize.Width) / 2,
-            transform.position.y - (depth - roomSize.Height) / 2, 0);
+            transform.position.x + (width - roomSize.y) / 2,
+            transform.position.y - (depth - roomSize.x) / 2, 0);
 
         graph.rotation = new Vector3(-90, 270, 90);
 

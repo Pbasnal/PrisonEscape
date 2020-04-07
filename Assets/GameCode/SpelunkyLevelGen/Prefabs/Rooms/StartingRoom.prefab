@@ -1009,7 +1009,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5861760577801015983}
   - component: {fileID: 5861760577801015982}
-  - component: {fileID: 954310232710887048}
   - component: {fileID: 7133372694007938611}
   - component: {fileID: 1797284825045130088}
   - component: {fileID: 2261915295234036584}
@@ -1053,20 +1052,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &954310232710887048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5861760577801015986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9115545d83235b247b20d69d5ebbbeff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawnPosition: []
-  id: 116ee1b3-618b-4849-82d2-fa8518cddb32
 --- !u!114 &7133372694007938611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,10 +1064,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393466065b505904e8b27e4719c0a9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: {fileID: 11400000, guid: 867ff38093c08e14fb9f9ba2c0bd4320, type: 2}
+  roomSize: {fileID: 11400000, guid: dd66005607a7ed64889b063012d8f785, type: 2}
   roomAttributes:
-  - {fileID: 11400000, guid: c3bde22ff1f409947a9cfd4f6b0ef4da, type: 2}
   - {fileID: 11400000, guid: ff3d9ca62cdd2384f90dc4b41439edaf, type: 2}
+  - {fileID: 11400000, guid: c3bde22ff1f409947a9cfd4f6b0ef4da, type: 2}
 --- !u!114 &1797284825045130088
 MonoBehaviour:
   m_ObjectHideFlags: 0

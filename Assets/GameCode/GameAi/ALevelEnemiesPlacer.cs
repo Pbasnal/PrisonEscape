@@ -9,9 +9,9 @@ namespace GameCode.GameAi
     {
         public abstract LevelData PlaceEnemiesAsPerDifficulty(LevelData levelData, int numberOfRoomsToPlaceIn);
 
-        protected bool IsRoomOnMainPath(int i, int j, List<LevelCoordinate> mainPath)
+        protected bool IsRoomOnMainPath(int i, int j, List<IntPair> mainPath)
         {
-            return mainPath.Any(coordinate => coordinate.Height == i && coordinate.Width == j);
+            return mainPath.Any(coordinate => coordinate.x == i && coordinate.y == j);
         }
     }
 }

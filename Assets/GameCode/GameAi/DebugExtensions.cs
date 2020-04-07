@@ -11,26 +11,6 @@ namespace GameAi
             DrawBox(origin, halfExtents, orientation, color);
         }
 
-        //Draws the full box from start of cast to its end distance. Can also pass in hitInfoDistance instead of full distance
-        //public static void DrawBoxCastBox(Vector2 origin, Vector2 halfExtents, Quaternion orientation, Vector2 direction, float distance, Color color)
-        //{
-        //    direction.Normalize();
-        //    Box bottomBox = new Box(origin, halfExtents, orientation);
-        //    Box topBox = new Box(origin + (direction * distance), halfExtents, orientation);
-
-        //    Debug.DrawLine(bottomBox.backBottomLeft, topBox.backBottomLeft, color);
-        //    Debug.DrawLine(bottomBox.backBottomRight, topBox.backBottomRight, color);
-        //    Debug.DrawLine(bottomBox.backTopLeft, topBox.backTopLeft, color);
-        //    Debug.DrawLine(bottomBox.backTopRight, topBox.backTopRight, color);
-        //    Debug.DrawLine(bottomBox.frontTopLeft, topBox.frontTopLeft, color);
-        //    Debug.DrawLine(bottomBox.frontTopRight, topBox.frontTopRight, color);
-        //    Debug.DrawLine(bottomBox.frontBottomLeft, topBox.frontBottomLeft, color);
-        //    Debug.DrawLine(bottomBox.frontBottomRight, topBox.frontBottomRight, color);
-
-        //    DrawBox(bottomBox, color);
-        //    DrawBox(topBox, color);
-        //}
-
         public static Box GetBox(Vector2 origin, Vector2 size, Quaternion orientation)
         {
             return new Box(origin, size, orientation);

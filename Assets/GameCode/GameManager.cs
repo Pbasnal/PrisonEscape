@@ -20,7 +20,6 @@ namespace GameCode
 
     public class GameManager : MonoBehaviour
     {
-        public SizeObject LevelSize;
         public LevelGenerator LevelGenerator;
         public ALevelEnemiesPlacer LevelEnemiesPlacer;
         public GenPathFinder GenPathFinder;
@@ -57,7 +56,7 @@ namespace GameCode
             ExitDoor = InitializeEndRoom(_levelData);
             ExitDoor.OnPlayerReachedEnd += PlayerWon;
 
-            var totalRooms = _levelData.LevelSize.Height * _levelData.LevelSize.Width;
+            var totalRooms = _levelData.LevelSize.x * _levelData.LevelSize.y;
             LevelEnemiesPlacer.PlaceEnemiesAsPerDifficulty(_levelData, totalRooms - 1);
         }
 
@@ -88,7 +87,7 @@ namespace GameCode
 
             var roomSize = endRoom.roomSize;
 
-            Vector2 doorPosition = new Vector2(endRoom.transform.position.x, endRoom.transform.position.y - (endRoom.roomSize.height / 2) + 0.5f);
+            Vector2 doorPosition = new Vector2(endRoom.transform.position.x, endRoom.transform.position.y - (endRoom.roomSize.y / 2) + 0.5f);
                 
             return Instantiate(ExitDoor, doorPosition, Quaternion.identity).GetComponent<ExitDoor>();
         }
