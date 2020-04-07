@@ -18,8 +18,6 @@ public class ZombieAi : ZombieStateMachine
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Update " + State.GetType().Name);
-        //StartCoroutine(State.ProcessState());
         State.ProcessState().MoveNext();
     }
 
@@ -54,8 +52,6 @@ public class ZombieAi : ZombieStateMachine
         // need logic to start attacking player is player sneaks up from behind
         //lastKnownPlayerPosition = new PlayerInView();
         //lastKnownPlayerPosition.AddPlayerInfo(attacker, Vector2.Distance(transform.position, attacker.position));
-
-        //SetState(new SearchLastKnownPosition(this));
 
         if (CurrentHealth <= 0)
         {

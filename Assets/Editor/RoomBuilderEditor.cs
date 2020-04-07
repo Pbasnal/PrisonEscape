@@ -18,10 +18,10 @@ public class RoomBuilderEditor : Editor
             {
                 Vector2 center = roomBuilder.transform.position;
 
-                Vector2 topRight = new Vector2(roomBuilder.roomSize.Width / 2, roomBuilder.roomSize.Width / 2);
-                Vector2 topLeft = new Vector2(-roomBuilder.roomSize.Width / 2, roomBuilder.roomSize.Width / 2);
-                Vector2 bottomRight = new Vector2(roomBuilder.roomSize.Width / 2, -roomBuilder.roomSize.Width / 2);
-                Vector2 bottomLeft = new Vector2(-roomBuilder.roomSize.Width / 2, -roomBuilder.roomSize.Width / 2);
+                Vector2 topRight = new Vector2(roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
+                Vector2 topLeft = new Vector2(-roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
+                Vector2 bottomRight = new Vector2(roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
+                Vector2 bottomLeft = new Vector2(-roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
 
                 Handles.DrawLine(topLeft, topRight);
                 Handles.DrawLine(topRight, bottomRight);
@@ -29,8 +29,8 @@ public class RoomBuilderEditor : Editor
                 Handles.DrawLine(bottomLeft, topLeft);
             }
 
-            var specialityAttributes = roomBuilder.roomAttributes?.Where(a => (a as RoomAttribute<RoomSpecialityType>) != null).ToList();
-            specialityAttributes.ForEach(a => ((RoomAttribute<RoomSpecialityType>)a).InvokeAttribute(roomBuilder.gameObject));
+            var specialityAttributes = roomBuilder.roomAttributes?.Where(a => (a as RoomSpecialAttribute) != null).ToList();
+            specialityAttributes.ForEach(a => (a as RoomSpecialAttribute).InvokeAttribute(roomBuilder.gameObject));
         }
     }
 }

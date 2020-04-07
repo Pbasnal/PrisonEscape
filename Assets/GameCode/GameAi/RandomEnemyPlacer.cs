@@ -8,13 +8,13 @@ namespace GameCode.GameAi
     {
         public EnemyCollection EnemyCollection;
 
-        private List<LevelCoordinate> selectedRooms;
+        private List<IntPair> selectedRooms;
 
         private List<int> selectedIndexes;
 
         public override LevelData PlaceEnemiesAsPerDifficulty(LevelData levelData, int numberOfRoomsToPlaceIn)
         {
-            selectedRooms = new List<LevelCoordinate>();
+            selectedRooms = new List<IntPair>();
             selectedIndexes = new List<int>();
 
             for (int i = 0; i < numberOfRoomsToPlaceIn; i++)
@@ -25,7 +25,7 @@ namespace GameCode.GameAi
                     continue;
                 }
 
-                var enemySpawner = levelData.LevelLayout.Rooms[selectedCoordinate.Height, selectedCoordinate.Width].GetComponent<ObjectSpawner>();
+                var enemySpawner = levelData.LevelLayout.Rooms[selectedCoordinate.x, selectedCoordinate.y].GetComponent<ObjectSpawner>();
 
                 if (enemySpawner == null)
                 {
@@ -38,13 +38,13 @@ namespace GameCode.GameAi
             return levelData;
         }
 
-        private bool IsStartingRoom(LevelCoordinate selectedCoordinate, LevelData levelData)
+        private bool IsStartingRoom(IntPair selectedCoordinate, LevelData levelData)
         {
-            return levelData.StartingRoomCoordinates.Height == selectedCoordinate.Height
-                && levelData.StartingRoomCoordinates.Width == selectedCoordinate.Width;
+            return levelData.StartingRoomCoordinates.x == selectedCoordinate.x
+                && levelData.StartingRoomCoordinates.y == selectedCoordinate.y;
         }
 
-        private LevelCoordinate GetANewRandomRoom(LevelData levelData)
+        private IntPair GetANewRandomRoom(LevelData levelData)
         {
             var levelHeight = levelData.LevelLayout.AttributeLayout.GetLength(0);
             var levelWidth = levelData.LevelLayout.AttributeLayout.GetLength(1);
@@ -61,35 +61,7 @@ namespace GameCode.GameAi
             var selectedWidth = selectedIndex / levelWidth;
             var selectedHeight = selectedIndex % levelWidth;
 
-            return new LevelCoordinate(selectedHeight, selectedWidth);
-
-            //var selectedHeight = 0;
-            //var selectedWidth = 0;
-            //var roomGotSelected = false;
-
-
-
-            //for (int i = 0; i < levelHeight * levelWidth - 1; i++)
-            //{
-            //    selectedHeight = Random.Range(0, levelHeight);
-            //    selectedWidth = Random.Range(0, levelWidth);
-
-            //    if (!selectedRooms.Any(c => c.Height == selectedHeight && c.Width == selectedWidth))
-            //    {
-            //        roomGotSelected = true;
-            //        break;
-            //    }
-            //}
-
-            //if (!roomGotSelected)
-            //{
-            //    return null;
-            //}
-
-            //var selectedCoordinate = new LevelCoordinate(selectedHeight, selectedWidth);
-            //selectedRooms.Add(selectedCoordinate);
-
-            //return selectedCoordinate;
+            return IntPair.CreatePair(selectedHeight, selectedWidth);
         }
     }
 }

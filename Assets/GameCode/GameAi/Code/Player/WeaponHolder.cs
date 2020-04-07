@@ -38,8 +38,6 @@ namespace GameAi.Code.Player
         public void AddWeapon(Weapon weapon)
         {
             Weapon = weapon;
-
-            //Weapon.SetActive(false);
         }
 
         public void Attack(Vector2 dir)
@@ -48,7 +46,6 @@ namespace GameAi.Code.Player
 
             if (dir == Vector2.up)
             {
-                //Weapon.transform.position = WeaponHoldingPositions[WeaponPosUp].position;
                 Weapon.transform.SetPositionAndRotation(
                     WeaponHoldingPositions[WeaponPosUp].position, Quaternion.Euler(0, 0, 180));
             }
