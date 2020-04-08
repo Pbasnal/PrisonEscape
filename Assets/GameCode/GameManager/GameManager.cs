@@ -1,6 +1,8 @@
 ﻿using Cinemachine;
 using GameAi.Code.Player;
 using GameCode.GameAi;
+using GameCode.Messages;
+using GameCode.MessagingFramework;
 using GameCode.Models;
 using SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor;
 using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
@@ -10,14 +12,6 @@ using UnityEngine;
 
 namespace GameCode
 {
-    public enum GameState
-    {
-        NotStated,
-        Running,
-        Won,
-        Lost
-    }
-
     public class GameManager : MonoBehaviour
     {
         public LevelGenerator LevelGenerator;
@@ -29,12 +23,49 @@ namespace GameCode
 
         public CinemachineVirtualCamera CVcam;
 
+        private GameState currentState;
         private LevelData _levelData;
 
         public static event Action<GameState> OnGameStateChange;
 
+        private void Awake()
+        {
+            MessageBus.Register<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
+            MessageBus.Register<PlayerWonMessage>(OnPlayerWin);
+
+        }
+
+        private void OnDestroy()
+        {
+            MessageBus.Remove<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
+            MessageBus.Remove<PlayerWonMessage>(OnPlayerWin);
+        }
+
+        private void OnPlayerWin(TransportMessage msg)
+        {
+            if (currentState != GameState.Running)
+            {
+                return;
+            }
+
+            currentState = GameState.Won;
+        }
+
+        private void OnPlayerHealthUpdate(TransportMessage trMessage)
+        {
+            var message = trMessage.ConvertTo<PlayerHealthUpdateMessage>();
+
+            if (currentState == GameState.Running && message.HasPlayerDied)
+            {
+                currentState = GameState.Lost;
+            }
+        }
+
         private void Start()
         {
+            currentState = GameState.Running;
+            MessageBus.Publish(new GameStateUpdateMessage(currentState));
+
             StartCoroutine("Generatelevel");
         }
 
@@ -50,11 +81,10 @@ namespace GameCode
 
             var startingRoom = _levelData.StartingRoom.GetComponent<ObjectSpawner>();
             player = startingRoom.SpawnObject(player);
-            Player.OnPlayerDeath += PlayerDied;
+
             CVcam.Follow = player.transform;
 
             ExitDoor = InitializeEndRoom(_levelData);
-            ExitDoor.OnPlayerReachedEnd += PlayerWon;
 
             var totalRooms = _levelData.LevelSize.x * _levelData.LevelSize.y;
             LevelEnemiesPlacer.PlaceEnemiesAsPerDifficulty(_levelData, totalRooms - 1);
@@ -67,12 +97,6 @@ namespace GameCode
 
             
             return _levelData;
-        }
-
-        private void PlayerDied()
-        {
-            Debug.Log("game over - player deid");
-            OnGameStateChange?.Invoke(GameState.Lost);
         }
 
         private void PlayerWon()

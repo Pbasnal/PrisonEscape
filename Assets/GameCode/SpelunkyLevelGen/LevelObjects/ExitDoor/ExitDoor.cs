@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameCode.Messages;
+using GameCode.MessagingFramework;
 using UnityEngine;
 
 namespace SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor
@@ -7,8 +8,6 @@ namespace SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor
     [RequireComponent(typeof(BoxCollider2D))]
     public class ExitDoor : MonoBehaviour
     {
-        public static event Action OnPlayerReachedEnd;
-
         private void Start()
         {
             var spriteRenderer = GetComponent<SpriteRenderer>();
@@ -23,7 +22,7 @@ namespace SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor
             }
 
             Debug.Log("Collision Game finish");
-            OnPlayerReachedEnd?.Invoke();
+            MessageBus.Publish(new PlayerWonMessage());
         }
     }
 }
