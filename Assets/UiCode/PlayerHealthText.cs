@@ -1,4 +1,5 @@
-﻿using GameAi.Code.Player;
+﻿using GameCode.Messages;
+using GameCode.MessagingFramework;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,19 +13,22 @@ namespace UiCode
 
         private void Awake()
         {
+            MessageBus.Register<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
+
             text = GetComponent<TextMeshProUGUI>();
-            Player.OnPlayerHealthUpdate += UpdateHealthText;
             text.text = "";
         }
 
         private void OnDestroy()
         {
-            Player.OnPlayerHealthUpdate -= UpdateHealthText;
+            MessageBus.Remove<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
         }
 
-        private void UpdateHealthText(int health)
+        private void OnPlayerHealthUpdate(TransportMessage trMsg)
         {
-            text.text = "Health: " + health;
+            var msg = trMsg.ConvertTo<PlayerHealthUpdateMessage>();
+
+            text.text = "Health: " + msg.Playerhealth;
         }
     }
 }

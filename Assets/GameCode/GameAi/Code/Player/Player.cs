@@ -1,5 +1,6 @@
 ﻿using GameCode.GameAi.Code;
-using System;
+using GameCode.Messages;
+using GameCode.MessagingFramework;
 using System.Collections;
 using UnityEngine;
 
@@ -21,11 +22,12 @@ namespace GameAi.Code.Player
         private WeaponHolder weaponHolder;
         private MotionState MotionState;
 
-        public static event Action OnPlayerDeath;
-        public static event Action<int> OnPlayerHealthUpdate;
+        private PlayerHealthUpdateMessage playerHealthUpdateMessage;
 
         private void Start()
         {
+            playerHealthUpdateMessage = new PlayerHealthUpdateMessage(Health);
+
             weaponHolder = GetComponent<WeaponHolder>();
             rigidBody = GetComponent<Rigidbody2D>();
         }
@@ -143,16 +145,17 @@ namespace GameAi.Code.Player
 
             Debug.Log("Took damage " + damage);            
             Health -= damage;
-            OnPlayerHealthUpdate?.Invoke(Health);
-
+            
             if (Health < 1)
             {
                 Health = 0;
-                OnPlayerDeath?.Invoke();
-
                 GetComponent<CapsuleCollider2D>().enabled = false;
                 enabled = false;
             }
+
+            playerHealthUpdateMessage.Playerhealth = Health;
+            MessageBus.Publish(playerHealthUpdateMessage);
+
 
             return 0;
         }
