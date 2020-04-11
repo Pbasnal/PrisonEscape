@@ -2,18 +2,18 @@
 using System.Linq;
 using UnityEngine;
 
-namespace GameCode
+namespace Utilities
 {
-    public class Utilities
+    public class Helper
     {
         public static int RandomRangeWithoutRepeat(int min, int max, List<int> alreadySelectedIndexes)
         {
             var remainingSelections = (max - min) - alreadySelectedIndexes.Count;
 
-            for (int i = 0; i < remainingSelections; i++)
+            for (int i = 0; i < max / 2; i++)
             {
                 var selectedItemIndex = Random.Range(min, max);
-                
+
                 if (!alreadySelectedIndexes.Any(item => item == selectedItemIndex))
                 {
                     return selectedItemIndex;

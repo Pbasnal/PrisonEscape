@@ -25,7 +25,7 @@ namespace GameCode.MessagingFramework
 
                 if (_bus == null)
                 {
-                    Debug.LogWarning(ErrorMessageForMissingBus);
+                    Debug.Log(ErrorMessageForMissingBus);
                     return null;
                 }
 
@@ -45,7 +45,7 @@ namespace GameCode.MessagingFramework
             _messageDictionary = new Dictionary<Type, HandlerEvent>();
         }
 
-        public static void Register<T>(UnityAction<TransportMessage> messageHandler) where T : IMessage
+        public static void Register<T>(UnityAction<TransportMessage> messageHandler)
         {
             if (!instance._messageDictionary.TryGetValue(typeof(T), out var handlerEvent))
             {
@@ -56,7 +56,7 @@ namespace GameCode.MessagingFramework
             handlerEvent.AddListener(messageHandler);
         }
 
-        public static void Remove<T>(UnityAction<TransportMessage> messageHandler) where T : IMessage
+        public static void Remove<T>(UnityAction<TransportMessage> messageHandler)
         {
             if (instance == null)
             {
@@ -69,7 +69,7 @@ namespace GameCode.MessagingFramework
             }
         }
 
-        public static void Publish<T>(T message) where T : IMessage
+        public static void Publish<T>(T message)
         {
             if (instance == null)
             {

@@ -1,6 +1,7 @@
 ﻿using GameCode.Models;
 using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
 using System.Collections.Generic;
+using Utilities;
 
 namespace GameCode.GameAi
 {
@@ -49,7 +50,7 @@ namespace GameCode.GameAi
             var levelHeight = levelData.LevelLayout.AttributeLayout.GetLength(0);
             var levelWidth = levelData.LevelLayout.AttributeLayout.GetLength(1);
 
-            var selectedIndex = Utilities.RandomRangeWithoutRepeat(0, levelHeight * levelWidth, selectedIndexes);
+            var selectedIndex = Helper.RandomRangeWithoutRepeat(0, levelHeight * levelWidth, selectedIndexes);
 
             if (selectedIndex == -1)
             {

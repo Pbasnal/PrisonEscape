@@ -1,7 +1,7 @@
 ﻿using GameAi.Code;
-using GameAi.Code.Player;
 using GameAi.FiniteStateMachine;
 using GameCode.GameAi.Code;
+using GameCode.Player;
 using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;

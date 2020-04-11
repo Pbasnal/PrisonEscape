@@ -2,7 +2,7 @@
 
 namespace GameCode.Messages
 {
-    public class PlayerWonMessage : IMessage
+    public class PlayerWonMessage// : IMessage
     {
     }
 }

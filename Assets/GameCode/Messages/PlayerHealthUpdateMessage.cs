@@ -2,9 +2,9 @@
 
 namespace GameCode.Messages
 {
-    public class PlayerHealthUpdateMessage : IMessage
+    public class PlayerHealthUpdateMessage// : IMessage
     {
-        public int Playerhealth;
+        public float Playerhealth;
 
         public bool HasPlayerDied => Playerhealth == 0;
 
