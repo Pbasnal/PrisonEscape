@@ -37,7 +37,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6699827703993318309}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 7289463071377031257}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -503,19 +504,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -605,7 +606,7 @@ AnimatorStateMachine:
     m_Position: {x: 80, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4746268562090646145}
-    m_Position: {x: -130, y: 390, z: 0}
+    m_Position: {x: -120, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -155395946386138122}
     m_Position: {x: 290, y: 390, z: 0}
@@ -760,6 +761,19 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &7289463071377031257
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bca7789e3c4b14d8f41d3a9756bbb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipOverrides: []
 --- !u!1102 &8886828510457568264
 AnimatorState:
   serializedVersion: 5

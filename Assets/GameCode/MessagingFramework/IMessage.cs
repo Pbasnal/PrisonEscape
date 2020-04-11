@@ -7,14 +7,14 @@ namespace GameCode.MessagingFramework
 
     public class TransportMessage
     {
-        public IMessage message;
+        public object message;
 
-        public T ConvertTo<T>() where T : IMessage
+        public T ConvertTo<T>()
         {
             return (T)message;
         }
     }
 
-    public interface IMessage
-    { }
+    //public interface IMessage
+    //{ }
 }

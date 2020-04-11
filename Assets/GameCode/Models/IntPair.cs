@@ -15,9 +15,6 @@ public class IntPair : ScriptableObject
         return intPair;
     }
 
-    private IntPair()
-    { }
-
     public void CopyFrom(IntPair pair)
     {
         x = pair.x;

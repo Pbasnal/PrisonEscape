@@ -1,8 +1,4 @@
-﻿using GameCode.MessagingFramework;
-using System.Collections;
-
-
-namespace GameCode
+﻿namespace GameCode
 {
     public enum GameState
     {
@@ -12,7 +8,7 @@ namespace GameCode
         Lost
     }
 
-    public class GameStateUpdateMessage : IMessage
+    public class GameStateUpdateMessage// : IMessage
     {
         public GameState GameState;
 

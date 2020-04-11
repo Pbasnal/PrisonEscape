@@ -1,8 +1,9 @@
-﻿using GameAi.Code;
+﻿using Assets.GameCode.Interfaces;
+using GameAi.Code;
 using GameAi.ZombieStates;
 using UnityEngine;
 
-public class ZombieAi : ZombieStateMachine
+public class ZombieAi : ZombieStateMachine, ICanTakeDamage
 {
     public int MaxHealth = 20;
     public int CurrentHealth;
@@ -57,5 +58,10 @@ public class ZombieAi : ZombieStateMachine
         {
             Destroy(gameObject);
         }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        CurrentHealth -= (int)damageAmount;
     }
 }

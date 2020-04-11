@@ -2,21 +2,19 @@
 using GameCode.MessagingFramework;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace UiCode
 {
     public class PlayerHealthText : MonoBehaviour
     {
-        public TextMeshProUGUI text;
-        public Image Textbackground;
+        private TextMeshProUGUI text;
 
         private void Awake()
         {
             MessageBus.Register<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
 
             text = GetComponent<TextMeshProUGUI>();
-            text.text = "";
+            text.text = "Health: 100";
         }
 
         private void OnDestroy()

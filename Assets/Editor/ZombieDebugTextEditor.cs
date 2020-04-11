@@ -11,7 +11,7 @@ public class ZombieDebugTextEditor : Editor
         {
             var zombie = target as ZombieAi;
 
-            Debug.Log("Creating handles");
+            //Debug.Log("Creating handles");
 
             var labelPos = new Vector2(zombie.transform.position.x, zombie.transform.position.y + 1);
 
