@@ -4,33 +4,36 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(RoomBuilder))]
-public class RoomBuilderEditor : Editor
+namespace EditorScripts
 {
-    private void OnSceneGUI()
+    [CustomEditor(typeof(RoomBuilder))]
+    public class RoomBuilderEditor : Editor
     {
-        // get the chosen game object
-        if (target != null)
+        private void OnSceneGUI()
         {
-            var roomBuilder = target as RoomBuilder;
-
-            if (roomBuilder.roomSize != null)
+            // get the chosen game object
+            if (target != null)
             {
-                Vector2 center = roomBuilder.transform.position;
+                var roomBuilder = target as RoomBuilder;
 
-                Vector2 topRight = new Vector2(roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
-                Vector2 topLeft = new Vector2(-roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
-                Vector2 bottomRight = new Vector2(roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
-                Vector2 bottomLeft = new Vector2(-roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
+                if (roomBuilder.roomSize != null)
+                {
+                    Vector2 center = roomBuilder.transform.position;
 
-                Handles.DrawLine(topLeft, topRight);
-                Handles.DrawLine(topRight, bottomRight);
-                Handles.DrawLine(bottomRight, bottomLeft);
-                Handles.DrawLine(bottomLeft, topLeft);
+                    Vector2 topRight = new Vector2(roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
+                    Vector2 topLeft = new Vector2(-roomBuilder.roomSize.y / 2, roomBuilder.roomSize.y / 2);
+                    Vector2 bottomRight = new Vector2(roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
+                    Vector2 bottomLeft = new Vector2(-roomBuilder.roomSize.y / 2, -roomBuilder.roomSize.y / 2);
+
+                    Handles.DrawLine(topLeft, topRight);
+                    Handles.DrawLine(topRight, bottomRight);
+                    Handles.DrawLine(bottomRight, bottomLeft);
+                    Handles.DrawLine(bottomLeft, topLeft);
+                }
+
+                var specialityAttributes = roomBuilder.roomAttributes?.Where(a => (a as RoomSpecialAttribute) != null).ToList();
+                specialityAttributes.ForEach(a => (a as RoomSpecialAttribute).InvokeAttribute(roomBuilder.gameObject));
             }
-
-            var specialityAttributes = roomBuilder.roomAttributes?.Where(a => (a as RoomSpecialAttribute) != null).ToList();
-            specialityAttributes.ForEach(a => (a as RoomSpecialAttribute).InvokeAttribute(roomBuilder.gameObject));
         }
     }
 }
