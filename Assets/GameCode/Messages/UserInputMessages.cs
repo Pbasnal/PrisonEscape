@@ -16,6 +16,7 @@ namespace GameCode.Messages
 
             return this;
         }
+
         public UserInputBeganMessage WithTransform(Transform transform)
         {
             ClickOnTransform = transform;

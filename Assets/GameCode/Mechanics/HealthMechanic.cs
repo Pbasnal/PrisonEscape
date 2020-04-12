@@ -1,4 +1,4 @@
-﻿using Assets.GameCode.Interfaces;
+﻿using GameCode.Interfaces;
 using UnityEngine;
 
 namespace GameCode.Player
