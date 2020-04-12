@@ -1,5 +1,4 @@
 ﻿using Cinemachine;
-using GameAi.Code.Player;
 using GameCode.GameAi;
 using GameCode.Messages;
 using GameCode.MessagingFramework;
@@ -18,7 +17,7 @@ namespace GameCode
         public ALevelEnemiesPlacer LevelEnemiesPlacer;
         public GenPathFinder GenPathFinder;
 
-        public GameObject player;
+        public GameObject Player;
         public ExitDoor ExitDoor;
 
         public CinemachineVirtualCamera CVcam;
@@ -80,9 +79,9 @@ namespace GameCode
             yield return new WaitForEndOfFrame();
 
             var startingRoom = _levelData.StartingRoom.GetComponent<ObjectSpawner>();
-            player = startingRoom.SpawnObject(player);
-
-            CVcam.Follow = player.transform;
+            Player = startingRoom.SpawnObject(Player);
+            
+            CVcam.Follow = Player.transform;
 
             ExitDoor = InitializeEndRoom(_levelData);
 
@@ -113,7 +112,9 @@ namespace GameCode
 
             Vector2 doorPosition = new Vector2(endRoom.transform.position.x, endRoom.transform.position.y - (endRoom.roomSize.y / 2) + 0.5f);
                 
-            return Instantiate(ExitDoor, doorPosition, Quaternion.identity).GetComponent<ExitDoor>();
+            var door = Instantiate(ExitDoor, doorPosition, Quaternion.identity).GetComponent<ExitDoor>();
+            door.transform.parent = transform;
+            return door;
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using GameCode;
+﻿using Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +41,17 @@ namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts
 
             var objs = new List<GameObject>();
             List<int> selected = new List<int>();
-            for (int i = 0; i < amnt; i++)
+            for (int i = 0; i < amnt && i < TotalSpawnPoints; i++)
             {
-                var tr = SpawnPositions[Utilities.RandomRangeWithoutRepeat(0, TotalSpawnPoints, selected)];
-                objs.Add(Instantiate(obj, tr.position, Quaternion.identity));
+                var selectedIndex =  Helper.RandomRangeWithoutRepeat(0, TotalSpawnPoints, selected);
+
+                if (selectedIndex == -1)
+                {
+                    continue;
+                }
+
+                selected.Add(selectedIndex);
+                objs.Add(Instantiate(obj, SpawnPositions[selectedIndex].position, Quaternion.identity, transform));
             }
 
             return objs;
