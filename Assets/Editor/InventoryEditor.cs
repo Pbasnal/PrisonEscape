@@ -1,47 +1,47 @@
-﻿using GameCode;
+﻿using GameCode.InventorySystem;
 using UnityEditor;
 using UnityEngine;
 
-namespace EditorScripts
+[CustomEditor(typeof(Inventory))]
+public class InventoryEditor : Editor
 {
-    [CustomEditor(typeof(Inventory))]
-    public class InventoryEditor : Editor
+    private bool[] showItemSlots = new bool[Inventory.NumberOfItemSlots];
+    private SerializedProperty itemImagesProperty;
+    private SerializedProperty itemsProperty;
+    private const string inventoryPropItemImagesName = "ItemImages";
+    private const string inventoryPropItemsName = "Items";
+
+    private GUIContent itemImageLabel = new GUIContent("Item Image");
+    private GUIContent itemLabel = new GUIContent("Item Object");
+
+    private void OnEnable()
     {
-        private bool[] showItemSlots = new bool[Inventory.numItemSlots];
-        private SerializedProperty itemImagesProperty;
-        private SerializedProperty itemsProperty;
-        private const string inventoryPropItemImagesName = "itemImages";
-        private const string inventoryPropItemsName = "items";
+        itemImagesProperty = serializedObject.FindProperty(inventoryPropItemImagesName);
+        itemsProperty = serializedObject.FindProperty(inventoryPropItemsName);
+    }
 
-        private void OnEnable()
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        for (int i = 0; i < Inventory.NumberOfItemSlots; i++)
         {
-            itemImagesProperty = serializedObject.FindProperty(inventoryPropItemImagesName);
-            itemsProperty = serializedObject.FindProperty(inventoryPropItemsName);
+            ItemSlotGUI(i);
         }
+        serializedObject.ApplyModifiedProperties();
+    }
 
-        public override void OnInspectorGUI()
+    private void ItemSlotGUI(int index)
+    {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        showItemSlots[index] = EditorGUILayout.Foldout(showItemSlots[index], "Item slot " + index);
+        if (showItemSlots[index])
         {
-            serializedObject.Update();
-            for (int i = 0; i < Inventory.numItemSlots; i++)
-            {
-                ItemSlotGUI(i);
-            }
-            serializedObject.ApplyModifiedProperties();
+            EditorGUILayout.PropertyField(itemImagesProperty.GetArrayElementAtIndex(index), itemImageLabel);
+            EditorGUILayout.PropertyField(itemsProperty.GetArrayElementAtIndex(index), itemLabel);
         }
-
-        private void ItemSlotGUI(int index)
-        {
-            EditorGUILayout.BeginVertical(GUI.skin.box);
-            EditorGUI.indentLevel++;
-
-            showItemSlots[index] = EditorGUILayout.Foldout(showItemSlots[index], "Item slot " + index);
-            if (showItemSlots[index])
-            {
-                EditorGUILayout.PropertyField(itemImagesProperty.GetArrayElementAtIndex(index));
-                EditorGUILayout.PropertyField(itemsProperty.GetArrayElementAtIndex(index));
-            }
-            EditorGUI.indentLevel--;
-            EditorGUILayout.EndVertical();
-        }
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
     }
 }

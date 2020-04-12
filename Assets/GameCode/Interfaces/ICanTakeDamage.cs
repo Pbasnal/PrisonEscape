@@ -1,4 +1,4 @@
-﻿namespace Assets.GameCode.Interfaces
+﻿namespace GameCode.Interfaces
 {
     public interface ICanTakeDamage
     {

@@ -5,7 +5,7 @@ namespace GameCode.Player
 {
     public class CanRaiseEventsBehaviour<T> : MonoBehaviour where T: new()
     {
-        protected GameEvent<T> EventListeners;// { get; private set; }
+        protected GameEvent<T> EventListeners;
 
         public void Register(UnityAction<T> callback)
         {
