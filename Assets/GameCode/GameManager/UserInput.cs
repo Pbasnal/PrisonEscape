@@ -1,6 +1,7 @@
 ﻿using GameCode.Messages;
 using GameCode.MessagingFramework;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace GameCode
 {
@@ -14,6 +15,8 @@ namespace GameCode
 
     public class UserInput : MonoBehaviour
     {
+        public EventSystem currentEventSystem;
+
         public InputPhase InputPhase { get; private set; }
 
         [SerializeField] private Camera _camera;
@@ -31,10 +34,22 @@ namespace GameCode
         public void Awake()
         {
             _camera = _camera == null ? Camera.main : _camera;
+            currentEventSystem = currentEventSystem == null ? 
+                EventSystem.current : currentEventSystem;
+
+            if (currentEventSystem == null)
+            {
+                throw new UnityException("No EventSystem exists in the scene. Please add an EventSystem");
+            }
         }
 
         private void Update()
         {
+            if (currentEventSystem.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 InputPhase = InputPhase.Began;

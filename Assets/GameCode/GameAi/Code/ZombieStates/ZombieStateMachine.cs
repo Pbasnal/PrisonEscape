@@ -1,7 +1,7 @@
 ﻿using GameAi.Code;
 using GameAi.FiniteStateMachine;
 using GameCode.GameAi.Code;
-using GameCode.Player;
+using GameCode.Interfaces;
 using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
@@ -147,9 +147,8 @@ namespace GameAi.ZombieStates
                 return !HaveCaughtPlayer;
             }
 
-            var reverseDamage = playerFound.PlayerTransform.GetComponent<Player>().TakeDamage(AttackDamage);
-
-            Health -= reverseDamage;
+            //todo: reverse damage
+            playerFound.PlayerTransform.GetComponent<ICanTakeDamage>().TakeDamage(AttackDamage);
 
             return HaveCaughtPlayer;
         }

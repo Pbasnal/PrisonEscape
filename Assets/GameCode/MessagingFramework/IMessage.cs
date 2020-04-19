@@ -11,10 +11,12 @@ namespace GameCode.MessagingFramework
 
         public T ConvertTo<T>()
         {
-            return (T)message;
+            if (message is T)
+            {
+                return (T)message;
+            }
+
+            return default(T);
         }
     }
-
-    //public interface IMessage
-    //{ }
 }

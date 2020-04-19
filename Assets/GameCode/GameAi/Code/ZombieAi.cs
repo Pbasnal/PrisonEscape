@@ -1,4 +1,4 @@
-﻿using Assets.GameCode.Interfaces;
+﻿using GameCode.Interfaces;
 using GameAi.Code;
 using GameAi.ZombieStates;
 using UnityEngine;

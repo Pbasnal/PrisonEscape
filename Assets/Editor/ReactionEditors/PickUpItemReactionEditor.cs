@@ -4,7 +4,7 @@ using UnityEditor;
 namespace EditorScripts.ReactionEditors
 {
     [CustomEditor(typeof(PickUpItemReaction))]
-    public class PickedUpItemReactionEditor : ReactionEditor
+    public class PickUpItemReactionEditor : ReactionEditor
     {
         protected override string GetFoldoutLabel()
         {

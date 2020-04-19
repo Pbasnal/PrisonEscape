@@ -1,8 +1,8 @@
-﻿using GameCode.InteractionSystem;
+﻿using EditorScripts.Utilities;
+using GameCode.InteractionSystem;
 using System;
 using UnityEditor;
 using UnityEngine;
-using Utilities;
 
 namespace EditorScripts.ReactionEditors
 {

@@ -1,4 +1,4 @@
-﻿using Assets.GameCode.Interfaces;
+﻿using GameCode.Interfaces;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

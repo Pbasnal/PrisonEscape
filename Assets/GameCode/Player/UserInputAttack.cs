@@ -1,4 +1,4 @@
-﻿using GameCode.Interfaces;
+﻿using GameCode.InteractionSystem.Mechanics;
 using GameCode.Messages;
 using GameCode.MessagingFramework;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace GameCode.Player
         public Weapon Weapon;
         public List<float> modifiers;
 
-        private Transform _target;
+        private Interactable _target;
 
         private void Awake()
         {
@@ -20,13 +20,22 @@ namespace GameCode.Player
 
         private void FixedUpdate()
         {
-            if (_target == null || !Weapon.IsTargetInRange(_target.position))
+            if (_target == null || Vector3.Distance(transform.position, _target.interactionLocation.position) > 0.5f)
             {
                 return;
             }
 
-            Weapon.AddAttackModifiers(modifiers);
-            Weapon.Attack(_target);
+            Debug.Log("Interacting");
+            _target.Interact();
+
+            _target = null;
+            //if (_target == null || !Weapon.IsTargetInRange(_target.transform.position))
+            //{
+            //    return;
+            //}
+
+            //Weapon.AddAttackModifiers(modifiers);
+            //Weapon.Attack(_target.transform);
         }
 
         private void CaptureAttackLocation(TransportMessage trMsg)
@@ -37,7 +46,7 @@ namespace GameCode.Player
                 return;
             }
 
-            _target = msg.ClickOnTransform;
+            _target = msg.transformOfClickedObject.GetComponent<Interactable>();
         }
 
     }
