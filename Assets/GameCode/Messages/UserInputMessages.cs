@@ -2,24 +2,25 @@
 
 namespace GameCode.Messages
 {
-    public class UserInputMessage// : IMessage
+    public class UserInputMessage
     {
-        public Transform ClickOnTransform;
-        public Vector2 InputLocationInGameSpace;
+        public bool ClickedOnAnObject => transformOfClickedObject != null;
+        public Transform transformOfClickedObject;
+        public Vector2 inputLocationInGameSpace;
     }
 
     public class UserInputBeganMessage : UserInputMessage
     {
         public UserInputBeganMessage WithLcoation(Vector2 location)
         {
-            InputLocationInGameSpace = new Vector2(location.x, location.y);
+            inputLocationInGameSpace = new Vector2(location.x, location.y);
 
             return this;
         }
 
         public UserInputBeganMessage WithTransform(Transform transform)
         {
-            ClickOnTransform = transform;
+            transformOfClickedObject = transform;
 
             return this;
         }
@@ -29,14 +30,14 @@ namespace GameCode.Messages
     {
         public UserInputDoubleClickMessage WithLcoation(Vector2 location)
         {
-            InputLocationInGameSpace = new Vector2(location.x, location.y);
+            inputLocationInGameSpace = new Vector2(location.x, location.y);
 
             return this;
         }
 
         public UserInputDoubleClickMessage WithTransform(Transform transform)
         {
-            ClickOnTransform = transform;
+            transformOfClickedObject = transform;
 
             return this;
         }
@@ -48,14 +49,14 @@ namespace GameCode.Messages
 
         public UserInputHeldMessage WithLcoation(Vector2 location)
         {
-            InputLocationInGameSpace = new Vector2(location.x, location.y);
+            inputLocationInGameSpace = new Vector2(location.x, location.y);
 
             return this;
         }
 
         public UserInputHeldMessage WithTransform(Transform transform)
         {
-            ClickOnTransform = transform;
+            transformOfClickedObject = transform;
 
             return this;
         }

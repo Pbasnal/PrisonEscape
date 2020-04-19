@@ -1,9 +1,9 @@
-﻿using GameCode.InteractionSystem;
+﻿using EditorScripts.Utilities;
+using GameCode.InteractionSystem;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Utilities;
 
 namespace EditorScripts.ReactionEditors
 {
@@ -39,6 +39,7 @@ namespace EditorScripts.ReactionEditors
             // Cache the SerializedProperty
             reactionsProperty = serializedObject.FindProperty(reactionsPropName);
 
+            CleanupEmptyReactions();
             // If new editors are required for Reactions, create them.
             CheckAndCreateSubEditors(reactionCollection.Reactions);
 
@@ -61,10 +62,10 @@ namespace EditorScripts.ReactionEditors
 
         public override void OnInspectorGUI()
         {
+            CleanupEmptyReactions();
+
             // Pull all the information from the target into the serializedObject.
             serializedObject.Update();
-
-            //Debug.Log("Total Reactions: " + reactionCollection.Reactions.Length);
 
             // If new editors for Reactions are required, create them.
             CheckAndCreateSubEditors(reactionCollection.Reactions);
@@ -136,6 +137,26 @@ namespace EditorScripts.ReactionEditors
                 Reaction newReaction = ReactionEditor.CreateReaction(reactionType);
                 reactionsProperty.AddToObjectArray(newReaction);
             }
+        }
+
+        protected void CleanupEmptyReactions()
+        {
+            if (reactionCollection.Reactions == null)
+            {
+                return;
+            }
+
+            var nonEmptyReaction = new List<Reaction>();
+            for (int i = 0; i < reactionCollection.Reactions.Length; i++)
+            {
+                if (reactionCollection.Reactions[i] == null)
+                {
+                    continue;
+                }
+                nonEmptyReaction.Add(reactionCollection.Reactions[i]);
+            }
+
+            reactionCollection.Reactions = nonEmptyReaction.ToArray();
         }
 
         private static void DragAndDropAreaGUI(Rect containingRect)

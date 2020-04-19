@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameCode.InteractionSystem
 {
@@ -20,16 +19,16 @@ namespace GameCode.InteractionSystem
             }
         }
 
-        public void React()
+        public void React(MonoBehaviour behaviour)
         {
             for (int i = 0; i < Reactions.Length; i++)
             {
                 var delayedReaction = Reactions[i] as DelayedReaction;
 
                 if (delayedReaction)
-                    delayedReaction.React(this);
+                    delayedReaction.React(behaviour);
                 else
-                    Reactions[i].React(this);
+                    Reactions[i].React(behaviour);
             }
         }
     }

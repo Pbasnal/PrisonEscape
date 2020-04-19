@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameCode.InteractionSystem;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -43,6 +44,8 @@ namespace GameCode.MessagingFramework
             }
 
             _messageDictionary = new Dictionary<Type, HandlerEvent>();
+
+            AllConditions.Instance.Reset();
         }
 
         public static void Register<T>(UnityAction<TransportMessage> messageHandler)

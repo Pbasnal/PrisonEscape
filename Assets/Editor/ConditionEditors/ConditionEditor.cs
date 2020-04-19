@@ -1,8 +1,7 @@
-﻿using System;
+﻿using EditorScripts.Utilities;
 using GameCode.InteractionSystem;
 using UnityEditor;
 using UnityEngine;
-using Utilities;
 
 [CustomEditor(typeof(Condition))]
 public class ConditionEditor : Editor
@@ -29,9 +28,9 @@ public class ConditionEditor : Editor
 
     private const float conditionButtonWidth = 30f;                     // Width in pixels of the button to remove this Condition from it's array.
     private const float toggleOffset = 30f;                             // Offset to line up the satisfied toggle with its label.
-    private const string conditionPropDescriptionName = "description";  // Name of the field that represents the description.
-    private const string conditionPropSatisfiedName = "satisfied";      // Name of the field that represents whether or not the Condition is satisfied.
-    private const string conditionPropHashName = "hash";                // Name of the field that represents the Condition's identifier.
+    private const string conditionPropDescriptionName = "Description";  // Name of the field that represents the description.
+    private const string conditionPropSatisfiedName = "IsSatisfied";      // Name of the field that represents whether or not the Condition is satisfied.
+    private const string conditionPropHashName = "Hash";                // Name of the field that represents the Condition's identifier.
     private const string blankDescription = "No conditions set.";       // Description to use in case no Conditions have been created yet.
 
 

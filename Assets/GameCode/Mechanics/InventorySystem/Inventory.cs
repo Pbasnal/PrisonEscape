@@ -1,45 +1,82 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using GameCode.Mechanics.InventorySystem;
+using GameCode.Mechanics.InventorySystem.DataScripts;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace GameCode.InventorySystem
 {
     public class Inventory : MonoBehaviour
     {
-        public const int NumberOfItemSlots = 4;
+        public InventorySlotsInformation slotsInformation;
+        public ItemSlot[] itemSlots;
 
-        public Image[] ItemImages = new Image[NumberOfItemSlots];
-        public Item[] Items = new Item[NumberOfItemSlots];
+        [SerializeField] private List<Item> items;
 
-        public void AddItem(Item itemToAdd)
+        public void RegisterToAllItems(Action<Item> action)
         {
-            for (int i = 0; i < NumberOfItemSlots; i++)
+            for (int i = 0; i < itemSlots.Length; i++)
             {
-                if (Items[i] != null)
+                itemSlots[i].OnItemClickEvent += action;
+            }
+        }
+
+        public void UnRegisterFromAllItems(Action<Item> action)
+        {
+            for (int i = 0; i < itemSlots.Length; i++)
+            {
+                itemSlots[i].OnItemClickEvent -= action;
+            }
+        }
+
+        public bool AddItem(Item itemToAdd)
+        {
+            for (int i = 0; i < slotsInformation.NumberOfSlots; i++)
+            {
+                if (itemSlots[i].Item != null)
                 {
                     continue;
                 }
 
-                Items[i] = itemToAdd;
-                ItemImages[i].sprite = itemToAdd.Sprite;
-                ItemImages[i].enabled = true;
-                break;
+                itemSlots[i].Item = itemToAdd;
+                return true;
             }
+
+            return false;
         }
 
-        public void RemoveItem(Item itemToRemove)
+        public bool RemoveItem(Item itemToRemove)
         {
-            for (int i = 0; i < NumberOfItemSlots; i++)
+            for (int i = 0; i < slotsInformation.NumberOfSlots; i++)
             {
-                if (Items[i] != itemToRemove)
+                if (itemSlots[i].Item != itemToRemove)
                 {
                     continue;
                 }
 
-                Items[i] = null;
-                ItemImages[i].sprite = null;
-                ItemImages[i].enabled = false;
-                break;
+                itemSlots[i].Item = null;
+                
+                return true;
             }
+
+            return false;
         }
+
+        // Assumption- Might not need it because Inventory has two separate methods
+        // to add and remove items. Keeping this method in comments in case it's needed
+        // in the future.
+        //private void RefreshUi()
+        //{
+        //    int i = 0;
+        //    for (;  i   < items.Count && i < itemSlots.Length; i++)
+        //    {
+        //        itemSlots[i].Item = items[i];
+        //    }
+
+        //    for (; i < itemSlots.Length; i++)
+        //    {
+        //        itemSlots[i].Item = null;
+        //    }
+        //}
     }
 }

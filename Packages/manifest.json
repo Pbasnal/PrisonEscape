@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.github.siccity.xnode": "https://github.com/siccity/xNode.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
@@ -46,10 +45,6 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "lock": {
-    "com.github.siccity.xnode": {
-      "revision": "HEAD",
-      "hash": "f899e48ee08c59443d1cd833ab8f273b0b5a11db"
-    },
     "com.unity.2d.tilemap.extras": {
       "revision": "master",
       "hash": "e9955e7528762a4ba6cd0471215e2c2135436ebe"

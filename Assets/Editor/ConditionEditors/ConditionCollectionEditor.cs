@@ -1,7 +1,7 @@
-﻿using GameCode.InteractionSystem;
+﻿using EditorScripts.Utilities;
+using GameCode.InteractionSystem;
 using UnityEditor;
 using UnityEngine;
-using Utilities;
 
 [CustomEditor(typeof(ConditionCollection))]
 public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, Condition>
@@ -16,9 +16,9 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
     private const float conditionButtonWidth = 30f;
     private const float collectionButtonWidth = 125f;
 
-    private const string conditionCollectionPropDescriptionName = "description";
-    private const string conditionCollectionPropRequiredConditionsName = "requiredConditions";
-    private const string conditionCollectionPropReactionCollectionName = "reactionCollection";
+    private const string conditionCollectionPropDescriptionName = "Description";
+    private const string conditionCollectionPropRequiredConditionsName = "RequiredConditions";
+    private const string conditionCollectionPropReactionCollectionName = "ReactionCollection";
 
     private void OnEnable()
     {
@@ -31,6 +31,7 @@ public class ConditionCollectionEditor : EditorWithSubEditors<ConditionEditor, C
         descriptionProperty = serializedObject.FindProperty(conditionCollectionPropDescriptionName);
         conditionsProperty = serializedObject.FindProperty(conditionCollectionPropRequiredConditionsName);
         reactionCollectionProperty = serializedObject.FindProperty(conditionCollectionPropReactionCollectionName);
+
         CheckAndCreateSubEditors(conditionCollection.RequiredConditions);
     }
 

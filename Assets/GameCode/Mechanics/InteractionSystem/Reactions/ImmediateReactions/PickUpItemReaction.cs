@@ -14,11 +14,10 @@ namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
             _inventory = FindObjectOfType<Inventory>();
         }
 
-        public override void React(MonoBehaviour monoBehaviour)
+        public override void React(MonoBehaviour behaviour)
         {
-            monoBehaviour.gameObject.SetActive(false);
-
             ImmediateReaction();
+            Destroy(behaviour.transform.gameObject);
         }
 
         protected override void ImmediateReaction()

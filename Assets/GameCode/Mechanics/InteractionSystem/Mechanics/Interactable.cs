@@ -12,13 +12,13 @@ namespace GameCode.InteractionSystem.Mechanics
         {
             for (int i = 0; i < conditionCollections.Length; i++)
             {
-                if (conditionCollections[i].CheckAndReact())
+                if (conditionCollections[i].CheckAndReact(this))
                 {
                     return;
                 }
             }
 
-            defaultReactionCollection.React();
+            defaultReactionCollection?.React(this);
         }
     }
 }

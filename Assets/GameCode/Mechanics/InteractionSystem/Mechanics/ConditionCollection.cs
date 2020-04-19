@@ -8,7 +8,7 @@ namespace GameCode.InteractionSystem
         public Condition[] RequiredConditions = new Condition[0];
         public ReactionCollection ReactionCollection;
 
-        public bool CheckAndReact()
+        public bool CheckAndReact(MonoBehaviour behaviour)
         {
             for (int i = 0; i < RequiredConditions.Length; i++)
             {
@@ -18,7 +18,7 @@ namespace GameCode.InteractionSystem
                 }
             }
 
-            ReactionCollection?.React();
+            ReactionCollection?.React(behaviour);
 
             return true;
         }
