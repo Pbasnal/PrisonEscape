@@ -1,15 +1,13 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace GameCode.InteractionSystem
 {
-    //[CreateAssetMenu(fileName = "AllConditions", menuName = "Interactables/AllConditions", order = 51)]
     public class AllConditions : ResettableScriptableObject
     {
         public Condition[] Conditions;
 
         private static AllConditions _instance;
-        private static string _loadPath = "AllConditions";
+        private const string _loadPath = "AllConditions";
 
         public static AllConditions Instance
         {
@@ -17,9 +15,6 @@ namespace GameCode.InteractionSystem
             {
                 if (!_instance)
                 {
-                    //var test = AssetDatabase.FindAssets("t:AllConditions")[0];
-                    //_instance = AssetDatabase.LoadAssetAtPath<AllConditions>(AssetDatabase.GUIDToAssetPath(test));
-
                     _instance = FindObjectOfType<AllConditions>();
                 }
 
