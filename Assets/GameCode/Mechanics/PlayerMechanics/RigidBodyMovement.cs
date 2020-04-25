@@ -1,6 +1,5 @@
 ﻿using GameCode.Interfaces;
 using Pathfinding;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -89,13 +88,27 @@ namespace GameCode.Mechanics.PlayerMechanics
         public void Move(Vector2 target)
         {
             var dir = (target - _position).normalized;
+            SetAnimationDirection();
+
+            _rigidBody.velocity = dir * _moveSpeed * Time.deltaTime;
+        }
+
+        private void SetAnimationDirection()
+        {
+            var targetIndex = 2;
+            if (_path.Count <= 2)
+            {
+                targetIndex = _path.Count - 1;
+            }
+
+            var dir = ((Vector2)_path[targetIndex] - _position).normalized;
 
             Vector2 direction;
 
-            if (Mathf.Abs(dir.x) >= Mathf.Abs(dir.y))
+            if (Mathf.Abs(dir.x) > 0.1)
             {
-                direction = dir.x < 0 ? 
-                    SetAnimatorMotionStateLeft() 
+                direction = dir.x < 0 ?
+                    SetAnimatorMotionStateLeft()
                     : SetAnimatorMotionStateRight();
             }
             else
@@ -104,10 +117,6 @@ namespace GameCode.Mechanics.PlayerMechanics
                     SetAnimatorMotionStateDown()
                     : SetAnimatorMotionStateUp();
             }
-
-            
-
-            _rigidBody.velocity = dir * _moveSpeed * Time.deltaTime;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -122,21 +131,8 @@ namespace GameCode.Mechanics.PlayerMechanics
 
             if (hit.collider != null)
             {
-                Debug.DrawLine(_position, hit.point, Color.red, 2);
-
-                //Debug.Log(string.Format("Direction: {0}, {1}  - object: {2}",
-                //dir.x, dir.y,
-                //hit.collider.name));
-                //Debug.Log("Can't move forward. Cleaning path");
                 _path.Clear();
             }
-        }
-
-        private Vector2 SetAnimatorMotionStateDown()
-        {
-            animator.SetInteger(motionStateHash, 2);
-
-            return Vector2.down;
         }
 
         private Vector2 SetAnimatorMotionStateUp()
@@ -144,6 +140,13 @@ namespace GameCode.Mechanics.PlayerMechanics
             animator.SetInteger(motionStateHash, 1);
 
             return Vector2.up;
+        }
+
+        private Vector2 SetAnimatorMotionStateDown()
+        {
+            animator.SetInteger(motionStateHash, 2);
+
+            return Vector2.down;
         }
 
         private Vector2 SetAnimatorMotionStateLeft()

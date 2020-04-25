@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5407224365545095711
+--- !u!114 &-8000690614455627926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,11 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ff75e7a91e842f4fa8913eb61f5a0d9, type: 3}
-  m_Name: HasKeyCondition
+  m_Name: HasRedKeyCondition
   m_EditorClassIdentifier: 
-  Description: HasKeyCondition
-  IsSatisfied: 0
-  Hash: 2001556368
+  Description: HasRedKeyCondition
+  IsSatisfied: 1
+  Hash: -1694427344
+--- !u!114 &-4440348213408500386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff75e7a91e842f4fa8913eb61f5a0d9, type: 3}
+  m_Name: HasBlueKeyCondition
+  m_EditorClassIdentifier: 
+  Description: HasBlueKeyCondition
+  IsSatisfied: 1
+  Hash: -1055669785
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28,4 +43,21 @@ MonoBehaviour:
   m_Name: AllConditions
   m_EditorClassIdentifier: 
   Conditions:
-  - {fileID: -5407224365545095711}
+  - {fileID: -4440348213408500386}
+  - {fileID: -8000690614455627926}
+  - {fileID: 1916540552554578113}
+--- !u!114 &1916540552554578113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff75e7a91e842f4fa8913eb61f5a0d9, type: 3}
+  m_Name: Has Water Condition
+  m_EditorClassIdentifier: 
+  Description: Has Water Condition
+  IsSatisfied: 0
+  Hash: 1222825512

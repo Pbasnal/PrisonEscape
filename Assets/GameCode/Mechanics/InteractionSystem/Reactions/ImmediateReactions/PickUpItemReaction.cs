@@ -1,4 +1,5 @@
-﻿using GameCode.InventorySystem;
+﻿using GameCode.InteractionSystem.Mechanics;
+using GameCode.InventorySystem;
 using UnityEngine;
 
 namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
@@ -14,15 +15,18 @@ namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
             _inventory = FindObjectOfType<StorageInventory>();
         }
 
-        public override void React(MonoBehaviour behaviour)
+        public override void React(MonoBehaviour behaviour, Interactable interactable)
         {
-            ImmediateReaction();
-            Destroy(behaviour.transform.gameObject);
+            _inventory.AddItem(Item);
+
+            if (interactable == null)
+            {
+                return;
+            }
+            Destroy(interactable.transform.gameObject);
         }
 
         protected override void ImmediateReaction()
-        {
-            _inventory.AddItem(Item);
-        }
+        { }
     }
 }

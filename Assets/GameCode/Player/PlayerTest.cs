@@ -1,19 +1,17 @@
-﻿using GameCode.InventorySystem;
-using GameCode.Mechanics.InventorySystem;
-using GameCode.Player;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LockdownGames.Assets.GameCode.Player
 {
     public class PlayerTest : MonoBehaviour
     {
         public Animator playerAnimator;
-        
+        public int motionState;
+
         private void Update()
         {
+            playerAnimator.GetInteger("MotionState");
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                playerAnimator.SetInteger("MotionState", 3);
                 playerAnimator.SetTrigger("Attack");
             }
 

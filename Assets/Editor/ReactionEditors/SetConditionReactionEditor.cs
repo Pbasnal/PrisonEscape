@@ -3,12 +3,12 @@ using UnityEditor;
 
 namespace EditorScripts.ReactionEditors
 {
-    [CustomEditor(typeof(PickedUpKeyReaction))]
-    public class PickedUpKeyReactionEditor : ReactionEditor
+    [CustomEditor(typeof(SetConditionReaction))]
+    public class SetConditionReactionEditor : ReactionEditor
     {
         protected override string GetFoldoutLabel()
         {
-            return "Pick Up key Reaction";
+            return "Set Condition Reaction";
         }
     }
 }

@@ -3,18 +3,13 @@ using UnityEngine;
 
 namespace GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions
 {
-    public class PickedUpKeyReaction : Reaction
+    public class SetConditionReaction : Reaction
     {
         public Condition ConditionToSet;
+        public bool setSatisfied;
 
         protected override void ImmediateReaction()
         {
-            if (ConditionToSet.IsSatisfied)
-            {
-                Debug.Log("Condition is already set");
-                return;
-            }
-
             foreach (var condition in AllConditions.Instance.Conditions)
             {
                 if (condition.Hash != ConditionToSet.Hash)
@@ -22,8 +17,7 @@ namespace GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions
                     continue;
                 }
 
-                Debug.Log("Setting key condition to true");
-                condition.IsSatisfied = true;
+                condition.IsSatisfied = setSatisfied;
             }
         }
     }
