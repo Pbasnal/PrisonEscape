@@ -6,23 +6,18 @@ using UnityEngine;
 
 namespace InventoryEditors
 {
-    [CustomEditor(typeof(Inventory))]
+    [CustomEditor(typeof(StorageInventory))]
     public class InventoryEditorWithSubEditors : EditorWithSubEditors<InventorySlotInformationEditor, InventorySlotsInformation>
     {
-        /*
-         * public InventorySlotsInformation slotsInformation;
-         * public ItemSlot[] itemSlots;
-         */
-
         public SerializedProperty slotsInformationProperty;
 
-        private Inventory inventory;
+        private StorageInventory inventory;
 
         private const string slotsInformationName = "slotsInformation";
 
         private void OnEnable()
         {
-            inventory = (Inventory)target;
+            inventory = (StorageInventory)target;
             if (target == null)
             {
                 DestroyImmediate(this);
@@ -39,7 +34,7 @@ namespace InventoryEditors
 
         public override void OnInspectorGUI()
         {
-            var inventory = (Inventory)target;
+            var inventory = (StorageInventory)target;
 
             serializedObject.Update();
 
@@ -75,7 +70,7 @@ namespace InventoryEditors
             serializedObject.ApplyModifiedProperties();
         }
 
-        private void UpdateItemSlots(Inventory inventory, InventorySlotsInformation slotsInfo)
+        private void UpdateItemSlots(StorageInventory inventory, InventorySlotsInformation slotsInfo)
         {
             var itemSlotsFromUI = inventory.GetComponentsInChildren<ItemSlot>();
             if (itemSlotsFromUI == null)
@@ -89,7 +84,7 @@ namespace InventoryEditors
             }
         }
 
-        private void AddOrRemoveItemSlots(Inventory inventory, InventorySlotsInformation slotsInfo)
+        private void AddOrRemoveItemSlots(StorageInventory inventory, InventorySlotsInformation slotsInfo)
         {
             inventory.itemSlots = new ItemSlot[slotsInfo.NumberOfSlots];
             var bgImage = slotsInfo.BackgroundImage;

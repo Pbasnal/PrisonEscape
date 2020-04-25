@@ -10,6 +10,7 @@ namespace GameCode.Player
         [SerializeField] protected float AttackDamage;
         [SerializeField] protected float AttackRange;
 
+        protected GameObject weaponOwner;
         protected float TotalDamage;
         protected abstract Vector2 WeaponCenter { get; }
 
@@ -26,5 +27,31 @@ namespace GameCode.Player
         }
 
         public abstract void Attack(Transform target);
+
+        public void RemoveWeaponOwner()
+        {
+            weaponOwner = null;
+        }
+
+        public override void ActivateEquipmentOn(MonoBehaviour behaviour)
+        {
+            weaponOwner = behaviour.gameObject;
+
+            var playerAnimator = behaviour.GetComponent<Animator>();
+
+            if (playerAnimator == null)
+            {
+                Debug.Log("Player does not have an animator component");
+                return;
+            }
+
+            OverrideAnimationClips(playerAnimator);
+        }
+
+        public override void DeactivateEquipment()
+        {
+            weaponOwner = null;
+            Revert();
+        }
     }
 }

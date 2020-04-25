@@ -2,10 +2,10 @@
 
 namespace GameCode.InventorySystem
 {
-    [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Items", order = 51)]
+    [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item", order = 51)]
     public class Item : ScriptableObject
     {
+        // This sprite is shown on the ItemSlot of inventory
         public Sprite Sprite;
-        public GameObject GameObject;
     }
 }

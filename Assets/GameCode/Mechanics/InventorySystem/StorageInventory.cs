@@ -6,14 +6,14 @@ using UnityEngine;
 
 namespace GameCode.InventorySystem
 {
-    public class Inventory : MonoBehaviour
+    public class StorageInventory : MonoBehaviour
     {
         public InventorySlotsInformation slotsInformation;
         public ItemSlot[] itemSlots;
 
         [SerializeField] private List<Item> items;
 
-        public void RegisterToAllItems(Action<Item> action)
+        public void OnAnyItemClick(Action<Item> action)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
@@ -21,7 +21,7 @@ namespace GameCode.InventorySystem
             }
         }
 
-        public void UnRegisterFromAllItems(Action<Item> action)
+        public void RemoveAllEventRegistrations(Action<Item> action)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
