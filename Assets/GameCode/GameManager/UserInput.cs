@@ -34,7 +34,7 @@ namespace GameCode
         public void Awake()
         {
             _camera = _camera == null ? Camera.main : _camera;
-            currentEventSystem = currentEventSystem == null ? 
+            currentEventSystem = currentEventSystem == null ?
                 EventSystem.current : currentEventSystem;
 
             if (currentEventSystem == null)
@@ -100,7 +100,7 @@ namespace GameCode
         {
             var collider = Physics2D.OverlapPoint(location);
 
-            if (collider == null )
+            if (collider == null)
             {
                 return null;
             };

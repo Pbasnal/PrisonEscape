@@ -23,7 +23,7 @@ namespace GameCode.Player
         public override void Update()
         {
             // if seeker is not done yet or it was not able to move
-            if (!playerMovement.WalkToNextPoint() || playerMovement.currentSpeed > 0.001f)
+            if (!playerMovement.RunToNextPoint() || playerMovement.currentSpeed > 0.001f)
             {
                 return;
             }

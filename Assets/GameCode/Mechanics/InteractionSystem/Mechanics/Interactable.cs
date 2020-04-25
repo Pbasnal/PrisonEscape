@@ -8,7 +8,7 @@ namespace GameCode.InteractionSystem.Mechanics
         public ConditionCollection[] conditionCollections = new ConditionCollection[0];
         public ReactionCollection defaultReactionCollection;
 
-        public void Interact()
+        public void Interact(MonoBehaviour behaviour)
         {
             for (int i = 0; i < conditionCollections.Length; i++)
             {
@@ -18,7 +18,7 @@ namespace GameCode.InteractionSystem.Mechanics
                 }
             }
 
-            defaultReactionCollection?.React(this);
+            defaultReactionCollection?.React(behaviour);
         }
     }
 }

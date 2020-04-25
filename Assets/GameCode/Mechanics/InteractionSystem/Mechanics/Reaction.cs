@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameCode.InteractionSystem.Mechanics;
+using UnityEngine;
 
 namespace GameCode.InteractionSystem
 {
@@ -22,7 +23,8 @@ namespace GameCode.InteractionSystem
         // This function is called from ReactionCollection.
         // It contains everything that is required for all for all Reactions as
         // well as the part of the Reaction which needs to happen immediately.
-        public virtual void React(MonoBehaviour monoBehaviour)
+        /// <param name="monoBehaviour"> monobehaviour of the game object which is interacting </param>
+        public virtual void React(MonoBehaviour monoBehaviour, Interactable interactable)
         {
             ImmediateReaction();
         }

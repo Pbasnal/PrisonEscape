@@ -26,7 +26,7 @@ namespace GameCode.Player
             }
 
             Debug.Log("Interacting");
-            _target.Interact();
+            _target.Interact(this);
 
             _target = null;
             //if (_target == null || !Weapon.IsTargetInRange(_target.transform.position))

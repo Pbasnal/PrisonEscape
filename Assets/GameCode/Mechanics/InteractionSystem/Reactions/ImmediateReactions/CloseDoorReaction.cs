@@ -1,19 +1,20 @@
-﻿using GameCode.InteractionSystem;
-using UnityEngine;
+﻿using Assets.GameCode.SpelunkyLevelGen.LevelObjects;
+using GameCode.InteractionSystem;
 
 namespace GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions
 {
     public class CloseDoorReaction : Reaction
     {
-        public override void React(MonoBehaviour monoBehaviour)
-        {
-            Debug.Log(monoBehaviour.name);
-            ImmediateReaction();
-        }
+        public Door doorToClose;
 
         protected override void ImmediateReaction()
         {
-            Debug.Log("Door is closed");
+            if (doorToClose == null)
+            {
+                return;
+            }
+
+            doorToClose.CloseDoor();
         }
     }
 }

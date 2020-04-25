@@ -34,7 +34,7 @@ namespace GameCode.Player
                 return;
             }
 
-            _currentHealth -= damageAmount;
+            //_currentHealth -= damageAmount;
 
             if (_currentHealth < 1) // should die if it is 0
             {

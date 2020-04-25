@@ -1,13 +1,18 @@
-﻿using UnityEngine;
+﻿using GameCode.InteractionSystem.Mechanics;
+using UnityEngine;
 
 namespace GameCode.InteractionSystem
 {
     public class ReactionCollection : MonoBehaviour
     {
         public Reaction[] Reactions = new Reaction[0];
+        
+        private Interactable interactable; 
 
         private void Start()
         {
+            interactable = GetComponentInParent<Interactable>();
+
             for (int i = 0; i < Reactions.Length; i++)
             {
                 var delayedReaction = Reactions[i] as DelayedReaction;
@@ -28,7 +33,7 @@ namespace GameCode.InteractionSystem
                 if (delayedReaction)
                     delayedReaction.React(behaviour);
                 else
-                    Reactions[i].React(behaviour);
+                    Reactions[i].React(behaviour, interactable);
             }
         }
     }
