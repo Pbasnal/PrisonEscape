@@ -4,6 +4,7 @@ using GameCode.Mechanics.PlayerMechanics;
 using GameCode.Messages;
 using GameCode.MessagingFramework;
 using GameCode.Player.PlayerStates;
+using LockdownGames.GameCode.Mechanics.PlayerMechanics;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace GameCode.Player
 {
     public class PlayerStateMachine : StateMachine
     {
+        private EquippedMechanics equippedMechanics;
         private InteractionMechanics interactionMechanics;
         private HealthMechanic _healthMechanic;
         private RigidBodyMovement playerMovement;
@@ -26,6 +28,7 @@ namespace GameCode.Player
             playerMovement = GetComponent<RigidBodyMovement>();
             _collider = GetComponent<CapsuleCollider2D>();
             interactionMechanics = GetComponent<InteractionMechanics>();
+            equippedMechanics = GetComponent<EquippedMechanics>();
 
             var startingState = new IdleState(this);
             var moveState = new MoveState(this);

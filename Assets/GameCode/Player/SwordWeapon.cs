@@ -1,5 +1,4 @@
 ﻿using GameCode.Interfaces;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +7,8 @@ namespace GameCode.Player
     [RequireComponent(typeof(BoxCollider2D))]
     public class SwordWeapon : Weapon
     {
+        public Transform TestTarget;
+
         public float AttackInterval;
         public float EnemyDetectRange;
         public Transform AttackRangeOrigin;

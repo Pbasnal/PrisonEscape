@@ -8,11 +8,11 @@ namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
         public Item Item;               // Item to be removed from the Inventory.
         public Condition ConditionToReset;
 
-        private Inventory _inventory;    // Reference to the Inventory component.
+        private StorageInventory _inventory;    // Reference to the Inventory component.
 
         protected override void SpecificInit()
         {
-            _inventory = FindObjectOfType<Inventory>();
+            _inventory = FindObjectOfType<StorageInventory>();
         }
 
         protected override void ImmediateReaction()
