@@ -10,9 +10,10 @@ namespace GameCode.InventorySystem
         Shield
     }
 
-    [CreateAssetMenu(fileName = "EquippableItem", menuName = "Inventory/EquippableItem", order = 51)]
+    [CreateAssetMenu(fileName = "Equippable Item", menuName = "Inventory/Equippable Item", order = 51)]
     public class EquippableItem : Item
     {
         public EquipmentType equipmentType;
+        public Equippment EquippableObject;
     }
 }

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using GameCode.InventorySystem;
+using System;
 using UnityEngine;
 
 namespace GameCode.AnimationBehaviour
 {
-    public class AnimationClipOverrides : MonoBehaviour
+    public abstract class AnimationClipOverrides : Equippment
     {
         [Serializable]
         private class AnimationClipOverride
@@ -12,7 +13,10 @@ namespace GameCode.AnimationBehaviour
             public AnimationClip overrideWith;
         }
 
-        [SerializeField] AnimationClipOverride[] clipOverrides;
+        [SerializeField] private AnimationClipOverride[] clipOverrides;
+
+        private RuntimeAnimatorController originalAnimatorController;
+        private Animator modifiedAnimator;
 
         public void OverrideAnimationClips(Animator animator)
         {
@@ -24,7 +28,15 @@ namespace GameCode.AnimationBehaviour
                 overrideController[clipOverride.clipNamed] = clipOverride.overrideWith;
             }
 
+            originalAnimatorController = animator.runtimeAnimatorController;
             animator.runtimeAnimatorController = overrideController;
+            modifiedAnimator = animator;
+        }
+
+        public void Revert()
+        {
+            modifiedAnimator.runtimeAnimatorController = originalAnimatorController;
+            modifiedAnimator = null;
         }
     }
 

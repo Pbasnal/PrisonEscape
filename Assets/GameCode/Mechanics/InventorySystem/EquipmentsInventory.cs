@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace GameCode.Mechanics.InventorySystem
 {
-    public class EquipmentPanel : MonoBehaviour
+    public class EquipmentsInventory : MonoBehaviour
     {
         public EquipmentSlot[] itemSlots;
 
-        public void RegisterToAllItems(Action<Item> action)
+        public void OnAnyItemClick(Action<Item> action)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {
@@ -16,7 +16,7 @@ namespace GameCode.Mechanics.InventorySystem
             }
         }
 
-        public void UnRegisterFromAllItems(Action<Item> action)
+        public void RemoveAllEventRegistrations(Action<Item> action)
         {
             for (int i = 0; i < itemSlots.Length; i++)
             {

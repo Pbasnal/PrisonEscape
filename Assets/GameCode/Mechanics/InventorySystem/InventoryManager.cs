@@ -1,30 +1,35 @@
 ﻿using GameCode.InventorySystem;
+using System;
 using UnityEngine;
 
 namespace GameCode.Mechanics.InventorySystem
 {
     public class InventoryManager : MonoBehaviour
     {
-        [SerializeField] private Inventory inventory;
-        [SerializeField] private EquipmentPanel equipmentPanel;
+        [SerializeField] private StorageInventory inventory;
+        [SerializeField] private EquipmentsInventory equipmentPanel;
+
+        public event Action<EquippableItem> OnItemEquipped;
+        public event Action<EquippableItem> OnItemUnequipped;
 
         private void Awake()
         {
-            inventory.RegisterToAllItems(EquipFromInventory);
-            equipmentPanel.RegisterToAllItems(UnequipFromInventory);
+            inventory.OnAnyItemClick(EquipFromInventory);
+            equipmentPanel.OnAnyItemClick(UnequipFromInventory);
         }
 
         private void OnDestroy()
         {
-            inventory.UnRegisterFromAllItems(EquipFromInventory);
-            equipmentPanel.UnRegisterFromAllItems(UnequipFromInventory);
+            inventory.RemoveAllEventRegistrations(EquipFromInventory);
+            equipmentPanel.RemoveAllEventRegistrations(UnequipFromInventory);
         }
 
         private void UnequipFromInventory(Item item)
         {
             if (item is EquippableItem)
             {
-                Unequip((EquippableItem)item);
+                MoveItemToStorageInventory((EquippableItem)item);
+                OnItemUnequipped?.Invoke((EquippableItem)item);
             }
         }
 
@@ -32,11 +37,12 @@ namespace GameCode.Mechanics.InventorySystem
         {
             if (item is EquippableItem)
             {
-                Equip((EquippableItem) item);
+                MoveItemToEquippmentInventory((EquippableItem) item);
+                OnItemEquipped?.Invoke((EquippableItem)item);
             }
         }
 
-        public void Equip(EquippableItem item)
+        public void MoveItemToEquippmentInventory(EquippableItem item)
         {
             if (!inventory.RemoveItem(item))
             {
@@ -53,7 +59,7 @@ namespace GameCode.Mechanics.InventorySystem
             inventory.AddItem(item);
         }
 
-        public void Unequip(EquippableItem item)
+        public void MoveItemToStorageInventory(EquippableItem item)
         {
             if (!inventory.AddItem(item))
             {

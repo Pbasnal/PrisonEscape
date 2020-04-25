@@ -7,11 +7,11 @@ namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
     {
         public Item Item;
 
-        private Inventory _inventory;
+        private StorageInventory _inventory;
 
         protected override void SpecificInit()
         {
-            _inventory = FindObjectOfType<Inventory>();
+            _inventory = FindObjectOfType<StorageInventory>();
         }
 
         public override void React(MonoBehaviour behaviour)
