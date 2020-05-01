@@ -4,6 +4,7 @@ using LockdownGames.GameCode.GameAi.StateMachine2;
 using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
 using LockdownGames.Mechanics.ActorMechanics;
+using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
 using LockdownGames.Mechanics.InteractionSystem;
 
 using UnityEngine;

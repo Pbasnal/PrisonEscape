@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 
-using LockdownGames.GameCode.Interfaces;
-
 using Pathfinding;
 
 using UnityEngine;
 
-namespace LockdownGames.Mechanics.ActorMechanics
+namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
@@ -18,6 +16,8 @@ namespace LockdownGames.Mechanics.ActorMechanics
         public float NextWaypointDistance = 0.5f;
 
         [HideInInspector] public float currentSpeed => _rigidBody.velocity.magnitude;
+
+        public bool IsMoving => _path.Count != 0;
 
         private float _moveSpeed;
         private List<Vector3> _path;
@@ -91,7 +91,7 @@ namespace LockdownGames.Mechanics.ActorMechanics
         public void Move(Vector2 target)
         {
             var dir = (target - _position).normalized;
-            SetAnimationDirection();
+            //SetAnimationDirection();
 
             _rigidBody.velocity = dir * _moveSpeed * Time.deltaTime;
         }

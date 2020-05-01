@@ -1,9 +1,21 @@
 ﻿using UnityEngine;
 
-namespace LockdownGames.GameCode.GameAi
+namespace LockdownGames.Utilities
 {
-    public static class ExtDebug
+    public static class DebugExtensions
     {
+        public static void DrawBoxCastOnHit(this RaycastHit2D hit, Vector2 origin, Vector2 boxSize, float rotationAlongZ, Color color)
+        {
+            if (hit.collider == null)
+            {
+                return;
+            }
+
+            DrawBox(hit.point, boxSize, Quaternion.Euler(0, 0, rotationAlongZ), color);
+            Debug.DrawLine(origin, hit.point, color);
+        }
+
+
         //Draws just the box at where it is currently hitting.
         public static void DrawBoxCastOnHit(Vector2 origin, Vector2 halfExtents, Quaternion orientation, Vector2 direction, float hitInfoDistance, Color color)
         {
@@ -20,6 +32,7 @@ namespace LockdownGames.GameCode.GameAi
         {
             DrawBox(new Box(origin, size, orientation), color);
         }
+
         public static void DrawBox(Box box, Color color)
         {
             Debug.DrawLine(box.topLeft, box.topRight, color);
@@ -34,7 +47,7 @@ namespace LockdownGames.GameCode.GameAi
             public Vector2 localTopRight { get; private set; }
             public Vector2 localBottomLeft { get; private set; }
             public Vector2 localBottomRight { get; private set; }
-            
+
             public Vector2 topLeft { get { return localTopLeft + origin; } }
             public Vector2 topRight { get { return localTopRight + origin; } }
             public Vector2 bottomLeft { get { return localBottomLeft + origin; } }
@@ -46,6 +59,7 @@ namespace LockdownGames.GameCode.GameAi
             {
                 Rotate(orientation);
             }
+
             public Box(Vector2 origin, Vector2 size)
             {
                 size = size / 2;
