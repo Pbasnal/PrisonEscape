@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+
+using LockdownGames.Mechanics.InteractionSystem.Conditions;
+
 using UnityEngine;
 using UnityEngine.Events;
 

@@ -1,5 +1,5 @@
-﻿using LockdownGames.GameCode.Mechanics.InventorySystem;
-using LockdownGames.GameCode.Mechanics.InventorySystem.DataScripts;
+﻿using LockdownGames.Mechanics.InventorySystem;
+using LockdownGames.Mechanics.InventorySystem.DataScripts;
 
 using UnityEditor;
 

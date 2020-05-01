@@ -1,17 +1,11 @@
-﻿using GameAi.StateMachine2;
-using UnityEngine;
+﻿using LockdownGames.GameAi.StateMachineAi;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class IdleState : State<PlayerStateMachine>
+    public class IdleState : State<PlayerController>
     {
-        private Animator animator;
-        private int motionStateHash;
-
-        public IdleState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public IdleState(PlayerController stateMachine) : base(stateMachine)
         {
-            animator = stateMachine.GetComponent<Animator>();
-            motionStateHash = Animator.StringToHash("MotionState");
         }
 
         public override void End()
@@ -20,7 +14,6 @@ namespace LockdownGames.GameCode.Player
 
         public override void Start()
         {
-            animator.SetInteger(motionStateHash, 0);
         }
 
         public override void Update()

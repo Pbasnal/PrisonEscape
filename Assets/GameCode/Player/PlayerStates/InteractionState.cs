@@ -1,10 +1,10 @@
-﻿using GameAi.StateMachine2;
+﻿using LockdownGames.GameAi.StateMachineAi;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class InteractionState : State<PlayerStateMachine>
+    public class InteractionState : State<PlayerController>
     {
-        public InteractionState(PlayerStateMachine stateMachine) : base(stateMachine)
+        public InteractionState(PlayerController stateMachine) : base(stateMachine)
         {}
 
         public override void End()

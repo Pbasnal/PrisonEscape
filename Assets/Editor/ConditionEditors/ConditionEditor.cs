@@ -1,5 +1,5 @@
 ﻿using LockdownGames.EditorScripts.Utilities;
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+using LockdownGames.Mechanics.InteractionSystem.Conditions;
 
 using UnityEditor;
 

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using LockdownGames.EditorScripts.Utilities;
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+using LockdownGames.Mechanics.InteractionSystem.Reactions;
 
 using UnityEditor;
 

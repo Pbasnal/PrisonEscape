@@ -3,8 +3,7 @@ using System.Collections;
 
 using Cinemachine;
 
-using GameCode.GameAi;
-
+using LockdownGames.GameAi.LevelAi;
 using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
 using LockdownGames.GameCode.Models;

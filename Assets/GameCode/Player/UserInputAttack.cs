@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
 using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
+using LockdownGames.Mechanics.InteractionSystem;
 
 using UnityEngine;
 

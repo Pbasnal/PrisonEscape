@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using LockdownGames.GameCode.Interfaces;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
 
 using UnityEngine;
 
@@ -109,7 +109,11 @@ namespace LockdownGames.GameCode.Player
             }
         }
 
-        public override void Attack(Transform target)
+        public override void Attack(ICanTakeDamage target)
+        {
+        }
+
+        public void Attack(Transform target)
         {
             if (Time.time - _timeOfLastAttack < AttackInterval)
             {

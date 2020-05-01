@@ -1,4 +1,4 @@
-﻿using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions;
+﻿using LockdownGames.Mechanics.InteractionSystem.Reactions.ImmediateReactions;
 
 using UnityEditor;
 

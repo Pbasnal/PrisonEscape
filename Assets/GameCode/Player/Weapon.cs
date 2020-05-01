@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
-using LockdownGames.GameCode.AnimationBehaviour;
-using LockdownGames.GameCode.Interfaces;
+
+using LockdownGames.GameCode.AnimatorHandlers;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
+
 using UnityEngine;
 
 namespace LockdownGames.GameCode.Player
@@ -26,7 +28,7 @@ namespace LockdownGames.GameCode.Player
             TotalDamage += AttackDamage;
         }
 
-        public abstract void Attack(Transform target);
+        public abstract void Attack(ICanTakeDamage target);
 
         public void RemoveWeaponOwner()
         {
