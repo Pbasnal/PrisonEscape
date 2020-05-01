@@ -1,15 +1,20 @@
-﻿using Cinemachine;
-using GameCode.GameAi;
-using GameCode.Messages;
-using GameCode.MessagingFramework;
-using GameCode.Models;
-using SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
-using System;
+﻿using System;
 using System.Collections;
+
+using Cinemachine;
+
+using GameCode.GameAi;
+
+using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects.ExitDoor;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
+
 using UnityEngine;
 
-namespace GameCode
+namespace LockdownGames.GameCode.GameManager
 {
     public class GameManager : MonoBehaviour
     {

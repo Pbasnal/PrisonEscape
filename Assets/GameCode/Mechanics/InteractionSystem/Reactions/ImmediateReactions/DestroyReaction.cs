@@ -1,7 +1,6 @@
-﻿using GameCode.Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class DestroyReaction : Reaction
     {

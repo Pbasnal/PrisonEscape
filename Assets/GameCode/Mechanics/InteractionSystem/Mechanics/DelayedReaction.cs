@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace GameCode.InteractionSystem
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics
 {
     public abstract class DelayedReaction : Reaction
     {

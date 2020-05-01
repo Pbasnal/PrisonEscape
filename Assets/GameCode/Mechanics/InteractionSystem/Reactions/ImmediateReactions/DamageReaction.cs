@@ -1,8 +1,8 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-using GameCode.Interfaces;
+﻿using LockdownGames.GameCode.Interfaces;
+
 using UnityEngine;
 
-namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class DamageReaction : Reaction
     {

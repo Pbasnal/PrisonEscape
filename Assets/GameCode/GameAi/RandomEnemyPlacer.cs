@@ -1,7 +1,8 @@
-﻿using GameCode.Models;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
-using System.Collections.Generic;
-using Utilities;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
+using LockdownGames.Utilities;
 
 namespace GameCode.GameAi
 {

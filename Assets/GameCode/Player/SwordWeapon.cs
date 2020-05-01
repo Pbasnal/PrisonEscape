@@ -1,8 +1,10 @@
-﻿using GameCode.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Interfaces;
+
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class SwordWeapon : Weapon

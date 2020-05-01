@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace GameCode.MessagingFramework
+namespace LockdownGames.GameCode.MessagingFramework
 {
     public class HandlerEvent : UnityEvent<TransportMessage>
     {}

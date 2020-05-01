@@ -1,10 +1,13 @@
-﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
-using System.Linq;
+﻿using System.Linq;
+
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace EditorScripts
+namespace LockdownGames.EditorScripts
 {
     [CustomEditor(typeof(RoomBuilder))]
     public class RoomBuilderEditor : Editor

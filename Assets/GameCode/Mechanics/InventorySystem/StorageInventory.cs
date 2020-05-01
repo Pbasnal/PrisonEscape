@@ -1,10 +1,9 @@
-﻿using GameCode.Mechanics.InventorySystem;
-using GameCode.Mechanics.InventorySystem.DataScripts;
+﻿using LockdownGames.GameCode.Mechanics.InventorySystem.DataScripts;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameCode.InventorySystem
+namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     public class StorageInventory : MonoBehaviour
     {

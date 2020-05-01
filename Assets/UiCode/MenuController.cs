@@ -1,6 +1,6 @@
-﻿using GameCode.Messages;
-using GameCode.MessagingFramework;
-using System;
+﻿using System;
+using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,13 +25,20 @@ namespace UiCode
         {
             HideMenu();
 
-            if (SceneManager.GetSceneByName("LevelGen").isLoaded)
+            if (SceneManager.GetSceneByName("PlayerMovement").isLoaded)
             {
-                SceneManager.UnloadSceneAsync("LevelGen");
+                SceneManager.UnloadSceneAsync("PlayerMovement");
+            }
+
+            if (SceneManager.GetSceneByName("GameplayUi").isLoaded)
+            {
+                SceneManager.UnloadSceneAsync("GameplayUi");
             }
 
             HealthText.SetActive(true);
-            SceneManager.LoadSceneAsync("LevelGen", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("GameplayUi", LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync("PlayerMovement", LoadSceneMode.Additive);
+            SceneManager.UnloadSceneAsync("Menu");
         }
 
         public void Quit()

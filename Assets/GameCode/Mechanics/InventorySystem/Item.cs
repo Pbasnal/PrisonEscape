@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.InventorySystem
+namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     [CreateAssetMenu(fileName = "Item", menuName = "Inventory/Item", order = 51)]
     public class Item : ScriptableObject

@@ -1,10 +1,12 @@
-﻿using Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using LockdownGames.Utilities;
+
 using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts
 {
     public class ObjectSpawner : MonoBehaviour
     {

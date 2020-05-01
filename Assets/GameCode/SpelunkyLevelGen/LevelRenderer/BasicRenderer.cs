@@ -1,12 +1,15 @@
-﻿using GameCode.Models;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
+
 using UnityEngine;
 
-namespace Assets.Scripts.LevelRenderer
+
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRenderer
 {
-    public class LevelRenderer : MonoBehaviour
+    public class BasicRenderer : MonoBehaviour
     {
         public GameObject mainPathMarker;
         public GameObject startingRoomMarker;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.InventorySystem
+namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     public abstract class Equippment : MonoBehaviour
     {

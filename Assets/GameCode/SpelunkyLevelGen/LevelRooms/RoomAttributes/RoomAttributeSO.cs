@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes
 {
     // between different room attributes, we have and condition
     // so the rooms can be used together. But for a type of attribute

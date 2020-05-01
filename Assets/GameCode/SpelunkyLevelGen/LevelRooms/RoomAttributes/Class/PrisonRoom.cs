@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes
 {
     [CreateAssetMenu(fileName = "Prison Room", menuName = "RoomAttributes/Class/Prison", order = 51)]
     public class PrisonRoom : RoomClassAttribute

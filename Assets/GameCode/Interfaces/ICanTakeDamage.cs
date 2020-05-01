@@ -1,4 +1,4 @@
-﻿namespace GameCode.Interfaces
+﻿namespace LockdownGames.GameCode.Interfaces
 {
     public interface ICanTakeDamage
     {

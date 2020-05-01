@@ -1,8 +1,7 @@
 ﻿using GameAi.StateMachine2;
-using GameCode.Mechanics.PlayerMechanics;
-using GameCode.Player.PlayerStates;
+using LockdownGames.GameCode.Mechanics.ActorMechanics;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public class SprintState : State<PlayerStateMachine>
     {

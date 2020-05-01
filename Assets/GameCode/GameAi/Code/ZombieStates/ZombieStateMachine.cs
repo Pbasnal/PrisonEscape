@@ -1,9 +1,14 @@
-﻿using GameAi.Code;
+﻿using System.Collections.Generic;
+
+using GameAi.Code;
 using GameAi.FiniteStateMachine;
+
 using GameCode.GameAi.Code;
-using GameCode.Interfaces;
+
+using LockdownGames.GameCode.Interfaces;
+
 using Pathfinding;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace GameAi.ZombieStates

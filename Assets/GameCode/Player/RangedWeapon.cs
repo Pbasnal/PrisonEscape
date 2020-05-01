@@ -1,7 +1,8 @@
-﻿using GameCode.Interfaces;
+﻿using LockdownGames.GameCode.Interfaces;
+
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public abstract class BlastWeapon : Weapon
     {

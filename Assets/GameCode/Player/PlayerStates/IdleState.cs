@@ -1,7 +1,7 @@
 ﻿using GameAi.StateMachine2;
 using UnityEngine;
 
-namespace GameCode.Player.PlayerStates
+namespace LockdownGames.GameCode.Player
 {
     public class IdleState : State<PlayerStateMachine>
     {

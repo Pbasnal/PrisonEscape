@@ -1,7 +1,8 @@
-﻿using GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions;
+﻿using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions;
+
 using UnityEditor;
 
-namespace EditorScripts.ReactionEditors
+namespace LockdownGames.EditorScripts.ReactionEditors
 {
     [CustomEditor(typeof(CloseDoorReaction))]
     public class CloseDoorReactionEditor : ReactionEditor

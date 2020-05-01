@@ -1,9 +1,9 @@
-﻿using GameCode.AnimationBehaviour;
-using GameCode.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using LockdownGames.GameCode.AnimationBehaviour;
+using LockdownGames.GameCode.Interfaces;
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public abstract class Weapon : AnimationClipOverrides, ICanAttack
     {

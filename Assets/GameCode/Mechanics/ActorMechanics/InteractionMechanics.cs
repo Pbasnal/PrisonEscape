@@ -1,9 +1,7 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-using GameCode.Mechanics.InteractionSystem.Mechanics;
-using System;
+﻿using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
 using UnityEngine;
 
-namespace GameCode.Mechanics.PlayerMechanics
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     public class InteractionMechanics : MonoBehaviour, ICanInteract
     {

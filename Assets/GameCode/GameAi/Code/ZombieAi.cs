@@ -1,6 +1,8 @@
-﻿using GameCode.Interfaces;
-using GameAi.Code;
+﻿using GameAi.Code;
 using GameAi.ZombieStates;
+
+using LockdownGames.GameCode.Interfaces;
+
 using UnityEngine;
 
 public class ZombieAi : ZombieStateMachine, ICanTakeDamage

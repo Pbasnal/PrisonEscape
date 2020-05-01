@@ -1,10 +1,13 @@
-﻿using EditorScripts.Utilities;
-using GameCode.InteractionSystem;
-using System;
+﻿using System;
+
+using LockdownGames.EditorScripts.Utilities;
+using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace EditorScripts.ReactionEditors
+namespace LockdownGames.EditorScripts.ReactionEditors
 {
     public abstract class ReactionEditor : Editor
     {

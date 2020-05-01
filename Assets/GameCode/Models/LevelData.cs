@@ -1,10 +1,10 @@
-﻿using LayoutGenerator;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
-using System;
+﻿using System;
+
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms;
+
 using UnityEngine;
 
-namespace GameCode.Models
+namespace LockdownGames.GameCode.Models
 {
     public class LevelData
     {

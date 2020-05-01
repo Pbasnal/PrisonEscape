@@ -1,8 +1,7 @@
 ﻿using GameAi.StateMachine2;
-using GameCode.Mechanics.PlayerMechanics;
-using UnityEngine;
+using LockdownGames.GameCode.Mechanics.ActorMechanics;
 
-namespace GameCode.Player.PlayerStates
+namespace LockdownGames.GameCode.Player
 {
     public class MoveState : State<PlayerStateMachine>
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.Messages
+namespace LockdownGames.GameCode.Messages
 {
     public class UserInputMessage
     {

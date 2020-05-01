@@ -1,8 +1,10 @@
-﻿using GameCode.InventorySystem;
-using System;
+﻿using System;
+
+using LockdownGames.GameCode.Mechanics.InventorySystem;
+
 using UnityEngine;
 
-namespace GameCode.AnimationBehaviour
+namespace LockdownGames.GameCode.AnimationBehaviour
 {
     public abstract class AnimationClipOverrides : Equippment
     {

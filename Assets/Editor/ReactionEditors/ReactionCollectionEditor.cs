@@ -1,11 +1,13 @@
-﻿using EditorScripts.Utilities;
-using GameCode.InteractionSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using LockdownGames.EditorScripts.Utilities;
+using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace EditorScripts.ReactionEditors
+namespace LockdownGames.EditorScripts.ReactionEditors
 {
     // This is the Editor for the ReactionCollection MonoBehaviour.
     // However, since the ReactionCollection contains many Reactions, 

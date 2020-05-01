@@ -1,10 +1,9 @@
-﻿using GameCode.InventorySystem;
-using System;
+﻿using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GameCode.Mechanics.InventorySystem
+namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     public class ItemSlot : MonoBehaviour, IPointerClickHandler
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributeProcessor
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributeProcessor
 {
     [CreateAssetMenu(fileName = "4x4Layout", menuName = "AttributeProcessor/Connectedness/4x4Layout", order = 51)]
     public class Layout4By4Processor : LayoutProcessor
