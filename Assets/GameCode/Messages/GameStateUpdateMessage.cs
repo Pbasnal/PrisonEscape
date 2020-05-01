@@ -1,4 +1,4 @@
-﻿namespace GameCode
+﻿namespace LockdownGames.GameCode.Messages
 {
     public enum GameState
     {
@@ -8,7 +8,7 @@
         Lost
     }
 
-    public class GameStateUpdateMessage// : IMessage
+    public class GameStateUpdateMessage
     {
         public GameState GameState;
 

@@ -1,9 +1,10 @@
-﻿using GameCode.InventorySystem;
-using GameCode.Mechanics.InventorySystem;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Mechanics.InventorySystem;
+
 using UnityEngine;
 
-namespace LockdownGames.GameCode.Mechanics.PlayerMechanics
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     public class EquippedMechanics : MonoBehaviour
     {

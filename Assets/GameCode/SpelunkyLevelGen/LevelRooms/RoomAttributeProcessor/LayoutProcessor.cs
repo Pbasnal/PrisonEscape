@@ -1,12 +1,13 @@
-﻿using GameCode.Models;
-using LayoutGenerator;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes;
+
 using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributeProcessor
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributeProcessor
 {
     public abstract class LayoutProcessor : AttributeProcessor<RoomConnectionAttribute>
     {

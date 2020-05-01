@@ -1,8 +1,7 @@
-﻿using GameCode.InventorySystem;
-using System;
+﻿using System;
 using UnityEngine;
 
-namespace GameCode.Mechanics.InventorySystem
+namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     public class InventoryManager : MonoBehaviour
     {

@@ -1,7 +1,8 @@
-﻿using GameCode.InteractionSystem.Reactions.ImmediateReactions;
+﻿using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions;
+
 using UnityEditor;
 
-namespace EditorScripts.ReactionEditors
+namespace LockdownGames.EditorScripts.ReactionEditors
 {
     [CustomEditor(typeof(PickUpItemReaction))]
     public class PickUpItemReactionEditor : ReactionEditor

@@ -1,8 +1,6 @@
-﻿using GameCode.MessagingFramework;
-
-namespace GameCode.Messages
+﻿namespace LockdownGames.GameCode.Messages
 {
-    public class PlayerWonMessage// : IMessage
+    public class PlayerWonMessage
     {
     }
 }

@@ -1,32 +1,34 @@
-﻿using Assets.Scripts.LevelRenderer;
-using GameCode.Models;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms;
-using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributeProcessor;
+﻿using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRenderer;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributeProcessor;
+
 using UnityEngine;
 
-[RequireComponent(typeof(RoomProvider))]
-[RequireComponent(typeof(LevelRenderer))]
-public class LevelGenerator : MonoBehaviour
+namespace LockdownGames.GameCode.SpelunkyLevelGen
 {
-    public LayoutProcessor layoutCreator;
-
-    public LevelData GenerateLevel(LevelData levelData)
+    [RequireComponent(typeof(RoomProvider))]
+    [RequireComponent(typeof(BasicRenderer))]
+    public class LevelGenerator : MonoBehaviour
     {
-        var levelRenderer = GetComponent<LevelRenderer>();
-        var roomProvider = GetComponent<RoomProvider>();
+        public LayoutProcessor layoutCreator;
 
-        levelData.RoomProvider = roomProvider;
-        levelData.SetLevelSize(layoutCreator.LevelSize);
-        levelData.SetStartingRoomCoordinates(IntPair.CreatePair(0,
-            UnityEngine.Random.Range(0, layoutCreator.LevelSize.y)));
+        public LevelData GenerateLevel(LevelData levelData)
+        {
+            var levelRenderer = GetComponent<BasicRenderer>();
+            var roomProvider = GetComponent<RoomProvider>();
 
-        levelData.SetLevelLayout(layoutCreator.CreateLevelLayout(levelData));
-        levelData.SetRoomSize(roomProvider.RoomSize);
+            levelData.RoomProvider = roomProvider;
+            levelData.SetLevelSize(layoutCreator.LevelSize);
+            levelData.SetStartingRoomCoordinates(IntPair.CreatePair(0,
+                UnityEngine.Random.Range(0, layoutCreator.LevelSize.y)));
 
-        levelData = levelRenderer.RenderBaseLevel(levelData);
+            levelData.SetLevelLayout(layoutCreator.CreateLevelLayout(levelData));
+            levelData.SetRoomSize(roomProvider.RoomSize);
 
-        return levelData;
+            levelData = levelRenderer.RenderBaseLevel(levelData);
+
+            return levelData;
+        }
     }
-
-        
 }

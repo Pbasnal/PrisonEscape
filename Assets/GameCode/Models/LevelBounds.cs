@@ -1,4 +1,4 @@
-﻿namespace GameCode.Models
+﻿namespace LockdownGames.GameCode.Models
 {
     public class LevelBounds
     { 

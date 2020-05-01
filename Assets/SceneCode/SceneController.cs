@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UiCode
+namespace LockdownGames.SceneCode
 {
     public class SceneController : MonoBehaviour
     {

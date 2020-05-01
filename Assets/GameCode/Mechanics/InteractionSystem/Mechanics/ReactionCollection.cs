@@ -1,7 +1,6 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace GameCode.InteractionSystem
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics
 {
     public class ReactionCollection : MonoBehaviour
     {

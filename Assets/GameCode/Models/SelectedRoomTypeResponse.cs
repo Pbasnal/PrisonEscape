@@ -1,6 +1,6 @@
-﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
+﻿using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes;
 
-namespace LayoutGenerator
+namespace LockdownGames.GameCode.Models
 {
     public class SelectedRoomTypeResponse
     {

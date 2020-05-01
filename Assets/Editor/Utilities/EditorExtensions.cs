@@ -1,7 +1,8 @@
 ﻿using UnityEditor;
+
 using UnityEngine;
 
-namespace EditorScripts.Utilities
+namespace LockdownGames.EditorScripts.Utilities
 {
     public static class Extensions
     {

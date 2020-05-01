@@ -1,9 +1,12 @@
-﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
+using LockdownGames.GameCode.Models;
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes;
+
 using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomScripts
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts
 {
     [RequireComponent(typeof(Grid))]
     public class RoomBuilder : MonoBehaviour

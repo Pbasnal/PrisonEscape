@@ -1,7 +1,6 @@
-﻿using GameCode.InventorySystem;
-using UnityEngine;
+﻿using LockdownGames.GameCode.Mechanics.InventorySystem;
 
-namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class DropKeyReaction : Reaction
     {

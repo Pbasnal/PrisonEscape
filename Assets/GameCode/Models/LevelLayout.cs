@@ -1,8 +1,10 @@
-﻿using SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes;
+
 using UnityEngine;
 
-namespace LayoutGenerator
+namespace LockdownGames.GameCode.Models
 {
     public class LevelLayout
     {

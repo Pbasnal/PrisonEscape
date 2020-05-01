@@ -1,6 +1,4 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-
-namespace GameCode.Mechanics.InteractionSystem.Mechanics
+﻿namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics
 {
     public interface ICanInteract
     {

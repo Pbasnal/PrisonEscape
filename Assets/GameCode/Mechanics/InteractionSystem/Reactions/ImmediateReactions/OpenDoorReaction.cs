@@ -1,7 +1,6 @@
-﻿using Assets.GameCode.SpelunkyLevelGen.LevelObjects;
-using GameCode.InteractionSystem;
+﻿using LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects;
 
-namespace GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class OpenDoorReaction : Reaction
     {

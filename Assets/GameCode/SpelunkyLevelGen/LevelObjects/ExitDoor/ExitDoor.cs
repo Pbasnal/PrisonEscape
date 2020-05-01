@@ -1,8 +1,8 @@
-﻿using GameCode.Messages;
-using GameCode.MessagingFramework;
+﻿using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
 using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelObjects.ExitDoor
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects.ExitDoor
 {
     [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]

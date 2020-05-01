@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace SpelunkyLevelGen.LevelGenerator.LevelRooms.RoomAttributes
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributes
 {
     [CreateAssetMenu(fileName = "LRT Room", menuName = "RoomAttributes/Connectedness/LRT", order = 51)]
     public class LeftRightTopConnected : RoomConnectionAttribute

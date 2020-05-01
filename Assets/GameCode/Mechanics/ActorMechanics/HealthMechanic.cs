@@ -1,7 +1,10 @@
-﻿using GameCode.Interfaces;
+﻿using LockdownGames.GameCode.Interfaces;
+using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     // can't really use messaging because a message is tied to the object(as of now)
     // like playerhealthupdate is tied to player.
@@ -34,7 +37,7 @@ namespace GameCode.Player
                 return;
             }
 
-            //_currentHealth -= damageAmount;
+            _currentHealth -= damageAmount;
 
             if (_currentHealth < 1) // should die if it is 0
             {
@@ -42,6 +45,7 @@ namespace GameCode.Player
             }
 
             RaiseEvent(_healthUpdate.WithInfo(MaxHealth, _currentHealth, damageAmount));
+            MessageBus.Publish(new PlayerHealthUpdateMessage(_currentHealth));
         }
     }
 

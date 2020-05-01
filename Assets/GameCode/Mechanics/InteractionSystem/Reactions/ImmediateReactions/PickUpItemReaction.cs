@@ -1,8 +1,7 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-using GameCode.InventorySystem;
+﻿using LockdownGames.GameCode.Mechanics.InventorySystem;
 using UnityEngine;
 
-namespace GameCode.InteractionSystem.Reactions.ImmediateReactions
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class PickUpItemReaction : Reaction
     {

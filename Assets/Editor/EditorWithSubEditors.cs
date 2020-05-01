@@ -2,85 +2,87 @@
 using UnityEditor;
 using UnityEngine;
 
-public abstract class EditorWithSubEditors<TEditor, TTarget> : Editor
-    where TEditor : Editor
-    where TTarget : Object
+namespace LockdownGames.EditorScripts
 {
-    protected TEditor[] subEditors;
-
-    protected void CheckAndCreateSubEditors(TTarget[] subEditorTargets)
+    public abstract class EditorWithSubEditors<TEditor, TTarget> : Editor
+        where TEditor : Editor
+        where TTarget : Object
     {
-        CleanupEmptyEditors();
-        if (subEditors != null && subEditors.Length == subEditorTargets.Length)
-        {
-            return;
-        }
+        protected TEditor[] subEditors;
 
-        CleanupEditors();
-
-        subEditors = new TEditor[subEditorTargets.Length];
-        for (int i = 0; i < subEditors.Length; i++)
+        protected void CheckAndCreateSubEditors(TTarget[] subEditorTargets)
         {
-            if (subEditorTargets[i] == null)
+            CleanupEmptyEditors();
+            if (subEditors != null && subEditors.Length == subEditorTargets.Length)
             {
-                continue;
+                return;
             }
-            subEditors[i] = CreateEditor(subEditorTargets[i]) as TEditor;
-            SubEditorSetup(subEditors[i]);
-        }
 
-        //CleanupEmptyEditors();
-    }
+            CleanupEditors();
 
-    protected void CheckAndCreateSubEditor(TTarget subEditorTarget)
-    {
-        if (subEditors != null || subEditorTarget == null)
-        {
-            return;
-        }
-
-        CleanupEditors();
-
-        subEditors = new TEditor[1];
-        subEditors[0] = CreateEditor(subEditorTarget) as TEditor;
-        SubEditorSetup(subEditors[0]);
-    }
-
-    protected void CleanupEmptyEditors()
-    {
-        if (subEditors == null)
-        {
-            return;
-        }
-
-        var nonEmptyEditors = new List<TEditor>();
-        for (int i = 0; i < subEditors.Length; i++)
-        {
-            if (subEditors[i] == null)
+            subEditors = new TEditor[subEditorTargets.Length];
+            for (int i = 0; i < subEditors.Length; i++)
             {
-                continue;
+                if (subEditorTargets[i] == null)
+                {
+                    continue;
+                }
+                subEditors[i] = CreateEditor(subEditorTargets[i]) as TEditor;
+                SubEditorSetup(subEditors[i]);
             }
-            nonEmptyEditors.Add(subEditors[i]);
+
+            //CleanupEmptyEditors();
         }
 
-        subEditors = nonEmptyEditors.ToArray();
-    }
-
-    protected void CleanupEditors()
-    {
-        if (subEditors == null)
+        protected void CheckAndCreateSubEditor(TTarget subEditorTarget)
         {
-            return;
+            if (subEditors != null || subEditorTarget == null)
+            {
+                return;
+            }
+
+            CleanupEditors();
+
+            subEditors = new TEditor[1];
+            subEditors[0] = CreateEditor(subEditorTarget) as TEditor;
+            SubEditorSetup(subEditors[0]);
         }
 
-        for (int i = 0; i < subEditors.Length; i++)
+        protected void CleanupEmptyEditors()
         {
-            DestroyImmediate(subEditors[i]);
+            if (subEditors == null)
+            {
+                return;
+            }
+
+            var nonEmptyEditors = new List<TEditor>();
+            for (int i = 0; i < subEditors.Length; i++)
+            {
+                if (subEditors[i] == null)
+                {
+                    continue;
+                }
+                nonEmptyEditors.Add(subEditors[i]);
+            }
+
+            subEditors = nonEmptyEditors.ToArray();
         }
 
-        subEditors = null;
-    }
+        protected void CleanupEditors()
+        {
+            if (subEditors == null)
+            {
+                return;
+            }
 
-    protected abstract void SubEditorSetup(TEditor editor);
+            for (int i = 0; i < subEditors.Length; i++)
+            {
+                DestroyImmediate(subEditors[i]);
+            }
+
+            subEditors = null;
+        }
+
+        protected abstract void SubEditorSetup(TEditor editor);
+    }
 }
-

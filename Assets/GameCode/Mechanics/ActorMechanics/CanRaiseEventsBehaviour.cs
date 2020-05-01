@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     public class CanRaiseEventsBehaviour<T> : MonoBehaviour where T: new()
     {

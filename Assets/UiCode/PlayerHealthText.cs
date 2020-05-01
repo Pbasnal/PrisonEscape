@@ -1,6 +1,8 @@
-﻿using GameCode.Messages;
-using GameCode.MessagingFramework;
+﻿using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+
 using TMPro;
+
 using UnityEngine;
 
 namespace UiCode

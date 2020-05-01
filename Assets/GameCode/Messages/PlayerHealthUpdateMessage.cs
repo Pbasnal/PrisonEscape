@@ -1,14 +1,12 @@
-﻿using GameCode.MessagingFramework;
-
-namespace GameCode.Messages
+﻿namespace LockdownGames.GameCode.Messages
 {
-    public class PlayerHealthUpdateMessage// : IMessage
+    public class PlayerHealthUpdateMessage
     {
         public float Playerhealth;
 
         public bool HasPlayerDied => Playerhealth == 0;
 
-        public PlayerHealthUpdateMessage(int health)
+        public PlayerHealthUpdateMessage(float health)
         {
             Playerhealth = health;
         }

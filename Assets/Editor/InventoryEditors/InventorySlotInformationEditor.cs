@@ -1,8 +1,10 @@
-﻿using GameCode.Mechanics.InventorySystem.DataScripts;
+﻿using LockdownGames.GameCode.Mechanics.InventorySystem.DataScripts;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace InventoryEditors
+namespace LockdownGames.EditorScripts.InventoryEditors
 {
     [CustomEditor(typeof(InventorySlotsInformation))]
     public class InventorySlotInformationEditor : Editor

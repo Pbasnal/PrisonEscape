@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.Mechanics.InventorySystem.DataScripts
+namespace LockdownGames.GameCode.Mechanics.InventorySystem.DataScripts
 {
     [CreateAssetMenu(fileName = "InventorySlotsInformation", menuName = "Data/Int", order = 51)]
     public class InventorySlotsInformation : ScriptableObject

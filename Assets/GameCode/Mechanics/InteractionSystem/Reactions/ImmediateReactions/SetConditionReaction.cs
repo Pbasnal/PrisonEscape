@@ -1,7 +1,4 @@
-﻿using GameCode.InteractionSystem;
-using UnityEngine;
-
-namespace GameCode.Mechanics.InteractionSystem.Reactions.ImmediateReactions
+﻿namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics.Reactions.ImmediateReactions
 {
     public class SetConditionReaction : Reaction
     {

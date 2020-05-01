@@ -1,6 +1,6 @@
 ﻿using GameAi.StateMachine2;
 
-namespace GameCode.Player.PlayerStates
+namespace LockdownGames.GameCode.Player
 {
     public class InteractionState : State<PlayerStateMachine>
     {

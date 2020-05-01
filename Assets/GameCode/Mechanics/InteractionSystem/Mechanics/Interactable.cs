@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.InteractionSystem.Mechanics
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics
 {
     public class Interactable : MonoBehaviour
     {

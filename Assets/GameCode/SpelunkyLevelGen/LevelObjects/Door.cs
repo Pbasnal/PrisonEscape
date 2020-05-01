@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.GameCode.SpelunkyLevelGen.LevelObjects
+namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects
 {
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(SpriteRenderer))]

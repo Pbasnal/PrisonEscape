@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LockdownGames.Assets.GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public class PlayerTest : MonoBehaviour
     {

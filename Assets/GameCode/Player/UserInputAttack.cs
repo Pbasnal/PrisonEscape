@@ -1,10 +1,12 @@
-﻿using GameCode.InteractionSystem.Mechanics;
-using GameCode.Messages;
-using GameCode.MessagingFramework;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public class UserInputAttack : MonoBehaviour
     {

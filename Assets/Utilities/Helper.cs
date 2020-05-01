@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Utilities
+namespace LockdownGames.Utilities
 {
     public class Helper
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace EditorScripts
+namespace LockdownGames.EditorScripts
 {
     [CustomEditor(typeof(ZombieAi))]
     public class ZombieDebugTextEditor : Editor

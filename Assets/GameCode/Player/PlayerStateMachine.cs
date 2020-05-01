@@ -1,14 +1,15 @@
-﻿using GameAi.StateMachine2;
-using GameCode.InteractionSystem.Mechanics;
-using GameCode.Mechanics.PlayerMechanics;
-using GameCode.Messages;
-using GameCode.MessagingFramework;
-using GameCode.Player.PlayerStates;
-using LockdownGames.GameCode.Mechanics.PlayerMechanics;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using GameAi.StateMachine2;
+
+using LockdownGames.GameCode.Mechanics.ActorMechanics;
+using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+
 using UnityEngine;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Player
 {
     public class PlayerStateMachine : StateMachine
     {

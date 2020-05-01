@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameCode.InteractionSystem
+namespace LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics
 {
     public class AllConditions : ResettableScriptableObject
     {

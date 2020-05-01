@@ -1,6 +1,8 @@
-﻿using GameCode.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
+using LockdownGames.GameCode.Models;
+
 using UnityEngine;
 
 namespace GameCode.GameAi

@@ -1,9 +1,12 @@
-﻿using GameCode.Interfaces;
+﻿using System.Collections.Generic;
+
+using LockdownGames.GameCode.Interfaces;
+
 using Pathfinding;
-using System.Collections.Generic;
+
 using UnityEngine;
 
-namespace GameCode.Mechanics.PlayerMechanics
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]

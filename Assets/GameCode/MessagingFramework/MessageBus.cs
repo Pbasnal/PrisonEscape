@@ -1,10 +1,10 @@
-﻿using GameCode.InteractionSystem;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace GameCode.MessagingFramework
+namespace LockdownGames.GameCode.MessagingFramework
 {
     public class MessageBus : MonoBehaviour
     {

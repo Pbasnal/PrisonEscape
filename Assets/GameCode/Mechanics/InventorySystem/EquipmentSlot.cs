@@ -1,6 +1,4 @@
-﻿using GameCode.InventorySystem;
-
-namespace GameCode.Mechanics.InventorySystem
+﻿namespace LockdownGames.GameCode.Mechanics.InventorySystem
 {
     public class EquipmentSlot : ItemSlot
     {

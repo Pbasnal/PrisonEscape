@@ -1,10 +1,12 @@
-﻿using GameCode.Messages;
-using GameCode.MessagingFramework;
+﻿using LockdownGames.GameCode.Messages;
+using LockdownGames.GameCode.MessagingFramework;
+
 using TMPro;
+
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UiCode
+namespace LockdownGames.UiCode
 {
     [RequireComponent(typeof(TextMeshProUGUI ))]
     public class GameStateText : MonoBehaviour

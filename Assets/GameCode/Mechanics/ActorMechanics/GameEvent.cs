@@ -1,6 +1,6 @@
 ﻿using UnityEngine.Events;
 
-namespace GameCode.Player
+namespace LockdownGames.GameCode.Mechanics.ActorMechanics
 {
     public class GameEvent<T> : UnityEvent<T>
     { }

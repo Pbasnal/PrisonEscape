@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "IntPair", menuName = "LevelGen/IntPair", order = 51)]
-public class IntPair : ScriptableObject
+namespace LockdownGames.GameCode.Models
 {
-    public int x;
-    public int y;
-
-    public static IntPair CreatePair(int x, int y)
+    [CreateAssetMenu(fileName = "IntPair", menuName = "LevelGen/IntPair", order = 51)]
+    public class IntPair : ScriptableObject
     {
-        var intPair = ScriptableObject.CreateInstance<IntPair>();
-        intPair.x = x;
-        intPair.y = y;
+        public int x;
+        public int y;
 
-        return intPair;
-    }
-
-    public void CopyFrom(IntPair pair)
-    {
-        x = pair.x;
-        y = pair.y;
-    }
-
-    public IntPair Clone()
-    {
-        return new IntPair
+        public static IntPair CreatePair(int x, int y)
         {
-            x = x,
-            y = y
-        };
+            var intPair = ScriptableObject.CreateInstance<IntPair>();
+            intPair.x = x;
+            intPair.y = y;
+
+            return intPair;
+        }
+
+        public void CopyFrom(IntPair pair)
+        {
+            x = pair.x;
+            y = pair.y;
+        }
+
+        public IntPair Clone()
+        {
+            return new IntPair
+            {
+                x = x,
+                y = y
+            };
+        }
     }
 }
