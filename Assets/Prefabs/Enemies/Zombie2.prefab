@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 7343249334079756873}
   - component: {fileID: 7343249334079756874}
   - component: {fileID: 7343249334079756875}
+  - component: {fileID: 7813375037243044070}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 7343249334079756895}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1dc22fa40ce625e49bc6329a73328eea, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WalkingSpeed: 50
-  SprintingSpeed: 80
+  SprintingSpeed: 150
   NextWaypointDistance: 0.3
 --- !u!114 &7343249334079756883
 MonoBehaviour:
@@ -222,11 +223,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7343249334079756895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff738cd2da58b35439aefc169c12cabc, type: 3}
+  m_Script: {fileID: 11500000, guid: ce13da66baddad34eb270438b053e60f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentState: 
-  boxCastSize: {x: 0.5, y: 0.1}
+  boxCastSize: {x: 0, y: 0}
   longRangeFov: {fileID: 7343249334079756873}
   shortRangeFov: {fileID: 7343249334079756874}
   target: {fileID: 0}
@@ -291,3 +292,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageToDeal: 10
   attackInterval: 0.5
+--- !u!114 &7813375037243044070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343249334079756895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01635d45995a5fb4f918f8a61267a720, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7343249334079756886}

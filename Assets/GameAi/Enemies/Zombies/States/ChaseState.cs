@@ -1,13 +1,13 @@
-﻿using LockdownGames.GameCode.GameAi.StateMachine2;
+﻿using LockdownGames.GameAi.StateMachineAi;
 using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
 
 namespace LockdownGames.GameAi.Enemies.Zombies
 {
-    public class ChaseState : State<ZombieStateMachine2>
+    public class ChaseState : State<ZombieAi>
     {
         private RigidBodyMovement mover;
 
-        public ChaseState(ZombieStateMachine2 stateMachine)
+        public ChaseState(ZombieAi stateMachine)
             : base(stateMachine)
         {
             mover = stateMachine.GetComponent<RigidBodyMovement>();

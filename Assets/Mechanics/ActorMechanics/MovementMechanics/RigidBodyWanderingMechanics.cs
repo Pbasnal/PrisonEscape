@@ -44,14 +44,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             }
 
             hitLocation = transform.position;
-            //mover.onPathComplete += OnPathComplete;
         }
-
-        //private void OnPathComplete()
-        //{
-        //    mover.ResetPath();
-        //    MoveInRandomDirection();
-        //}
 
         public void Wander()
         {

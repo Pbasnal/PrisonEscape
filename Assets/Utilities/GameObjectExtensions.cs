@@ -11,7 +11,8 @@ namespace LockdownGames.Utilities
         {
             posUpdatematrix = new Dictionary<Vector2, float>
                 {
-                    { Vector2.left , 90},
+                    { Vector2.zero, 0},
+                    { Vector2.left, 90},
                     { Vector2.right, 90 },
                     { Vector2.up,  0},
                     { Vector2.down, 0}

@@ -1,14 +1,13 @@
-﻿using LockdownGames.GameCode.GameAi.StateMachine2;
+﻿using LockdownGames.GameAi.StateMachineAi;
 using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
-using LockdownGames.Mechanics.AiMechanics;
 
 namespace LockdownGames.GameAi.Enemies.Zombies
 {
-    public class WanderingState : State<ZombieStateMachine2>
+    public class WanderingState : State<ZombieAi>
     {
         private RigidBodyWanderingMechanics wanderingMechanics;
 
-        public WanderingState(ZombieStateMachine2 stateMachine)
+        public WanderingState(ZombieAi stateMachine)
             : base(stateMachine)
         {
             wanderingMechanics = stateMachine.GetComponent<RigidBodyWanderingMechanics>();

@@ -1,13 +1,13 @@
-﻿using LockdownGames.GameCode.GameAi.StateMachine2;
+﻿using LockdownGames.GameAi.StateMachineAi;
 using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class SprintState : State<PlayerStateMachine>
+    public class SprintState : State<PlayerController>
     {
         private RigidBodyMovement playerMovement;
 
-        public SprintState(PlayerStateMachine stateMachine)
+        public SprintState(PlayerController stateMachine)
             : base(stateMachine)
         {
             playerMovement = stateMachine.GetComponent<RigidBodyMovement>();
@@ -21,8 +21,10 @@ namespace LockdownGames.GameCode.Player
 
         public override void Update()
         {
+            playerMovement.RunToNextPoint();
+
             // if seeker is not done yet or it was not able to move
-            if (!playerMovement.RunToNextPoint() || playerMovement.currentSpeed > 0.001f)
+            if (playerMovement.IsMoving)
             {
                 return;
             }

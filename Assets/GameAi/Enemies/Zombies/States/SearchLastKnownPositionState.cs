@@ -1,15 +1,16 @@
-﻿using LockdownGames.GameCode.GameAi.StateMachine2;
+﻿using LockdownGames.GameAi.StateMachineAi;
 using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
 using LockdownGames.Utilities;
+
 using UnityEngine;
 
 namespace LockdownGames.GameAi.Enemies.Zombies
 {
-    public class SearchLastKnownPositionState : State<ZombieStateMachine2>
+    public class SearchLastKnownPositionState : State<ZombieAi>
     {
         private RigidBodyMovement mover;
 
-        public SearchLastKnownPositionState(ZombieStateMachine2 stateMachine)
+        public SearchLastKnownPositionState(ZombieAi stateMachine)
             : base(stateMachine)
         {
             mover = stateMachine.GetComponent<RigidBodyMovement>();
@@ -44,7 +45,7 @@ namespace LockdownGames.GameAi.Enemies.Zombies
 
         private void SwitchToWanderingStateIfPathIsBlocked()
         {
-            var direction = GetDirectionInAxis(mover.direction);
+            var direction = mover.direction.SnapVectorToAxis();
             var hit = stateMachine.gameObject.GetHitInDirection(stateMachine.boxCastSize, direction, 1, Color.red);
             if (hit.collider == null || hit.distance > 0.7f)
             {
@@ -52,18 +53,6 @@ namespace LockdownGames.GameAi.Enemies.Zombies
             }
 
             stateMachine.SetStateTo<WanderingState>();
-        }
-
-        private Vector2 GetDirectionInAxis(Vector2 dir)
-        {
-            if (Mathf.Abs(dir.x) > 0.1)
-            {
-                return dir.x < 0 ? Vector2.left: Vector2.right;
-            }
-            else
-            {
-                return dir.y < 0 ? Vector2.down : Vector2.up;
-            }
         }
     }
 }
