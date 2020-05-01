@@ -12,7 +12,7 @@ namespace LockdownGames.Mechanics.AiMechanics
 
         public Color EditorColor;
 
-        [HideInInspector]
+        //[HideInInspector]
         public Vector2 LookDirection;
 
         private void Start()
@@ -23,9 +23,9 @@ namespace LockdownGames.Mechanics.AiMechanics
             }
         }
 
-        public PlayerInView FindPlayer()
+        public TargetInView FindTarget()
         {
-            var playerInView = new PlayerInView();
+            var playerInView = new TargetInView();
 
             var playersInRadius = Physics2D.OverlapCircleAll(transform.position, ViewRadius, PlayerMask);
 
@@ -52,7 +52,7 @@ namespace LockdownGames.Mechanics.AiMechanics
                     continue;
                 }
 
-                playerInView.AddPlayerInfo(playerInRadius.transform, playerDistance.magnitude);
+                playerInView.AddTargetInfo(playerInRadius.transform, playerDistance.magnitude);
             }
 
             return playerInView;

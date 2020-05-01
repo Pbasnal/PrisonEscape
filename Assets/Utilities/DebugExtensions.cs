@@ -4,23 +4,31 @@ namespace LockdownGames.Utilities
 {
     public static class DebugExtensions
     {
-        public static void DrawBoxCastOnHit(this RaycastHit2D hit, Vector2 origin, Vector2 boxSize, float rotationAlongZ, Color color)
+        public static void DrawBoxCastOnHit(this RaycastHit2D hit, 
+            Vector2 origin, Vector2 boxSize, 
+            float rotationAlongZ, Color color)
         {
             if (hit.collider == null)
             {
                 return;
             }
 
-            DrawBox(hit.point, boxSize, Quaternion.Euler(0, 0, rotationAlongZ), color);
+            DrawBox(hit.point, boxSize, Quaternion.Euler(0, 0, rotationAlongZ), color, 0.1f);
             Debug.DrawLine(origin, hit.point, color);
         }
 
-
-        //Draws just the box at where it is currently hitting.
-        public static void DrawBoxCastOnHit(Vector2 origin, Vector2 halfExtents, Quaternion orientation, Vector2 direction, float hitInfoDistance, Color color)
+        public static void DrawBoxCastOnHit(this RaycastHit2D hit, 
+            Vector2 origin, Vector2 boxSize, 
+            float rotationAlongZ, Color color,
+            float duration)
         {
-            origin = CastCenterOnCollision(origin, direction, hitInfoDistance);
-            DrawBox(origin, halfExtents, orientation, color);
+            if (hit.collider == null)
+            {
+                return;
+            }
+
+            DrawBox(hit.point, boxSize, Quaternion.Euler(0, 0, rotationAlongZ), color, duration);
+            Debug.DrawLine(origin, hit.point, color, duration);
         }
 
         public static Box GetBox(Vector2 origin, Vector2 size, Quaternion orientation)
@@ -28,17 +36,17 @@ namespace LockdownGames.Utilities
             return new Box(origin, size, orientation);
         }
 
-        public static void DrawBox(Vector2 origin, Vector2 size, Quaternion orientation, Color color)
+        public static void DrawBox(Vector2 origin, Vector2 size, Quaternion orientation, Color color, float duration)
         {
-            DrawBox(new Box(origin, size, orientation), color);
+            DrawBox(new Box(origin, size, orientation), color, duration);
         }
 
-        public static void DrawBox(Box box, Color color)
+        public static void DrawBox(Box box, Color color, float duration)
         {
-            Debug.DrawLine(box.topLeft, box.topRight, color);
-            Debug.DrawLine(box.topRight, box.bottomRight, color);
-            Debug.DrawLine(box.bottomRight, box.bottomLeft, color);
-            Debug.DrawLine(box.bottomLeft, box.topLeft, color);
+            Debug.DrawLine(box.topLeft, box.topRight, color, duration);
+            Debug.DrawLine(box.topRight, box.bottomRight, color, duration);
+            Debug.DrawLine(box.bottomRight, box.bottomLeft, color, duration);
+            Debug.DrawLine(box.bottomLeft, box.topLeft, color, duration);
         }
 
         public struct Box

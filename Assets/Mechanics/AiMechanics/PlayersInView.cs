@@ -2,27 +2,27 @@
 
 namespace LockdownGames.Mechanics.AiMechanics
 {
-    public class PlayerInView
+    public class TargetInView
     {
-        public bool IsPlayersInView { get; private set; }
-        public Transform PlayerTransform { get; private set; }
-        public float DistanceFromPlayer { get; private set; }
+        public bool isTargetInView { get; private set; }
+        public Transform target { get; private set; }
+        public float distanceFromTarget { get; private set; }
 
-        public PlayerInView()
+        public TargetInView()
         {
-            IsPlayersInView = false;
+            isTargetInView = false;
         }
 
-        public void AddPlayerInfo(Transform playerTransform, float distance)
+        public void AddTargetInfo(Transform targetTransform, float distance)
         {
-            IsPlayersInView = true;
-            PlayerTransform = playerTransform;
-            DistanceFromPlayer = distance;
+            isTargetInView = true;
+            target = targetTransform;
+            distanceFromTarget = distance;
         }
 
-        public void ClearPlayer()
+        public void ClearTarget()
         {
-            IsPlayersInView = false;
+            isTargetInView = false;
         }
     }
 }

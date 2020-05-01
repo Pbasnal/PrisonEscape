@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
-using LockdownGames.GameCode.Interfaces;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
 using LockdownGames.Mechanics.AiMechanics;
 
 using Pathfinding;
@@ -28,25 +28,25 @@ namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
         protected Vector2 CurrentMoveDirection { get; private set; }
         protected IList<FieldOfView> _fovs;
         protected Seeker seeker;
-        protected PlayerInView playerFound;
+        protected TargetInView playerFound;
         
         protected Vector2 currentPosition => (Vector2)transform.position;
 
         public bool SearchingForPathIsDonw => seeker.IsDone();
 
-        protected PlayerInView lastKnownPlayerPosition;
+        protected TargetInView lastKnownPlayerPosition;
 
         private new Rigidbody2D rigidbody;
         private IDictionary<string, Transform> detectors;
 
         public bool GetPathToPlayer(OnPathDelegate onPathComplete)
         {
-            return GetPathTo(playerFound.PlayerTransform.position, onPathComplete);
+            return GetPathTo(playerFound.target.position, onPathComplete);
         }
 
         public bool GetPathToLastKnownPlayerPosition(OnPathDelegate onPathComplete)
         {
-            return GetPathTo(lastKnownPlayerPosition.PlayerTransform.position, onPathComplete);
+            return GetPathTo(lastKnownPlayerPosition.target.position, onPathComplete);
         }
 
         protected void Initialize()
@@ -55,7 +55,7 @@ namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
             _fovs = GetComponents<FieldOfView>();
             animator = GetComponent<Animator>();
 
-            playerFound = new PlayerInView();
+            playerFound = new TargetInView();
 
             rigidbody = GetComponent<Rigidbody2D>();
 
@@ -144,13 +144,13 @@ namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 
         public bool AttackPlayer()
         {
-            if (Vector2.Distance(currentPosition, (Vector2)playerFound.PlayerTransform.position) > 1.3f)
+            if (Vector2.Distance(currentPosition, (Vector2)playerFound.target.position) > 1.3f)
             {
                 return !HaveCaughtPlayer;
             }
 
             //todo: reverse damage
-            playerFound.PlayerTransform.GetComponent<ICanTakeDamage>().TakeDamage(AttackDamage);
+            playerFound.target.GetComponent<ICanTakeDamage>().TakeDamage(AttackDamage);
 
             return HaveCaughtPlayer;
         }
@@ -182,13 +182,13 @@ namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 
         public bool IsPlayerInView()
         {
-            var playersInView = new PlayerInView();
+            //var playersInView = new PlayerInView();
 
-            playerFound.ClearPlayer();
+            playerFound.ClearTarget();
             foreach (var fov in _fovs)
             {
-                var x = fov.FindPlayer();
-                if (x.IsPlayersInView)
+                var x = fov.FindTarget();
+                if (x.isTargetInView)
                 {
                     lastKnownPlayerPosition = x;
                     playerFound = x;
@@ -196,7 +196,7 @@ namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
                 }
             }
 
-            return playerFound.IsPlayersInView;
+            return playerFound.isTargetInView;
         }
 
         public void RunInDirection(Vector2 dir)

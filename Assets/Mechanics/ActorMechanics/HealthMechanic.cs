@@ -1,7 +1,6 @@
-﻿using LockdownGames.GameCode.Interfaces;
-using LockdownGames.GameCode.Messages;
+﻿using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
-
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
 using UnityEngine;
 
 namespace LockdownGames.Mechanics.ActorMechanics

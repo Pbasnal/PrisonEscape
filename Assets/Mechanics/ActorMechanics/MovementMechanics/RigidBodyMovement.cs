@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
 using Pathfinding;
 
 using UnityEngine;
@@ -15,13 +15,17 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         public float SprintingSpeed = 400.0f;
         public float NextWaypointDistance = 0.5f;
 
-        [HideInInspector] public float currentSpeed => _rigidBody.velocity.magnitude;
+        public bool IsMoving { get; private set; }
 
-        public bool IsMoving => _path.Count != 0;
+        [HideInInspector] public float currentSpeed => _rigidBody.velocity.magnitude;
+        [HideInInspector] public Vector2 direction { get; private set; }
+
+        public Action onPathComplete;
 
         private float _moveSpeed;
         private List<Vector3> _path;
         private Vector2 _position;
+
 
         private Seeker _seeker;
         private Rigidbody2D _rigidBody;
@@ -35,65 +39,56 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             animator = GetComponent<Animator>();
             motionStateHash = Animator.StringToHash("MotionState");
 
+            _rigidBody.gravityScale = 0;
             _path = new List<Vector3>();
         }
 
         // returns wether or not seeker had path and was able to move the object
         public bool WalkToNextPoint()
         {
-            if (!_seeker.IsDone())
-            {
-                return false;
-            }
-
             _moveSpeed = WalkingSpeed;
-            MoveToNextWayPoint();
-
-            return true;
+            return MoveToNextWayPoint(WalkingSpeed);
         }
 
         public bool RunToNextPoint()
         {
-            if (!_seeker.IsDone())
-            {
-                return false;
-            }
-
             _moveSpeed = SprintingSpeed;
-            MoveToNextWayPoint();
-
-            return true;
+            return MoveToNextWayPoint(SprintingSpeed);
         }
 
-        private void MoveToNextWayPoint()
+        private bool MoveToNextWayPoint(float speed)
         {
             if (_path.Count == 0)
             {
-                return;
+                return false;
             }
-
-            Move(_path[0]);
+            
             _position = transform.position;
+            Move(_path[0]);            
 
             var distanceFromNextPoint = Vector2.Distance(_position, _path[0]);
             if (distanceFromNextPoint > NextWaypointDistance)
             {
-                return;
+                return true;
             }
 
             _path.RemoveAt(0);
             if (_path.Count == 0)
             {
+                onPathComplete?.Invoke();
                 _rigidBody.velocity = Vector2.zero;
+                IsMoving = false;
             }
+
+            return false;
         }
 
         public void Move(Vector2 target)
         {
-            var dir = (target - _position).normalized;
-            //SetAnimationDirection();
+            direction = (target - _position).normalized;
+            SetAnimationDirection();
 
-            _rigidBody.velocity = dir * _moveSpeed * Time.deltaTime;
+            _rigidBody.velocity = direction * _moveSpeed * Time.deltaTime;
         }
 
         private void SetAnimationDirection()
@@ -106,80 +101,70 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 
             var dir = ((Vector2)_path[targetIndex] - _position).normalized;
 
-            Vector2 direction;
-
             if (Mathf.Abs(dir.x) > 0.1)
             {
-                direction = dir.x < 0 ?
+                dir = dir.x < 0 ?
                     SetAnimatorMotionStateLeft()
                     : SetAnimatorMotionStateRight();
             }
             else
             {
-                direction = dir.y < 0 ?
+                dir = dir.y < 0 ?
                     SetAnimatorMotionStateDown()
                     : SetAnimatorMotionStateUp();
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        public void ResetPath()
         {
-            if (_path.Count == 0)
-            {
-                return;
-            }
-
-            var dir = ((Vector2)_path[0] - _position).normalized;
-            var hit = Physics2D.Raycast(_position, dir, 1f);
-
-            if (hit.collider != null)
-            {
-                _path.Clear();
-            }
+            _path.Clear();
         }
 
         private Vector2 SetAnimatorMotionStateUp()
         {
-            animator.SetInteger(motionStateHash, 1);
+            //animator.SetInteger(motionStateHash, 1);
 
             return Vector2.up;
         }
 
         private Vector2 SetAnimatorMotionStateDown()
         {
-            animator.SetInteger(motionStateHash, 2);
+            //animator.SetInteger(motionStateHash, 2);
 
             return Vector2.down;
         }
 
         private Vector2 SetAnimatorMotionStateLeft()
         {
-            animator.SetInteger(motionStateHash, 3);
+            //animator.SetInteger(motionStateHash, 3);
 
             return Vector2.left;
         }
 
         private Vector2 SetAnimatorMotionStateRight()
         {
-            animator.SetInteger(motionStateHash, 4);
+            //animator.SetInteger(motionStateHash, 4);
 
             return Vector2.right;
         }
 
-        public void SetPathTo(Vector2 target)
+        public bool SetPathTo(Vector2 target)
         {
             if (!_seeker.IsDone())
             {
-                return;
+                return false;
             }
 
+            IsMoving = true;
             _seeker.StartPath(transform.position, target, OnPathFound);
+            return true;
         }
 
         private void OnPathFound(Path p)
         {
             if (p.error)
             {
+                IsMoving = false;
                 return;
             }
 

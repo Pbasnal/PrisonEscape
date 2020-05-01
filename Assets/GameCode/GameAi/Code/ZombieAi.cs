@@ -1,6 +1,6 @@
 ﻿
 using LockdownGames.GameCode.GameAi.Code.ZombieStates;
-using LockdownGames.GameCode.Interfaces;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
 using LockdownGames.Mechanics.AiMechanics;
 
 using UnityEngine;
@@ -30,8 +30,8 @@ namespace LockdownGames.GameCode.GameAi.Code
         {
             if (collision.collider.tag == "Player")
             {
-                lastKnownPlayerPosition = new PlayerInView();
-                lastKnownPlayerPosition.AddPlayerInfo(collision.transform,
+                lastKnownPlayerPosition = new TargetInView();
+                lastKnownPlayerPosition.AddTargetInfo(collision.transform,
                     Vector2.Distance(collision.transform.position, transform.position));
 
                 SetState(new SearchLastKnownPosition(this));
