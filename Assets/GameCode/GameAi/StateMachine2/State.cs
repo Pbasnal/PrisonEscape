@@ -1,4 +1,4 @@
-﻿namespace GameAi.StateMachine2
+﻿namespace LockdownGames.GameCode.GameAi.StateMachine2
 {
     public interface IState
     {

@@ -1,9 +1,12 @@
-﻿using GameAi.FiniteStateMachine;
+﻿using System.Collections;
+
+using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
+
 using Pathfinding;
-using System.Collections;
+
 using UnityEngine;
 
-namespace GameAi.ZombieStates
+namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 {
     public class PathfindingState : State
     {

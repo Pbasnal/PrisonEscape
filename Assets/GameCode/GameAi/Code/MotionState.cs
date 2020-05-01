@@ -1,4 +1,4 @@
-﻿namespace GameCode.GameAi.Code
+﻿namespace LockdownGames.GameCode.GameAi.Code
 {
     public enum MotionState
     {

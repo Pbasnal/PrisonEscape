@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using LockdownGames.GameCode.GameAi.Code;
+using UnityEngine;
 
-namespace GameCode.GameAi
+namespace LockdownGames.GameCode.GameAi
 {
     public class EnemyCollection : MonoBehaviour
     {

@@ -5,7 +5,7 @@ using LockdownGames.GameCode.Models;
 
 using UnityEngine;
 
-namespace GameCode.GameAi
+namespace LockdownGames.GameCode.GameAi
 {
     public abstract class ALevelEnemiesPlacer : MonoBehaviour
     {

@@ -1,6 +1,6 @@
-﻿using GameAi.FiniteStateMachine;
+﻿using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
 
-namespace GameAi.ZombieStates
+namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 {
     public class ThinkingState : State
     {

@@ -1,5 +1,7 @@
-﻿using GameAi.Code;
+﻿using LockdownGames.GameCode.Mechanics.AiMechanics;
+
 using UnityEditor;
+
 using UnityEngine;
 
 namespace LockdownGames.EditorScripts

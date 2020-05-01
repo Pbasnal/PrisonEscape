@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
 using UnityEngine;
 
-namespace GameAi.StateMachine2
+namespace LockdownGames.GameCode.GameAi.StateMachine2
 {
     public abstract class StateMachine : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameAi
+namespace LockdownGames.GameCode.GameAi
 {
     public static class ExtDebug
     {

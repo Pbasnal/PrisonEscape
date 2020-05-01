@@ -1,17 +1,14 @@
 ﻿using System.Collections.Generic;
 
-using GameAi.Code;
-using GameAi.FiniteStateMachine;
-
-using GameCode.GameAi.Code;
-
+using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
 using LockdownGames.GameCode.Interfaces;
+using LockdownGames.GameCode.Mechanics.AiMechanics;
 
 using Pathfinding;
 
 using UnityEngine;
 
-namespace GameAi.ZombieStates
+namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Seeker))]

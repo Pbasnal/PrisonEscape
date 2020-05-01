@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameAi.FiniteStateMachine
+namespace LockdownGames.GameCode.GameAi.Code.FiniteStateMachine
 {
     public abstract class StateMachine : MonoBehaviour
     {

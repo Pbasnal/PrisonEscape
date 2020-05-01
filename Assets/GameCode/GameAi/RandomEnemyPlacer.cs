@@ -4,7 +4,7 @@ using LockdownGames.GameCode.Models;
 using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
 using LockdownGames.Utilities;
 
-namespace GameCode.GameAi
+namespace LockdownGames.GameCode.GameAi
 {
     public class RandomEnemyPlacer : ALevelEnemiesPlacer
     {

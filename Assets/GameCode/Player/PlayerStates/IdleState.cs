@@ -1,4 +1,5 @@
-﻿using GameAi.StateMachine2;
+﻿using LockdownGames.GameCode.GameAi.StateMachine2;
+
 using UnityEngine;
 
 namespace LockdownGames.GameCode.Player

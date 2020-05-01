@@ -1,6 +1,7 @@
-﻿using GameAi.StateMachine2;
+﻿using System.Collections.Generic;
+
 using LockdownGames.GameCode.Enemies.Zombies.States;
-using System.Collections.Generic;
+using LockdownGames.GameCode.GameAi.StateMachine2;
 
 namespace LockdownGames.GameCode.Enemies.Zombies
 {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameAi.Code
+namespace LockdownGames.GameCode.Mechanics.AiMechanics
 {
     public class PlayerInView
     {

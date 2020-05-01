@@ -1,8 +1,10 @@
-﻿using GameAi.FiniteStateMachine;
-using System.Collections;
+﻿using System.Collections;
+
+using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
+
 using UnityEngine;
 
-namespace GameAi.ZombieStates
+namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 {
     public class AttackState : State
     {

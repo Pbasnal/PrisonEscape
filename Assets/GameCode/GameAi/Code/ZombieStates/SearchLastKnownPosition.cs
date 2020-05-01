@@ -1,11 +1,12 @@
-﻿using GameAi.FiniteStateMachine;
-using Pathfinding;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
+using Pathfinding;
+
 using UnityEngine;
 
-namespace GameAi.ZombieStates
+namespace LockdownGames.GameCode.GameAi.Code.ZombieStates
 {
     public class SearchLastKnownPosition : State
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using GameAi.StateMachine2;
-
+using LockdownGames.GameCode.GameAi.StateMachine2;
 using LockdownGames.GameCode.Mechanics.ActorMechanics;
 using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
 using LockdownGames.GameCode.Messages;

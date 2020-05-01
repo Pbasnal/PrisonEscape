@@ -1,4 +1,7 @@
-﻿using UnityEditor;
+﻿using LockdownGames.GameCode.GameAi.Code;
+
+using UnityEditor;
+
 using UnityEngine;
 
 namespace LockdownGames.EditorScripts
