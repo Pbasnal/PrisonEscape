@@ -1,4 +1,4 @@
-﻿using LockdownGames.GameCode.Mechanics.InventorySystem.DataScripts;
+﻿using LockdownGames.Mechanics.InventorySystem.DataScripts;
 
 using UnityEditor;
 

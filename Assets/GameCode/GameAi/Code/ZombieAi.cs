@@ -1,7 +1,7 @@
 ﻿
 using LockdownGames.GameCode.GameAi.Code.ZombieStates;
 using LockdownGames.GameCode.Interfaces;
-using LockdownGames.GameCode.Mechanics.AiMechanics;
+using LockdownGames.Mechanics.AiMechanics;
 
 using UnityEngine;
 

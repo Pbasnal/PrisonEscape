@@ -2,7 +2,7 @@
 
 using LockdownGames.GameCode.GameAi.Code.FiniteStateMachine;
 using LockdownGames.GameCode.Interfaces;
-using LockdownGames.GameCode.Mechanics.AiMechanics;
+using LockdownGames.Mechanics.AiMechanics;
 
 using Pathfinding;
 

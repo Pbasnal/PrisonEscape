@@ -1,4 +1,4 @@
-﻿using LockdownGames.GameCode.Mechanics.AiMechanics;
+﻿using LockdownGames.Mechanics.AiMechanics;
 
 using UnityEditor;
 

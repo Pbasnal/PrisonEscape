@@ -1,5 +1,5 @@
 ﻿using LockdownGames.GameCode.GameAi.StateMachine2;
-using LockdownGames.GameCode.Mechanics.ActorMechanics;
+using LockdownGames.Mechanics.ActorMechanics;
 
 namespace LockdownGames.GameCode.Player
 {

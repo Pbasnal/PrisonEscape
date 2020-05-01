@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 using LockdownGames.EditorScripts.ConditionEditors;
 using LockdownGames.EditorScripts.Utilities;
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
+using LockdownGames.Mechanics.InteractionSystem;
+using LockdownGames.Mechanics.InteractionSystem.Conditions;
 
 using UnityEditor;
 

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
 using LockdownGames.GameCode.GameAi.StateMachine2;
-using LockdownGames.GameCode.Mechanics.ActorMechanics;
-using LockdownGames.GameCode.Mechanics.InteractionSystem.Mechanics;
 using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
+using LockdownGames.Mechanics.ActorMechanics;
+using LockdownGames.Mechanics.InteractionSystem;
 
 using UnityEngine;
 

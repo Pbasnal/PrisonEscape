@@ -1,7 +1,5 @@
 ﻿using System;
-
-using LockdownGames.GameCode.Mechanics.InventorySystem;
-
+using LockdownGames.Mechanics.InventorySystem;
 using UnityEngine;
 
 namespace LockdownGames.GameCode.AnimationBehaviour
