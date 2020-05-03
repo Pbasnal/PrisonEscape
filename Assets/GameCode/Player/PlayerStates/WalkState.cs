@@ -1,15 +1,18 @@
 ﻿using LockdownGames.GameAi.StateMachineAi;
 using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
+using LockdownGames.Mechanics.InputMechanics;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class MoveState : State<PlayerController>
+    public class WalkState : State<PlayerAi>
     {
+        private GestureInput gestureInput;
         private RigidBodyMovement playerMovement;
         
-        public MoveState(PlayerController stateMachine)
+        public WalkState(PlayerAi stateMachine)
             : base(stateMachine)
         {
+            gestureInput = stateMachine.GetComponent<GestureInput>();
             playerMovement = stateMachine.GetComponent<RigidBodyMovement>();
         }
 

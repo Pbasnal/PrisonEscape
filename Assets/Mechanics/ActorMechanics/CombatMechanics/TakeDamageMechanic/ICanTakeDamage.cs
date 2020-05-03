@@ -1,4 +1,4 @@
-﻿namespace LockdownGames.Mechanics.ActorMechanics.CombatMechanics
+﻿namespace LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic
 {
     public interface ICanTakeDamage
     {

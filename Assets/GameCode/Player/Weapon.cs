@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 
 using LockdownGames.GameCode.AnimatorHandlers;
-using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.DealDamageMechanics;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic;
 
 using UnityEngine;
 

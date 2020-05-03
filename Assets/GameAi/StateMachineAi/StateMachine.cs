@@ -36,7 +36,7 @@ namespace LockdownGames.GameAi.StateMachineAi
             SwitchToStateWithoutEndingPrevious<T>();
         }
 
-        private IState GetState<T>() where T : IState
+        protected IState GetState<T>() where T : IState
         {
             var hash = typeof(T).GetHashCode();
 

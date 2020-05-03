@@ -1,7 +1,8 @@
-﻿using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
+﻿using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic;
+
 using UnityEngine;
 
-namespace LockdownGames.Assets.Mechanics.ActorMechanics.CombatMechanics
+namespace LockdownGames.Mechanics.ActorMechanics.CombatMechanics.DealDamageMechanics
 {
     public class AttackOnContactMechanics : MonoBehaviour, ICanAttack
     {
