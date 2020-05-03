@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
+using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic;
 
 using UnityEngine;
 

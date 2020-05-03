@@ -1,4 +1,5 @@
-﻿using LockdownGames.Mechanics.ActorMechanics.CombatMechanics;
+﻿using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic;
+
 using UnityEngine;
 
 namespace LockdownGames.Mechanics.InteractionSystem.Reactions.ImmediateReactions

@@ -39,11 +39,6 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             path = new List<Vector3>();
         }
 
-        private void Start()
-        {
-            Debug.Log(direction);
-        }
-
         // returns wether or not seeker had path and was able to move the object
         public bool WalkToNextPoint()
         {
@@ -91,6 +86,9 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         public void ResetPath()
         {
             path.Clear();
+            rigidBody.velocity = Vector2.zero;
+            IsMoving = false;
+            direction = Vector2.zero;
         }
 
         public bool SetPathTo(Vector2 target)

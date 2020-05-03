@@ -44,10 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8454584786400695142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a17ef76081e33124eaacdfb3983c88ad, type: 3}
+  m_Script: {fileID: 11500000, guid: b7ba4c7ad39ebae4090e645033ae133e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionLocation: {fileID: 0}
+  interactionLocation: {fileID: 8454584786400695137}
   conditionCollections: []
   defaultReactionCollection: {fileID: 8454584786540531651}
 --- !u!212 &8454584786400695136
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8454584786540531650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8efc2cf23523a4e80bc2232fc0e64b, type: 3}
+  m_Script: {fileID: 11500000, guid: e44741ec959632b449fd11443395dbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Reactions:

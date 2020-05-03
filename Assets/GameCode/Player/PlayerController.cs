@@ -1,94 +1,49 @@
-﻿using System.Collections.Generic;
-
-using LockdownGames.GameAi.StateMachineAi;
-using LockdownGames.GameCode.Messages;
-using LockdownGames.GameCode.MessagingFramework;
-using LockdownGames.Mechanics.ActorMechanics;
-using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
-using LockdownGames.Mechanics.InteractionSystem;
+﻿using LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic;
 
 using UnityEngine;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class PlayerController : StateMachine
+    public class PlayerController : MonoBehaviour
     {
-        private InteractionMechanics interactionMechanics;
-        private RigidBodyMovement mover;
-        
+        public HealthMechanic healthMechanic;
+        public PlayerAi playerAi;
+
+        private new Rigidbody2D rigidbody;
+        private new Collider2D collider;
+
         private void Awake()
         {
-            mover = GetComponent<RigidBodyMovement>();
-            interactionMechanics = GetComponent<InteractionMechanics>();
+            playerAi = GetComponent<PlayerAi>();
+            rigidbody = GetComponent<Rigidbody2D>();
+            collider = GetComponent<Collider2D>();
+            healthMechanic = GetComponent<HealthMechanic>();
 
-            var startingState = new IdleState(this);
-            var moveState = new MoveState(this);
-            var sprintState = new SprintState(this);
-            
-            InitializeStateMachine(new List<IState>
-            {
-                startingState,
-                moveState,
-                sprintState
-            }, startingState);
-
-            MessageBus.Register<UserInputBeganMessage>(OnSingleClick);
-            MessageBus.Register<UserInputDoubleClickMessage>(OnDoubleClick);
+            healthMechanic.Register(OnHealthUpdate);
         }
 
-        private void Update()
+        private void OnHealthUpdate(HealthUpdateProperty healthUpdate)
         {
-            currentState.Update();
-        }
-
-        private void OnDisable()
-        {
-            MessageBus.Remove<UserInputBeganMessage>(OnSingleClick);
-            MessageBus.Remove<UserInputDoubleClickMessage>(OnDoubleClick);
-        }
-
-        private void OnDoubleClick(TransportMessage trmsg)
-        {
-            var doubleClickMsg = trmsg.ConvertTo<UserInputDoubleClickMessage>();
-            if (doubleClickMsg == null)
+            if (healthUpdate.CurrentHealth != 0)
             {
                 return;
             }
 
-            mover.SetPathTo(doubleClickMsg.inputLocationInGameSpace);
-            SetStateTo<SprintState>();
-
-            if (doubleClickMsg.ClickedOnAnObject)
-            {
-                CaptureInteractableIfAny(doubleClickMsg.transformOfClickedObject);
-            }
+            DisablePlayer();
         }
 
-        private void OnSingleClick(TransportMessage trmsg)
+        public void EnablePlayer()
         {
-            var singleClickMsg = trmsg.ConvertTo<UserInputBeganMessage>();
-            if (singleClickMsg == null)
-            {
-                return;
-            }
-
-            mover.SetPathTo(singleClickMsg.inputLocationInGameSpace);
-            SetStateTo<MoveState>();
-
-            if (singleClickMsg.ClickedOnAnObject)
-            {
-                CaptureInteractableIfAny(singleClickMsg.transformOfClickedObject);
-            }
+            playerAi.enabled = true;
+            rigidbody.isKinematic = true;
+            collider.enabled = true;
         }
 
-        private void CaptureInteractableIfAny(Transform transformOfClickedOnObject)
+        public void DisablePlayer()
         {
-            var interactable = transformOfClickedOnObject.GetComponent<Interactable>();
-            if (interactable == null)
-            {
-                return;
-            }
-            interactionMechanics.SetInteractable(interactable);
+            playerAi.enabled = false;
+            rigidbody.isKinematic = true;
+            collider.enabled = false;
         }
     }
 }

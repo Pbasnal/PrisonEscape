@@ -3,11 +3,11 @@ using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
 
 namespace LockdownGames.GameCode.Player
 {
-    public class SprintState : State<PlayerController>
+    public class SprintState : State<PlayerAi>
     {
         private RigidBodyMovement playerMovement;
 
-        public SprintState(PlayerController stateMachine)
+        public SprintState(PlayerAi stateMachine)
             : base(stateMachine)
         {
             playerMovement = stateMachine.GetComponent<RigidBodyMovement>();

@@ -2,9 +2,9 @@
 
 namespace LockdownGames.GameCode.Player
 {
-    public class IdleState : State<PlayerController>
+    public class IdleState : State<PlayerAi>
     {
-        public IdleState(PlayerController stateMachine) : base(stateMachine)
+        public IdleState(PlayerAi stateMachine) : base(stateMachine)
         {
         }
 
