@@ -102,7 +102,9 @@ namespace LockdownGames.EditorScripts.ConditionEditors
             EditorGUI.indentLevel++;
 
             // Display the description of the Condition.
-            EditorGUILayout.LabelField(condition.Description);
+            // EditorGUILayout.LabelField(condition.Description);
+            // Get and display a string for the name of a new Condition.
+            condition.Description = EditorGUILayout.TextField(condition.Description);
 
             EditorGUI.indentLevel--;
             EditorGUILayout.EndHorizontal();

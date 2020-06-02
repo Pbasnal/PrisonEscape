@@ -1,4 +1,6 @@
-﻿using LockdownGames.Mechanics.InteractionSystem.Conditions;
+﻿using System.Linq;
+
+using LockdownGames.Mechanics.InteractionSystem.Conditions;
 
 using UnityEditor;
 
@@ -124,9 +126,42 @@ namespace LockdownGames.EditorScripts.ConditionEditors
                 AddCondition(newConditionDescription);
                 newConditionDescription = "New Condition";
             }
+            if (GUILayout.Button("Refresh"))
+            {
+                RefreshConditions();
+            }
+
             EditorGUILayout.EndHorizontal();
         }
 
+        private void RefreshConditions()
+        {
+            var allConditions = AllConditions.Instance;
+            var allassets = AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GetAssetPath(AllConditions.Instance));
+            Debug.Log("Total Sub conditions: " + allConditions.Conditions.Length + "    Total assests: " + allassets.Length);
+
+            foreach (var asset in allassets)
+            {
+                if (!(asset is Condition))
+                {
+                    continue;
+                }
+                var condition = asset as Condition;
+
+                if (string.IsNullOrWhiteSpace(condition.Description))
+                {
+                    condition.Description = condition.name;
+                    condition.Hash = Animator.StringToHash(condition.Description);
+                }
+
+                if (allConditions.Conditions.Any(c => c.Hash == condition.Hash))
+                {
+                    continue;
+                }
+
+                ArrayUtility.Add(ref allConditions.Conditions, condition);
+            }
+        }
 
         private void CreateEditors()
         {
@@ -250,7 +285,7 @@ namespace LockdownGames.EditorScripts.ConditionEditors
             Condition[] allConditions = AllConditions.Instance.Conditions;
 
             // If it doesn't exist or there are null elements, return null.
-            if (allConditions == null || allConditions[0] == null)
+            if (allConditions == null || allConditions.Length == 0 || allConditions.Any(c => c == null))
             {
                 return null;
             }

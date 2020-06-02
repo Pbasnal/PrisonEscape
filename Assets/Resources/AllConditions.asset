@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8946236316465098071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
+  m_Name: HasFloor3Electricity
+  m_EditorClassIdentifier: 
+  Description: HasFloor3Electricity
+  IsSatisfied: 0
+  Hash: -886898616
 --- !u!114 &-8000690614455627926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,9 +27,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
   m_Name: HasRedKeyCondition
   m_EditorClassIdentifier: 
-  Description: 
+  Description: HasRedKeyCondition
   IsSatisfied: 0
-  Hash: 0
+  Hash: -1694427344
 --- !u!114 &-4440348213408500386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27,9 +42,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
   m_Name: HasBlueKeyCondition
   m_EditorClassIdentifier: 
-  Description: 
+  Description: HasBlueKeyCondition
   IsSatisfied: 0
-  Hash: 0
+  Hash: -1055669785
+--- !u!114 &-2148431099095261765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
+  m_Name: Has Green Key Card Condition
+  m_EditorClassIdentifier: 
+  Description: Has Green Key Card Condition
+  IsSatisfied: 1
+  Hash: 572323187
+--- !u!114 &-638387689398047785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
+  m_Name: HasBlueKeyCard
+  m_EditorClassIdentifier: 
+  Description: HasBlueKeyCard
+  IsSatisfied: 0
+  Hash: 968849775
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,7 +87,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207979c8b13065d41af9640ce79ab842, type: 3}
   m_Name: AllConditions
   m_EditorClassIdentifier: 
-  Conditions: []
+  Conditions:
+  - {fileID: -638387689398047785}
+  - {fileID: 1916540552554578113}
+  - {fileID: -4440348213408500386}
+  - {fileID: -8000690614455627926}
+  - {fileID: -2148431099095261765}
+  - {fileID: 2299406065357168544}
+  - {fileID: -8946236316465098071}
 --- !u!114 &1916540552554578113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,6 +107,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
   m_Name: Has Water Condition
   m_EditorClassIdentifier: 
-  Description: 
+  Description: Has Water Condition
   IsSatisfied: 0
-  Hash: 0
+  Hash: 1222825512
+--- !u!114 &2299406065357168544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88310983f265b614c874bf1db2c86155, type: 3}
+  m_Name: Has Fuel
+  m_EditorClassIdentifier: 
+  Description: Has Fuel
+  IsSatisfied: 1
+  Hash: 1311182528

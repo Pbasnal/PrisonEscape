@@ -4,7 +4,7 @@ namespace LockdownGames.Mechanics.InteractionSystem.Reactions
 {
     public class ReactionCollection : MonoBehaviour
     {
-        public Reaction[] Reactions = new Reaction[0];
+        public Reaction[] Reactions;
         
         private Interactable interactable; 
 

@@ -16,6 +16,10 @@ namespace LockdownGames.Mechanics.ActorMechanics
         private void Awake()
         {
             inventoryManager = FindObjectOfType<InventoryManager>();
+            if (inventoryManager == null)
+            {
+                throw new UnityException("Add an inventory maanger before starting the game");
+            }
             inventoryManager.OnItemEquipped += EquipItem;
             inventoryManager.OnItemUnequipped += UnequipItem;
 

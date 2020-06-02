@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using LockdownGames.GameCode.Models;
 using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms;
 using LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomScripts;
@@ -11,9 +12,17 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRenderer
 {
     public class BasicRenderer : MonoBehaviour
     {
+        [TextArea]
+        public string info = "Renderer takes the final generated layout and renders all the rooms in it.";
+
+        [Space(10)]
+        [Header("Required")]
+        public GameObject wall;
+
+        [Space(10)]
+        [Header("Debug - Set to get debug info")]
         public GameObject mainPathMarker;
         public GameObject startingRoomMarker;
-        public GameObject wall;
 
         private RoomProvider roomProvider;
 
@@ -33,22 +42,47 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRenderer
                     var room = roomProvider.GetARoom(levelLayout.AttributeLayout[i, j]);
                     room = RenderRoom(room, i, j);
                     levelLayout.AddRenderedRoom(i, j, room.gameObject);
-
-                    //if (levelData.StartingRoomCoordinates.Height == i && levelData.StartingRoomCoordinates.Width == j)
-                    //{
-                    //    var marker = Instantiate(startingRoomMarker, room.transform.position, Quaternion.identity) as GameObject;
-                    //    marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
-                    //}
-                    //else if (levelLayout.MainPath.Any(p => p.Height == i && p.Width == j))
-                    //{
-                    //    var marker = Instantiate(mainPathMarker, room.transform.position, Quaternion.identity) as GameObject;
-                    //    marker.transform.localScale = new Vector3(room.roomSize.Width, room.roomSize.Height, 1);
-                    //}
                 }
             }
 
+
+            RenderDebugInfoIfNeeded(levelData);
+
             levelData.SetBounds(GenerateWalls(levelData));
             return levelData;
+        }
+
+        private void RenderDebugInfoIfNeeded(LevelData levelData)
+        {
+            var levelLayout = levelData.LevelLayout;
+            var levelSize = levelData.LevelSize;
+
+            if (startingRoomMarker != null)
+            {
+                var room = levelLayout.Rooms[levelData.StartingRoomCoordinates.x, levelData.StartingRoomCoordinates.y];
+                var marker = Instantiate(startingRoomMarker, room.transform.position, Quaternion.identity) as GameObject;
+                marker.transform.localScale = new Vector3(levelData.RoomSize.x, levelData.RoomSize.y, 1);
+            }
+
+            if (mainPathMarker == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < levelSize.x; i++)
+            {
+                for (int j = 0; j < levelSize.y; j++)
+                {
+                    if (!levelLayout.MainPath.Any(p => p.x == i && p.y == j))
+                    {
+                        continue;
+                    }
+
+                    var room = levelLayout.Rooms[i, j];
+                    var marker = Instantiate(mainPathMarker, room.transform.position, Quaternion.identity) as GameObject;
+                    marker.transform.localScale = new Vector3(levelData.RoomSize.x, levelData.RoomSize.y, 1);
+                }
+            }
         }
 
         private RoomBuilder RenderRoom(RoomBuilder room, int i, int j)
@@ -69,7 +103,7 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRenderer
         private LevelBounds GenerateWalls(LevelData levelData)
         {
             var scale = (levelData.LevelSize.x * levelData.RoomSize.x);
-            
+
             var minX = transform.position.x - (roomProvider.RoomSize.y / 2) + 0.5f;
             var midX = (transform.position.x + scale) / 2 - (roomProvider.RoomSize.y / 2);
             var maxX = transform.position.x + scale - (roomProvider.RoomSize.y / 2) - 0.5f;

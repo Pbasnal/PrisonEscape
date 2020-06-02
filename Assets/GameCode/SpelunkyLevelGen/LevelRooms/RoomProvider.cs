@@ -12,11 +12,12 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms
 {
     public class RoomProvider : MonoBehaviour
     {
+        [Header("List of all possible rooms (RoomBuilder). Should be of same size.")]
         public List<RoomBuilder> rooms;
         public IntPair RoomSize => rooms[0].roomSize;
 
         [HideInInspector] public bool AllRoomsAdded = false;
-                
+
         public RoomBuilder GetARoom(int enterDirection, int exitDirection)
         {
             var possibleRooms = rooms.Where(r => r.IsRoomPossible(enterDirection, exitDirection)).ToList();

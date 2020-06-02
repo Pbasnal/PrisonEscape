@@ -20,6 +20,10 @@ namespace LockdownGames.EditorScripts.ReactionEditors
 
         private void OnEnable()
         {
+            if (target == null)
+            {
+                return;
+            }
             // Cache the target reference.
             reaction = (Reaction)target;
 
