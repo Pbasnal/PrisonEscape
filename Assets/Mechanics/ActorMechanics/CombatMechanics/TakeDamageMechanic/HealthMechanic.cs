@@ -5,7 +5,7 @@
     // This restricts this health component to be used for different gameobjects
     public class HealthMechanic : CanRaiseEventsBehaviour<HealthUpdateProperty>, ICanTakeDamage
     {
-        protected HealthUpdateProperty healthUpdateProperty;
+        public HealthUpdateProperty healthUpdateProperty;
 
         private void Start()
         {

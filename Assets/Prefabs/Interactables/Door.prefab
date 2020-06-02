@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8939696753123571675}
-  - component: {fileID: 8939696753123571684}
+  - component: {fileID: 5258318101315783328}
   m_Layer: 11
   m_Name: DefaultReactionCollection
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 8939696753401824892}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8939696753123571684
+--- !u!114 &5258318101315783328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8939696753123571674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8efc2cf23523a4e80bc2232fc0e64b, type: 3}
+  m_Script: {fileID: 11500000, guid: e44741ec959632b449fd11443395dbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Reactions:
@@ -56,9 +56,9 @@ GameObject:
   - component: {fileID: 8939696753401824892}
   - component: {fileID: 8939696753401824883}
   - component: {fileID: 8939696753401824894}
-  - component: {fileID: 8939696753401824893}
   - component: {fileID: 8939696753401824895}
   - component: {fileID: 8939696753401824888}
+  - component: {fileID: 4915393239510320528}
   m_Layer: 11
   m_Name: Door
   m_TagString: Untagged
@@ -158,22 +158,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0625, y: 1.1666666}
   m_EdgeRadius: 0
---- !u!114 &8939696753401824893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8939696753401824882}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a17ef76081e33124eaacdfb3983c88ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionLocation: {fileID: 8939696753401824892}
-  conditionCollections:
-  - {fileID: 0}
-  defaultReactionCollection: {fileID: 8939696753123571684}
 --- !u!50 &8939696753401824895
 Rigidbody2D:
   serializedVersion: 4
@@ -210,6 +194,22 @@ MonoBehaviour:
   openDoorSprite: {fileID: 21300004, guid: ae3918a914038694d852d0bb81f62473, type: 3}
   closeDoorSprite: {fileID: 21300002, guid: ae3918a914038694d852d0bb81f62473, type: 3}
   startDoorSprite: {fileID: 21300002, guid: ae3918a914038694d852d0bb81f62473, type: 3}
+--- !u!114 &4915393239510320528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8939696753401824882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7ba4c7ad39ebae4090e645033ae133e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionLocation: {fileID: 8939696753401824892}
+  conditionCollections:
+  - {fileID: 0}
+  defaultReactionCollection: {fileID: 5258318101315783328}
 --- !u!1 &8939696754390036135
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8939696754390036128}
-  - component: {fileID: 8939696754390036129}
+  - component: {fileID: 7154806395677213054}
   m_Layer: 11
   m_Name: OpenDoorReaction
   m_TagString: Untagged
@@ -241,7 +241,7 @@ Transform:
   m_Father: {fileID: 8939696753401824892}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8939696754390036129
+--- !u!114 &7154806395677213054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8939696754390036135}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8efc2cf23523a4e80bc2232fc0e64b, type: 3}
+  m_Script: {fileID: 11500000, guid: e44741ec959632b449fd11443395dbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Reactions:

@@ -11,7 +11,11 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen
     [RequireComponent(typeof(BasicRenderer))]
     public class LevelGenerator : MonoBehaviour
     {
-        public LayoutProcessor layoutCreator;
+        /// <summary>
+        /// Layout processor generates the basic layout of specified size using the connection attribute.
+        /// </summary>
+        [Header("Layout processor generates the basic layout using the connection attribute")]
+        public LayoutProcessor layoutProcessor;
 
         public LevelData GenerateLevel(LevelData levelData)
         {
@@ -19,16 +23,27 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen
             var roomProvider = GetComponent<RoomProvider>();
 
             levelData.RoomProvider = roomProvider;
-            levelData.SetLevelSize(layoutCreator.LevelSize);
+            levelData.SetLevelSize(layoutProcessor.LevelSize);
             levelData.SetStartingRoomCoordinates(IntPair.CreatePair(0,
-                UnityEngine.Random.Range(0, layoutCreator.LevelSize.y)));
+                UnityEngine.Random.Range(0, layoutProcessor.LevelSize.y)));
 
-            levelData.SetLevelLayout(layoutCreator.CreateLevelLayout(levelData));
+            levelData.SetLevelLayout(layoutProcessor.CreateLevelLayout(levelData));
             levelData.SetRoomSize(roomProvider.RoomSize);
 
             levelData = levelRenderer.RenderBaseLevel(levelData);
 
             return levelData;
+        }
+
+        public void ClearLevel()
+        {
+            while (transform.childCount != 0)
+            {
+                foreach (Transform child in transform)
+                {
+                    DestroyImmediate(child.gameObject);
+                }
+            }
         }
     }
 }

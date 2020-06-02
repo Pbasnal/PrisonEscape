@@ -132,7 +132,7 @@ namespace LockdownGames.GameCode.Player
                 return;
             }
 
-            var worldFocusPoint = camera.ScreenToWorldPoint(new Vector2(gesture.FocusX, gesture.FocusY));
+            var worldFocusPoint = camera.ScreenToWorldPoint(new Vector3(gesture.FocusX, gesture.FocusY, 10));
             tapGestureCallback?.Invoke(gesture, worldFocusPoint, DetectObject(worldFocusPoint));
         }
 

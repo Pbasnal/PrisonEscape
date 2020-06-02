@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e7dcc9ff7c9b6a45b03286223d88bd6, type: 3}
   m_Name: RedKey
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: a6c10312421cb5e438d8b9edaad2db28, type: 3}
+  Sprite: {fileID: 21300000, guid: 49c8ad7c06ef72748961805bf6da32a4, type: 3}

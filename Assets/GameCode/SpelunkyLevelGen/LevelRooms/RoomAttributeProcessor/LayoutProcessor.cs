@@ -9,8 +9,14 @@ using UnityEngine;
 
 namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelRooms.RoomAttributeProcessor
 {
+    /// <summary>
+    /// This processor generates the basic layout of the level based on the connection attribute
+    /// of rooms. It is an abstract class because for different sizes, different direction map would be used
+    /// That direction map is defined by the implementation of this class.
+    /// </summary>
     public abstract class LayoutProcessor : AttributeProcessor<RoomConnectionAttribute>
     {
+        // value to be filled by the implementation of this class
         protected int[,][] directionsMap;
 
         private List<RoomConnectionAttribute> roomConnectionAttributes;

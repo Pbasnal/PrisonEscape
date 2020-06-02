@@ -83,6 +83,7 @@ namespace LockdownGames.Mechanics.ActorMechanics
 
             isInteractionPossible = true;
             Interactable.Interact(this);
+            Interactable = null;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects
         private new SpriteRenderer renderer;
         private new BoxCollider2D collider;
 
+        public bool IsDoorClosed => !collider.isTrigger;
+        
         private void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
@@ -24,13 +26,13 @@ namespace LockdownGames.GameCode.SpelunkyLevelGen.LevelObjects
         public void OpenDoor()
         {
             renderer.sprite = openDoorSprite;
-            collider.enabled = false;
+            collider.isTrigger = true;
         }
 
         public void CloseDoor()
         {
             renderer.sprite = closeDoorSprite;
-            collider.enabled = true;
+            collider.isTrigger = false;
         }
 
     }

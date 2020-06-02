@@ -31,13 +31,20 @@ namespace LockdownGames.EditorScripts.ReactionEditors
         private const float controlSpacing = 5f;                // Width in pixels between the popup type selection and drop area.
         private const string reactionsPropName = "Reactions";   // Name of the field for the array of Reactions.
 
-        private readonly float verticalSpacing = EditorGUIUtility.standardVerticalSpacing;
+        private float verticalSpacing;
         // Caching the vertical spacing between GUI elements.
 
         private void OnEnable()
         {
             // Cache the target.
             reactionCollection = (ReactionCollection)target;
+
+            if (reactionCollection.Reactions == null)
+            {
+                reactionCollection.Reactions = new Reaction[0];
+            }
+
+            verticalSpacing = EditorGUIUtility.standardVerticalSpacing;
 
             // Cache the SerializedProperty
             reactionsProperty = serializedObject.FindProperty(reactionsPropName);
@@ -208,13 +215,23 @@ namespace LockdownGames.EditorScripts.ReactionEditors
                     {
                         // ... and find the script asset that was being dragged...
                         MonoScript script = DragAndDrop.objectReferences[i] as MonoScript;
+                        if (script != null)
+                        {
+                            // ... then find the type of that Reaction...
+                            Type reactionType = script.GetClass();
 
-                        // ... then find the type of that Reaction...
-                        Type reactionType = script.GetClass();
+                            // ... and create a Reaction of that type and add it to the array.
+                            Reaction newReaction = ReactionEditor.CreateReaction(reactionType);
+                            editor.reactionsProperty.AddToObjectArray(newReaction);
+                            continue;
+                        }
 
-                        // ... and create a Reaction of that type and add it to the array.
-                        Reaction newReaction = ReactionEditor.CreateReaction(reactionType);
-                        editor.reactionsProperty.AddToObjectArray(newReaction);
+                        // ... or find the reaction asset that was being dragged...
+                        Reaction reaction = DragAndDrop.objectReferences[i] as Reaction;
+                        if (reaction != null)
+                        {
+                            editor.reactionsProperty.AddToObjectArray(reaction);
+                        }
                     }
 
                     // Make sure the event isn't used by anything else.
@@ -229,30 +246,47 @@ namespace LockdownGames.EditorScripts.ReactionEditors
             // Go through all the objects being dragged...
             for (int i = 0; i < DragAndDrop.objectReferences.Length; i++)
             {
-                // ... and if any of them are not script assets, return that the drag is invalid.
-                if (DragAndDrop.objectReferences[i].GetType() != typeof(MonoScript))
-                {
-                    return false;
-                }
-
-                // Otherwise find the class contained in the script asset.
-                MonoScript script = DragAndDrop.objectReferences[i] as MonoScript;
-                Type scriptType = script.GetClass();
-
-                // If the script does not inherit from Reaction, return that the drag is invalid.
-                if (!scriptType.IsSubclassOf(typeof(Reaction)))
-                {
-                    return false;
-                }
-
-                // If the script is an abstract, return that the drag is invalid.
-                if (scriptType.IsAbstract)
+                if (!IsItMonoScript(DragAndDrop.objectReferences[i])
+                     && !IsItReactionObject(DragAndDrop.objectReferences[i]))
                 {
                     return false;
                 }
             }
 
             // If none of the dragging objects returned that the drag was invalid, return that it is valid.
+            return true;
+        }
+
+        private static bool IsItReactionObject(UnityEngine.Object obj)
+        {
+            // if obj is not a Reaction, return that the drag is invalid.
+            if (obj as Reaction == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool IsItMonoScript(UnityEngine.Object obj)
+        {
+            // ... and if any of them are not script assets, return that the drag is invalid.
+            if (obj.GetType() != typeof(MonoScript))
+            {
+                return false;
+            }
+
+            // Otherwise find the class contained in the script asset.
+            MonoScript script = obj as MonoScript;
+            Type scriptType = script.GetClass();
+
+            // If the script does not inherit from Reaction, return that the drag is invalid.
+            // If the script is an abstract, return that the drag is invalid.
+            if (!scriptType.IsSubclassOf(typeof(Reaction)) || scriptType.IsAbstract)
+            {
+                return false;
+            }
+
             return true;
         }
 

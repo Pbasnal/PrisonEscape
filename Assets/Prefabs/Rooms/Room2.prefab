@@ -567,8 +567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 393466065b505904e8b27e4719c0a9bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: {fileID: 11400000, guid: 867ff38093c08e14fb9f9ba2c0bd4320, type: 2}
-  roomType: {fileID: 11400000, guid: 69d5037a4a7ea8142af9dd8fdc27da55, type: 2}
+  roomSize: {fileID: 0}
+  roomAttributes:
+  - {fileID: 11400000, guid: ff3d9ca62cdd2384f90dc4b41439edaf, type: 2}
 --- !u!19719996 &5296920305324615462
 TilemapCollider2D:
   m_ObjectHideFlags: 0

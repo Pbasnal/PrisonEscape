@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.madsbangh.easybuttons": "https://github.com/madsbangh/EasyButtons.git#upm",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
@@ -48,6 +49,10 @@
     "com.unity.2d.tilemap.extras": {
       "revision": "master",
       "hash": "e9955e7528762a4ba6cd0471215e2c2135436ebe"
+    },
+    "com.madsbangh.easybuttons": {
+      "revision": "upm",
+      "hash": "7047cf063c0dbc92b73a3d5e319ab25db877b01e"
     }
   }
 }
