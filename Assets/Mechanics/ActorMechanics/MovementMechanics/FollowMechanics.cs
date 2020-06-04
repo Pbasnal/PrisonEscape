@@ -69,6 +69,8 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
                 return;
             }
 
+            Debug.Log("Following" + objectToFollow);
+
             isRunning = false;
             transformToFollow = objectToFollow;
         }

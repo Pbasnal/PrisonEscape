@@ -70,3 +70,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fingersScript: {fileID: 7718068555531936986}
   camera: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3072

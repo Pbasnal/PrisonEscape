@@ -93,8 +93,6 @@ namespace LockdownGames.GameCode.Player
 
         private void CaptureInteractableIfAny(Transform transformOfClickedOnObject)
         {
-            
-
             var interactable = transformOfClickedOnObject.GetComponent<Interactable>();
             if (interactable == null)
             {

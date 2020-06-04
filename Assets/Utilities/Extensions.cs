@@ -12,16 +12,27 @@ namespace LockdownGames.Utilities
 
         public static Vector2 SnapVectorToAxis(this Vector2 dir)
         {
-            if (Mathf.Abs(dir.x) > 0.1)
+            var absx = Mathf.Abs(dir.x);
+            var absy = Mathf.Abs(dir.y);
+
+            if (absx < 0.1f && absy < 0.1f)
             {
-                return dir.x < 0 ? Vector2.left : Vector2.right;
-            }
-            else if (Mathf.Abs(dir.y) > 0.1)
-            {
-                return dir.y < 0 ? Vector2.down : Vector2.up;
+                return Vector2.zero;
             }
 
-            return Vector2.zero;
+            var signx = Mathf.Sign(dir.x);
+            var signy = Mathf.Sign(dir.y);
+
+            if (absx - absy > 0.1f)
+            {
+                return Vector2.right * signx;
+            }
+            else if (absy - absx > 0.1f)
+            {
+                return Vector2.up * signy;
+            }
+            
+            return Vector2.right * signx + Vector2.up * signy;
         }
 
         public static Queue<T> ToQueue<T>(this IEnumerable<T> enumerable)
@@ -37,3 +48,5 @@ namespace LockdownGames.Utilities
         }
     }
 }
+
+

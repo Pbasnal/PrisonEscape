@@ -12,7 +12,13 @@ namespace LockdownGames.Mechanics.ActorMechanics
 
         public void SetInteractable(Interactable interactable)
         {
+            if (Interactable != null)
+            {
+                Interactable.material.SetFloat("_Thickness", 0);
+            }
+
             Interactable = interactable;
+            Interactable.material.SetFloat("_Thickness", 1);
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
@@ -82,6 +88,7 @@ namespace LockdownGames.Mechanics.ActorMechanics
             }
 
             isInteractionPossible = true;
+            Interactable.material.SetFloat("_Thickness", 0);
             Interactable.Interact(this);
             Interactable = null;
         }
