@@ -86,6 +86,7 @@
             fixed _AlphaThreshold;
             fixed _Angle;
             //fixed _FrameMode;
+			float _Shininess;
 
 			fixed4 _ImageOutline;
             fixed _TileMode;
