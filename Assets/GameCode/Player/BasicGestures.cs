@@ -11,6 +11,10 @@ namespace LockdownGames.GameCode.Player
         public FingersScript fingersScript;
         public Camera camera;
 
+        public LayerMask layerMask;
+
+        //public Transform clickedLocation;
+
         public Action<GestureRecognizer, Vector2, Transform> tapGestureCallback;
         public Action<GestureRecognizer, Vector2, Transform> doubleTapGestureCallback;        
 
@@ -133,6 +137,8 @@ namespace LockdownGames.GameCode.Player
             }
 
             var worldFocusPoint = camera.ScreenToWorldPoint(new Vector3(gesture.FocusX, gesture.FocusY, 10));
+
+            //clickedLocation.position = worldFocusPoint;
             tapGestureCallback?.Invoke(gesture, worldFocusPoint, DetectObject(worldFocusPoint));
         }
 
@@ -224,7 +230,7 @@ namespace LockdownGames.GameCode.Player
 
         private Transform DetectObject(Vector2 worldPoint)
         {
-            var collider = Physics2D.OverlapPoint(worldPoint);
+            var collider = Physics2D.OverlapCircle(worldPoint, 0.2f, layerMask);
 
             if (collider == null)
             {

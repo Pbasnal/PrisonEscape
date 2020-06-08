@@ -1,22 +1,20 @@
 ﻿using LockdownGames.GameCode.Messages;
 using LockdownGames.GameCode.MessagingFramework;
 
-using TMPro;
-
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UiCode
 {
-    public class PlayerHealthText : MonoBehaviour
+    public class PlayerHealthBar : MonoBehaviour
     {
-        private TextMeshProUGUI text;
+        private Slider slider;
 
         private void Awake()
         {
             MessageBus.Register<PlayerHealthUpdateMessage>(OnPlayerHealthUpdate);
 
-            text = GetComponent<TextMeshProUGUI>();
-            text.text = "Health: 100";
+            slider = GetComponent<Slider>();
         }
 
         private void OnDestroy()
@@ -28,7 +26,7 @@ namespace UiCode
         {
             var msg = trMsg.ConvertTo<PlayerHealthUpdateMessage>();
 
-            text.text = "Health: " + msg.Playerhealth;
+            slider.value = msg.Playerhealth;
         }
     }
 }

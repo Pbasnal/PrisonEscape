@@ -18,8 +18,8 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         public bool IsMoving { get; private set; }
 
         [HideInInspector] public float currentSpeed => rigidBody.velocity.magnitude;
-        [HideInInspector] public Vector2 direction { get; private set; }
-
+        public Vector2 direction { get; private set; }
+        public Vector2 target { get; private set; }
         public Action onPathComplete;
 
         private List<Vector3> path;
@@ -34,6 +34,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             seeker = GetComponent<Seeker>();
             rigidBody = GetComponent<Rigidbody2D>();
 
+            target = transform.position;
             direction = Vector2.zero;
             rigidBody.gravityScale = 0;
             path = new List<Vector3>();
@@ -99,6 +100,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             }
 
             IsMoving = true;
+            this.target = target;
             seeker.StartPath(transform.position, target, OnPathFound);
             return true;
         }
