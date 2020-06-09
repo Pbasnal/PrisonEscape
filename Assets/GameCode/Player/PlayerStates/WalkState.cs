@@ -33,7 +33,7 @@ namespace LockdownGames.GameCode.Player
             }
 
             //Debug.Log("Stopping because current speed is : " + playerMovement.currentSpeed);
-            stateMachine.SetStateTo<IdleState>();
+            //stateMachine.SetStateTo<IdleState>();
         }
     }
 }
