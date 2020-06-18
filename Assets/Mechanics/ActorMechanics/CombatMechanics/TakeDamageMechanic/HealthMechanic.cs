@@ -1,4 +1,6 @@
-﻿namespace LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic
+﻿using UnityEngine;
+
+namespace LockdownGames.Mechanics.ActorMechanics.CombatMechanics.TakeDamageMechanic
 {
     // can't really use messaging because a message is tied to the object(as of now)
     // like playerhealthupdate is tied to player.
@@ -28,6 +30,8 @@
             }
 
             RaiseEvent(healthUpdateProperty.WithDamage(damageAmount));
+
+            Debug.Log(string.Format("Took hit current health: {0}  took damage: {1}", healthUpdateProperty.CurrentHealth, damageAmount));
         }
     }
 }

@@ -50,6 +50,9 @@ TagManager:
   - name: Interactables
     uniqueID: 2877691779
     locked: 0
+  - name: Player
+    uniqueID: 2821355215
+    locked: 0
   - name: GFX
     uniqueID: 4025639063
     locked: 0

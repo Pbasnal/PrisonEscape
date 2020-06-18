@@ -296,7 +296,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 701483455}
   m_Lens:
     FieldOfView: 40
     OrthographicSize: 4
@@ -312,7 +312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339036628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1896159320}
@@ -416,7 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e10b8f79fe6d14b9dc29e5070779fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBodyMover: {fileID: 1871687945}
+  playerAi: {fileID: 1169543573}
   basicGestures: {fileID: 1321673877}
   animator: {fileID: 1871687944}
 --- !u!4 &701483455
@@ -489,7 +489,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -269328233
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 95e12cf07962d89408f91f052c0c08b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -502,6 +502,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1169543573 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2794750810930640903, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1871687943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc0704066d226894c813998029858645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1321673876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,7 +681,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477513898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 2, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -772,16 +784,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2794750810930640900, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
-        type: 3}
-      propertyPath: WalkingSpeed
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 2794750810930640900, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
-        type: 3}
-      propertyPath: NextWaypointDistance
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2794750810930640902, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
         type: 3}
       propertyPath: startEndModifier.exactStartPoint
@@ -857,6 +859,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2794750810930641012, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2794750810930641013, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
         type: 3}
       propertyPath: m_UseAutoMass
@@ -867,6 +874,11 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.19639954
       objectReference: {fileID: 0}
+    - target: {fileID: 2815331958988308952, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
+        type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1477513900}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c, type: 3}
 --- !u!95 &1871687944 stripped
@@ -875,18 +887,6 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 1871687943}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1871687945 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2794750810930640900, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1871687943}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5305b3bedf388bc41b88ec204b7969b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1896159319
 GameObject:
   m_ObjectHideFlags: 3

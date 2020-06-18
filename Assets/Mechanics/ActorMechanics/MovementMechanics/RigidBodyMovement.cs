@@ -10,7 +10,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Seeker))]
-    public class RigidBodyMovement : MonoBehaviour, ICanMove
+    public class RigidBodyMovement : ICanMove
     {
         public float WalkingSpeed = 250.0f;
         public float SprintingSpeed = 400.0f;
@@ -21,10 +21,12 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         [HideInInspector] public float currentSpeed => rigidBody.velocity.magnitude;
         public Vector2 direction { get; private set; }
         public Vector2 target { get; private set; }
+        public override Vector3 movingToTarget { get; protected set; }
+
         public Action onPathComplete;
 
         private List<Vector3> path;
-        private Vector2 _position;
+        private Vector3 _position;
 
         private new Camera camera;
         private Seeker seeker;
@@ -96,7 +98,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             return false;
         }
 
-        public void Move(Vector2 target, float speed)
+        public override void Move(Vector3 target, float speed)
         {
             direction = (target - _position).normalized;
             rigidBody.AddForce(direction * speed * Time.deltaTime * camera.orthographicSize);

@@ -9,14 +9,15 @@ namespace LockdownGames.GameCode.Player
     public class BasicGestures : MonoBehaviour
     {
         public FingersScript fingersScript;
-        public Camera camera;
+        public new Camera camera;
 
         public LayerMask layerMask;
 
         //public Transform clickedLocation;
 
         public Action<GestureRecognizer, Vector2, Transform> tapGestureCallback;
-        public Action<GestureRecognizer, Vector2, Transform> doubleTapGestureCallback;        
+        public Action<GestureRecognizer, Vector2, Transform> doubleTapGestureCallback;
+        public Action<GestureRecognizer, Vector2, Transform> swipeGestureCallback;
 
         private TapGestureRecognizer tapGesture;
         private TapGestureRecognizer doubleTapGesture;
@@ -61,8 +62,8 @@ namespace LockdownGames.GameCode.Player
 
             CreateDoubleTapGesture();
             CreateTapGesture();
-            
-            //CreateSwipeGesture();
+            CreateSwipeGesture();
+
             //CreatePanGesture();
             //CreateScaleGesture();
             //CreateRotateGesture();
@@ -159,6 +160,9 @@ namespace LockdownGames.GameCode.Player
             {
                 return;
             }
+
+            var worldFocusPoint = camera.ScreenToWorldPoint(new Vector2(gesture.FocusX, gesture.FocusY));
+            swipeGestureCallback?.Invoke(gesture, worldFocusPoint, null);// DetectObject(worldFocusPoint));
         }
 
         private void PanGestureCallback(GestureRecognizer gesture)
