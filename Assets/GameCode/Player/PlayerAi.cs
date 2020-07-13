@@ -16,29 +16,44 @@ namespace LockdownGames.GameCode.Player
     {
         public BasicGestures basicGestures;
 
+        [Space]
+        [Header("Movement properties")]
+        public float walkingSpeed = 80;
+        public float runningSpeed = 300;
+        public float dashSpeed = 500;
+        public float dashDistance = 5;
+        public Vector3 target { get; private set; }
+        public AStarMover mover { get; private set; }
+        public ICanMove movementController { get; private set; }
+
+        public Vector3 currentPosition => transform.position;
+
         private FollowMechanics followMechanics;
         private InteractionMechanics interactionMechanics;
-        private RigidBodyMovement mover;
+
 
         private void Awake()
         {
-            mover = GetComponent<RigidBodyMovement>();
+            movementController = GetComponent<ICanMove>();
+            mover = GetComponent<AStarMover>();
             interactionMechanics = GetComponent<InteractionMechanics>();
             followMechanics = GetComponent<FollowMechanics>();
 
             followMechanics.OnFollowTransformDestroyed += OnFollowTransformDestroyed;
 
-            var startingState = new IdleState(this);
-            var moveState = new WalkState(this);
-            var sprintState = new SprintState(this);
-            var followState = new FollowState(this);
+            var startingState = new IdleState();
+            var moveState = new WalkState();
+            var sprintState = new RunningState();
+            var followState = new FollowState();
+            var dashingState = new DashingState();
 
             InitializeStateMachine(new List<IState>
             {
                 startingState,
                 moveState,
                 sprintState,
-                followState
+                followState,
+                dashingState
             }, startingState);
         }
 
@@ -54,15 +69,30 @@ namespace LockdownGames.GameCode.Player
         {
             basicGestures.tapGestureCallback += OnSingleTap;
             basicGestures.doubleTapGestureCallback += OnDoubleTap;
+            basicGestures.swipeGestureCallback += OnSwipe;
+        }
+
+        private void OnSwipe(GestureRecognizer gesture, Vector2 worldFocusPoint, Transform clickedOn)
+        {
+            var startPoint = Camera.main.ScreenToWorldPoint(new Vector2(gesture.StartFocusX, gesture.StartFocusY));
+            var endPoint = Camera.main.ScreenToWorldPoint(
+                new Vector2(gesture.StartFocusX + gesture.DeltaX,
+                            gesture.StartFocusY + gesture.DeltaY));
+
+            var direction = (endPoint - startPoint).normalized;
+            Debug.DrawLine(startPoint, endPoint, Color.red, 5);
+            target = transform.position + direction * dashDistance;
+
+            SetStateTo<DashingState>();
         }
 
         private void OnDoubleTap(GestureRecognizer gesture, Vector2 worldFocusPoint, Transform clickedOn)
         {
-            mover.SetPathTo(worldFocusPoint);
+            target = worldFocusPoint;
 
             if (clickedOn == null)
             {
-                SetStateTo<SprintState>();
+                SetStateTo<RunningState>();
             }
             else
             {
@@ -73,8 +103,8 @@ namespace LockdownGames.GameCode.Player
 
         private void OnSingleTap(GestureRecognizer gesture, Vector2 worldFocusPoint, Transform clickedOn)
         {
-            mover.SetPathTo(worldFocusPoint);
-            
+            target = worldFocusPoint;
+
             if (clickedOn == null)
             {
                 SetStateTo<WalkState>();

@@ -10,9 +10,9 @@ namespace LockdownGames.GameAi.Enemies.Zombies
     {
         private RigidBodyMovement mover;
 
-        public SearchLastKnownPositionState(ZombieAi stateMachine)
-            : base(stateMachine)
+        public override void SetState(StateMachine sm)
         {
+            base.SetState(sm);
             mover = stateMachine.GetComponent<RigidBodyMovement>();
         }
 
@@ -36,11 +36,15 @@ namespace LockdownGames.GameAi.Enemies.Zombies
 
             stateMachine.SetStateTo<WanderingState>();
         }
-
-        public override void Update()
+        public override void FixedUpdate()
         {
             mover.RunToNextPoint();
             SwitchToWanderingStateIfPathIsBlocked();
+        }
+
+        public override void Update()
+        {
+            
         }
 
         private void SwitchToWanderingStateIfPathIsBlocked()

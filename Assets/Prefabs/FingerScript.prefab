@@ -72,4 +72,4 @@ MonoBehaviour:
   camera: {fileID: 0}
   layerMask:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 0

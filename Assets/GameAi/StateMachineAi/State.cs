@@ -6,11 +6,15 @@
         protected T stateMachine;
         public int Hash { get; private set; }
 
-        public State(T stateMachine)
-        {
-            Hash = this.GetType().GetHashCode();
+        //public State(T stateMachine)
+        //{
+        //    SetState(stateMachine);
+        //}
 
-            this.stateMachine = stateMachine;
+        public virtual void SetState(StateMachine sm)
+        {
+            this.stateMachine = (T)sm;
+            Hash = this.GetType().GetHashCode();
         }
 
         public abstract void End();
@@ -18,5 +22,7 @@
         public abstract void Start();
 
         public abstract void Update();
+
+        public abstract void FixedUpdate();
     }
 }

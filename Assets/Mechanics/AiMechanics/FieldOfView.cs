@@ -23,6 +23,12 @@ namespace LockdownGames.Mechanics.AiMechanics
             }
         }
 
+        public bool TryFindTarget(out TargetInView targetInView)
+        {
+            targetInView = FindTarget();
+            return targetInView.isTargetInView;
+        }
+
         public TargetInView FindTarget()
         {
             var playerInView = new TargetInView();

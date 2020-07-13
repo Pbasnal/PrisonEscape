@@ -23,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TouchInput.unity
     guid: d30d12aa79c891045be11bd995fa9e0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Floor3.unity
     guid: 2042e2fa7d3e272409a47a62ebdd91de
+  - enabled: 1
+    path: Assets/Scenes/Combat Ring.unity
+    guid: f8424af924a237d438d75a6e2943ac85
   m_configObjects: {}

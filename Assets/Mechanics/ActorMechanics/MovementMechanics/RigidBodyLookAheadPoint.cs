@@ -8,7 +8,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 {
     public class RigidBodyLookAheadPoint : MonoBehaviour
     {
-        public RigidBodyMovement rigidBodyMover;
+        public PlayerAi playerAi;
         public BasicGestures basicGestures;
 
         public Animator animator;
@@ -26,7 +26,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 
         private void Update()
         {
-            transform.position = Vector3.Lerp(transform.position, (Vector3)rigidBodyMover.target, Time.deltaTime * 5);
+            transform.position = Vector3.Lerp(transform.position, playerAi.target, Time.deltaTime * 5);
         }
     }
 }

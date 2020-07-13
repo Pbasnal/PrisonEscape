@@ -1,39 +1,35 @@
 ﻿using LockdownGames.GameAi.StateMachineAi;
-using LockdownGames.Mechanics.ActorMechanics.MovementMechanics;
-using LockdownGames.Mechanics.InputMechanics;
 
 namespace LockdownGames.GameCode.Player
 {
     public class WalkState : State<PlayerAi>
     {
-        private GestureInput gestureInput;
-        private RigidBodyMovement playerMovement;
-        
-        public WalkState(PlayerAi stateMachine)
-            : base(stateMachine)
-        {
-            gestureInput = stateMachine.GetComponent<GestureInput>();
-            playerMovement = stateMachine.GetComponent<RigidBodyMovement>();
-        }
+        //public WalkState(PlayerAi stateMachine)
+        //    : base(stateMachine)
+        //{}
 
         public override void End()
         { }
 
         public override void Start()
-        { }
-
-        public override void Update()
         {
-            playerMovement.WalkToNextPoint();
+            stateMachine.mover.SetPathTo(stateMachine.target);
+        }
 
-            // if seeker is not done yet or it was not able to move
-            if (playerMovement.IsMoving)
+        public override void FixedUpdate()
+        {
+            stateMachine.mover.MoveToNextWayPoint(stateMachine.walkingSpeed);
+            if (stateMachine.mover.IsMoving)
             {
                 return;
             }
 
-            //Debug.Log("Stopping because current speed is : " + playerMovement.currentSpeed);
             stateMachine.SetStateTo<IdleState>();
+        }
+
+        public override void Update()
+        {
+           
         }
     }
 }

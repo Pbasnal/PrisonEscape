@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LockdownGames.Utilities;
 using Pathfinding;
 
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Seeker))]
-    public class RigidBodyMovement : MonoBehaviour, ICanMove
+    public class RigidBodyMovement : ICanMove
     {
         public float WalkingSpeed = 250.0f;
         public float SprintingSpeed = 400.0f;
@@ -20,12 +21,19 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         [HideInInspector] public float currentSpeed => rigidBody.velocity.magnitude;
         public Vector2 direction { get; private set; }
         public Vector2 target { get; private set; }
+        public override Vector3 movingToTarget { get; protected set; }
+
         public Action onPathComplete;
 
+        [Space]
+        [Header("Debugger Settings")]
+        public DebugLogger logger;
+        private float previousDistance;
+
         private List<Vector3> path;
-        private Vector2 _position;
+        private Vector3 _position;
 
-
+        private new Camera camera;
         private Seeker seeker;
         private Rigidbody2D rigidBody;
 
@@ -33,6 +41,11 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
         {
             seeker = GetComponent<Seeker>();
             rigidBody = GetComponent<Rigidbody2D>();
+
+            if (camera == null)
+            {
+                camera = FindObjectOfType<Camera>();
+            }
 
             target = transform.position;
             direction = Vector2.zero;
@@ -62,26 +75,40 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             Move(path[0], speed);
 
             var distanceFromNextPoint = Vector2.Distance(_position, path[0]);
+            logger.Log("Move Speed: {0}  -  position: {1}  - nextpoint: {2}  - target: {3}",
+                speed, _position, distanceFromNextPoint, path[0]);
+
             if (distanceFromNextPoint > NextWaypointDistance)
             {
                 return true;
             }
 
+            //Debug.Break();
+            var pathNode = path[0];
             path.RemoveAt(0);
-            if (path.Count == 0)
+            if (path.Count != 0)
             {
-                onPathComplete?.Invoke();
-                direction = rigidBody.velocity = Vector2.zero;
-                IsMoving = false;
+                return false;
             }
 
+            onPathComplete?.Invoke();
+            direction = Vector2.zero;
+            rigidBody.velocity = Vector2.zero;
+            IsMoving = false;
             return false;
         }
 
-        public void Move(Vector2 target, float speed)
+        public override void Move(Vector3 target, float speed)
         {
+            if (rigidBody.velocity.magnitude > speed)
+            {
+                return;
+            }
+
             direction = (target - _position).normalized;
-            rigidBody.velocity = direction * speed * Time.deltaTime;
+            var forceToBeAdded = direction * speed * Time.deltaTime * camera.orthographicSize;
+            logger.Log("rb force - {0}", forceToBeAdded);
+            rigidBody.AddForce(forceToBeAdded);
         }
 
         public void ResetPath()
@@ -114,7 +141,10 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             }
 
             path = p.vectorPath;
+            path.Add(target);
             path.RemoveAt(0);
+
+            previousDistance = Vector3.Distance(transform.position, target);
         }
     }
 }
