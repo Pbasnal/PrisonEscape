@@ -41,11 +41,11 @@ namespace LockdownGames.GameCode.Player
 
             followMechanics.OnFollowTransformDestroyed += OnFollowTransformDestroyed;
 
-            var startingState = new IdleState(this);
-            var moveState = new WalkState(this);
-            var sprintState = new RunningState(this);
-            var followState = new FollowState(this);
-            var dashingState = new DashingState(this);
+            var startingState = new IdleState();
+            var moveState = new WalkState();
+            var sprintState = new RunningState();
+            var followState = new FollowState();
+            var dashingState = new DashingState();
 
             InitializeStateMachine(new List<IState>
             {

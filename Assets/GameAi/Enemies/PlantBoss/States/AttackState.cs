@@ -4,11 +4,15 @@ namespace LockdownGames.GameAi.Enemies.PlantBoss.States
 {
     public class AttackState : State<PlantBossAi>
     {
-        public AttackState(PlantBossAi stateMachine) : base(stateMachine)
+        //public AttackState(PlantBossAi stateMachine) : base(stateMachine)
+        //{
+        //}
+
+        public override void End()
         {
         }
 
-        public override void End()
+        public override void FixedUpdate()
         {
         }
 

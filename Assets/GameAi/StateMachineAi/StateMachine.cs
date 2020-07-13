@@ -16,6 +16,7 @@ namespace LockdownGames.GameAi.StateMachineAi
 
             foreach (var state in states)
             {
+                state.SetState(this);
                 stateMap.Add(state.Hash, state);
             }
 

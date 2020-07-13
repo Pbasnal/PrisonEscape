@@ -22,10 +22,10 @@ namespace LockdownGames.Mechanics.CombatMechanics
 
         private void Start()
         {
-            var startingState = new NotAttackingState(this);
+            var startingState = new NotAttackingState();
             InitializeStateMachine(new List<IState> { 
                 startingState, 
-                new AttackState(this)
+                new AttackState()
             }, startingState);
         }
 

@@ -22,11 +22,11 @@ namespace LockdownGames.GameAi.Enemies.PlantBoss
 
         private void Awake()
         {
-            var startingState = new IdleSate(this);
+            var startingState = new IdleSate();
             InitializeStateMachine(new List<IState>
             {
                 startingState,
-                new AttackState(this)
+                new AttackState()
             }, startingState);
         }
 

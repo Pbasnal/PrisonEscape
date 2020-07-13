@@ -4,9 +4,9 @@ namespace LockdownGames.Mechanics.CombatMechanics
 {
     public class AttackState : State<Weapon>
     {
-        public AttackState(Weapon stateMachine) : base(stateMachine)
-        {
-        }
+        //public AttackState(Weapon stateMachine) : base(stateMachine)
+        //{
+        //}
 
         public override void End()
         {
@@ -17,6 +17,10 @@ namespace LockdownGames.Mechanics.CombatMechanics
         {
             stateMachine.attacks[0].ResetTime();
             stateMachine.TriggerContactAnimation(stateMachine.attacks[0].animationState);
+        }
+
+        public override void FixedUpdate()
+        {
         }
 
         public override void Update()

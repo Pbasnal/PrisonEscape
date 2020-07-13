@@ -7,9 +7,9 @@ namespace LockdownGames.GameCode.Player
     {
         public Vector3 target;
 
-        public DashingState(PlayerAi stateMachine)
-            : base(stateMachine)
-        {}
+        //public DashingState(PlayerAi stateMachine)
+        //    : base(stateMachine)
+        //{}
 
         public override void End()
         { }
@@ -20,7 +20,7 @@ namespace LockdownGames.GameCode.Player
             Debug.DrawLine(stateMachine.currentPosition, stateMachine.target, Color.blue, 5);
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             stateMachine.movementController.Move(target, stateMachine.dashSpeed);
             var distance = Vector3.Distance(target, stateMachine.currentPosition);
@@ -30,6 +30,11 @@ namespace LockdownGames.GameCode.Player
             }
 
             stateMachine.SetStateTo<IdleState>();
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }

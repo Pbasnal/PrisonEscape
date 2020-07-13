@@ -4,14 +4,18 @@ namespace LockdownGames.GameCode.Player
 {
     public class InteractionState : State<PlayerAi>
     {
-        public InteractionState(PlayerAi stateMachine) : base(stateMachine)
-        {}
+        //public InteractionState(PlayerAi stateMachine) : base(stateMachine)
+        //{}
 
         public override void End()
         {}
 
         public override void Start()
         {}
+
+        public override void FixedUpdate()
+        {
+        }
 
         public override void Update()
         {

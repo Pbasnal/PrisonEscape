@@ -9,9 +9,9 @@ namespace LockdownGames.GameCode.Player
     {
         private FollowMechanics followMechanics;
 
-        public FollowState(PlayerAi stateMachine)
-            : base(stateMachine)
+        public override void SetState(StateMachine sm)
         {
+            base.SetState(sm);
             followMechanics = stateMachine.GetComponent<FollowMechanics>();
         }
 
@@ -21,7 +21,7 @@ namespace LockdownGames.GameCode.Player
         public override void Start()
         { }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             followMechanics.Follow();
 
@@ -33,6 +33,11 @@ namespace LockdownGames.GameCode.Player
 
             //Debug.Log("Stopping because current speed is : " + playerMovement.currentSpeed);
             stateMachine.SetStateTo<IdleState>();
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }

@@ -1715,7 +1715,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -269328233
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 95e12cf07962d89408f91f052c0c08b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1740,7 +1740,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e10b8f79fe6d14b9dc29e5070779fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBodyMover: {fileID: 2056752650}
+  playerAi: {fileID: 0}
   basicGestures: {fileID: 444709092}
   animator: {fileID: 483527623}
 --- !u!95 &483527623
@@ -47720,7 +47720,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1199057229
 MonoBehaviour:
@@ -49876,7 +49876,7 @@ Transform:
   m_Children:
   - {fileID: 955197328}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2002491377
 MonoBehaviour:
@@ -50154,18 +50154,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c, type: 3}
---- !u!114 &2056752650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2794750810930640900, guid: 18b5c4b6344b4ce49891d8f39c6c5c2c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2056752649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372503634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5305b3bedf388bc41b88ec204b7969b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2107433268
 MonoBehaviour:
   m_ObjectHideFlags: 0

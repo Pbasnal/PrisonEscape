@@ -27,12 +27,12 @@ namespace LockdownGames.GameAi.Enemies.Zombies
 
         private void Awake()
         {
-            var startingState = new WanderingState(this);            
+            var startingState = new WanderingState();            
             InitializeStateMachine(new List<IState>
             {
                 startingState,
-                new ChaseState(this),
-                new SearchLastKnownPositionState(this)
+                new ChaseState(),
+                new SearchLastKnownPositionState()
             }, startingState);
 
             mover = GetComponent<RigidBodyMovement>();

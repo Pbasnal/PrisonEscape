@@ -7,9 +7,9 @@ namespace LockdownGames.GameAi.Enemies.Zombies
     {
         private RigidBodyWanderingMechanics wanderingMechanics;
 
-        public WanderingState(ZombieAi stateMachine)
-            : base(stateMachine)
+        public override void SetState(StateMachine sm)
         {
+            base.SetState(sm);
             wanderingMechanics = stateMachine.GetComponent<RigidBodyWanderingMechanics>();
         }
 
@@ -21,9 +21,14 @@ namespace LockdownGames.GameAi.Enemies.Zombies
         {
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             wanderingMechanics.Wander();
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }

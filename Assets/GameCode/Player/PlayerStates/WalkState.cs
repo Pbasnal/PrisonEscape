@@ -4,9 +4,9 @@ namespace LockdownGames.GameCode.Player
 {
     public class WalkState : State<PlayerAi>
     {
-        public WalkState(PlayerAi stateMachine)
-            : base(stateMachine)
-        {}
+        //public WalkState(PlayerAi stateMachine)
+        //    : base(stateMachine)
+        //{}
 
         public override void End()
         { }
@@ -16,7 +16,7 @@ namespace LockdownGames.GameCode.Player
             stateMachine.mover.SetPathTo(stateMachine.target);
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             stateMachine.mover.MoveToNextWayPoint(stateMachine.walkingSpeed);
             if (stateMachine.mover.IsMoving)
@@ -25,6 +25,11 @@ namespace LockdownGames.GameCode.Player
             }
 
             stateMachine.SetStateTo<IdleState>();
+        }
+
+        public override void Update()
+        {
+           
         }
     }
 }

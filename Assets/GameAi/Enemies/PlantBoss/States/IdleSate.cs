@@ -6,9 +6,13 @@ namespace LockdownGames.GameAi.Enemies.PlantBoss.States
 {
     public class IdleSate : State<PlantBossAi>
     {
-        public IdleSate(PlantBossAi stateMachine) 
-            : base(stateMachine)
-        {}
+        //public IdleSate(PlantBossAi stateMachine) 
+        //    : base(stateMachine)
+        //{}
+
+        public override void FixedUpdate()
+        {
+        }
 
         public override void End()
         {}
@@ -23,8 +27,6 @@ namespace LockdownGames.GameAi.Enemies.PlantBoss.States
             {
                 return;
             }
-
-
         }
     }
 }

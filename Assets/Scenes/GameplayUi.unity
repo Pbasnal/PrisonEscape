@@ -1771,7 +1771,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1394417606}
   - component: {fileID: 1394417607}
-  - component: {fileID: 1394417608}
   m_Layer: 0
   m_Name: LoadFloor
   m_TagString: Untagged
@@ -1806,20 +1805,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Combat Ring
-  loadMode: 1
---- !u!114 &1394417608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394417605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5665770df3109334e8e0dbaa9f9c5505, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: Player
   loadMode: 1
 --- !u!1 &1469789255
 GameObject:

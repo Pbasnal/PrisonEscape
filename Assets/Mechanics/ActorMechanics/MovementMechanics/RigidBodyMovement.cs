@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LockdownGames.Assets.GameCode;
+using LockdownGames.Utilities;
 using Pathfinding;
 
 using UnityEngine;
@@ -25,14 +25,17 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 
         public Action onPathComplete;
 
+        [Space]
+        [Header("Debugger Settings")]
+        public DebugLogger logger;
+        private float previousDistance;
+
         private List<Vector3> path;
         private Vector3 _position;
 
         private new Camera camera;
         private Seeker seeker;
         private Rigidbody2D rigidBody;
-
-        private UnityLogger logger;
 
         private void Awake()
         {
@@ -43,7 +46,6 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             {
                 camera = FindObjectOfType<Camera>();
             }
-            logger = FindObjectOfType<UnityLogger>();
 
             target = transform.position;
             direction = Vector2.zero;
@@ -73,23 +75,21 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             Move(path[0], speed);
 
             var distanceFromNextPoint = Vector2.Distance(_position, path[0]);
+            logger.Log("Move Speed: {0}  -  position: {1}  - nextpoint: {2}  - target: {3}",
+                speed, _position, distanceFromNextPoint, path[0]);
+
             if (distanceFromNextPoint > NextWaypointDistance)
             {
                 return true;
             }
-
-            //logger.LogInfo($"velocity - {rigidBody.velocity.ToString()}, From - {_position.ToString()} to - {transform.position.ToString()}");
-            //logger.LogVelocity(_position, rigidBody.velocity);
 
             //Debug.Break();
             var pathNode = path[0];
             path.RemoveAt(0);
             if (path.Count != 0)
             {
-                logger.StorePosition(_position, pathNode, path.Count);
                 return false;
             }
-            logger.StorePosition(_position, pathNode, path.Count);
 
             onPathComplete?.Invoke();
             direction = Vector2.zero;
@@ -100,8 +100,15 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
 
         public override void Move(Vector3 target, float speed)
         {
+            if (rigidBody.velocity.magnitude > speed)
+            {
+                return;
+            }
+
             direction = (target - _position).normalized;
-            rigidBody.AddForce(direction * speed * Time.deltaTime * camera.orthographicSize);
+            var forceToBeAdded = direction * speed * Time.deltaTime * camera.orthographicSize;
+            logger.Log("rb force - {0}", forceToBeAdded);
+            rigidBody.AddForce(forceToBeAdded);
         }
 
         public void ResetPath()
@@ -119,7 +126,6 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
                 return false;
             }
 
-            logger.ClearStoredData();
             IsMoving = true;
             this.target = target;
             seeker.StartPath(transform.position, target, OnPathFound);
@@ -137,6 +143,8 @@ namespace LockdownGames.Mechanics.ActorMechanics.MovementMechanics
             path = p.vectorPath;
             path.Add(target);
             path.RemoveAt(0);
+
+            previousDistance = Vector3.Distance(transform.position, target);
         }
     }
 }
